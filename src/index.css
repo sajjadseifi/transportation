@@ -1,0 +1,305 @@
+* {
+  /* direction: rtl; */
+  outline: 0;
+}
+a {
+  text-decoration: none;
+  color: black;
+}
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+html body {
+  margin: 0;
+  /* font-family:IRANSans, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif; */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: IRANSans;
+}
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+/* font face */
+@font-face {
+  font-family: IRANSans;
+  src: url("./assets/fonts/Iranian\ Sans.ttf");
+}
+
+html body .my-base-container * {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: IRANSans, "Roboto", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: normal;
+  direction: rtl;
+}
+html body .my-base-container *,
+html body .my-base-container *::after,
+html body .my-base-container *::after {
+  box-sizing: 0;
+}
+html body *.border-box,
+html body * .border-box input,
+html body * > .border-box,
+html body * .border-box,
+html body .border-box > *,
+html body .border-box * {
+  box-sizing: border-box;
+}
+html body .my-base-container input,
+html body .my-base-container textarea {
+  box-sizing: border-box;
+}
+html body .font-ir {
+  font-family: IRANSans, "Roboto", sans-serif;
+}
+
+html body .font-aw5 *,
+html body .table-panel .font-aw5,
+html body .table-panel .table .font-aw5,
+html body .table-panel * .font-aw5,
+html body .table-panel .table .font-aw5 *,
+html body .my-base-container * .font-aw5,
+html body .my-base-container * .font-aw5,
+html body .my-base-container * .font-aw5 * {
+  font-family: "Font Awesome 5 Brands", "Font Awesome 5 Free", "Roboto",
+    IRANSans, sans-serif;
+}
+html body * .rtl,
+html body * .rtl *,
+html body * .rtl * {
+  direction: rtl;
+}
+
+html body * .ltr,
+html body * .ltr *,
+html body * .ltr * html body * .table-panel .table .ltr *,
+html body * .table-panel .table *.ltr,
+html body * .table-panel .table *.ltr * {
+  direction: ltr;
+}
+html body * .table-panel .table,
+html body * .table-panel .table * {
+  direction: rtl;
+  font-family: IRANSans;
+}
+html body * .table-panel .table th,
+html body * .table-panel .table td {
+  vertical-align: middle;
+  text-align: center;
+}
+html body * .table-panel .table thead th {
+  padding: 4px 0;
+  padding-right: 0;
+  font-weight: bold;
+  font-size: 16px;
+}
+html body * .table-panel .table thead th::after,
+html body * .table-panel .table thead th::before {
+  padding: 0;
+  position: unset;
+}
+
+html
+  body
+  *
+  .table-panel
+  div.dataTables_wrapper
+  div.dataTables_paginate
+  ul.pagination
+  li {
+  font-family: IRANSans;
+}
+
+html body * .table-panel.rtl .row:first-child {
+  direction: ltr;
+}
+html body * .table-panel .row:last-child {
+  flex-direction: row-reverse;
+  text-align: right;
+}
+html
+  body
+  *
+  .table-panel
+  .dataTables_wrapper
+  .dataTables_paginate
+  ul.pagination {
+  justify-content: flex-start;
+  -webkit-box-pack: start;
+}
+
+html
+  body
+  *
+  .table-panel
+  .row
+  [data-test="datatable-search"]
+  input[type="search"] {
+  text-align: right;
+  width: 300px;
+  padding: 5px;
+  text-indent: 10px;
+}
+html body * .table-placehodler > .ui {
+  max-width: 100%;
+}
+html body * .table-placehodler {
+  width: 100%;
+}
+html body * .table-placehodler .row-placeholder {
+  display: flex;
+}
+html body * .table-placehodler .col-placeholder {
+  flex: 1;
+  margin: 20px 50px;
+}
+
+html
+  body
+  *
+  .table-panel
+  div.dataTables_wrapper
+  div.dataTables_length.d-flex.flex-row
+  .select-wrapper.mdb-select
+  span,
+html
+  body
+  *
+  .table-panel
+  div.dataTables_wrapper
+  div.dataTables_length.d-flex.flex-row
+  .select-wrapper.mdb-select
+  .select-dropdown {
+  display: block;
+}
+
+html body * .dropdown-content {
+  display: block;
+  text-align: right;
+}
+html body * .dropdown-content li {
+  text-align: right;
+}
+html body * .select-wrapper .select-dropdown {
+  box-sizing: border-box;
+}
+html body * [type="checkbox"]:not(:checked),
+html body * [type="checkbox"]:checked {
+  position: block;
+  opacity: 1;
+}
+html body * input {
+  font-family: IRANSans;
+}
+
+html body * .ui.placeholder.max-w-none {
+  max-width: unset;
+}
+
+html body * .title-placeholder {
+  text-align: right;
+  width: 150px;
+  display: flex;
+  justify-content: flex-end;
+  height: 13px;
+}
+html body * .line-w80-placeholder {
+  text-align: right;
+  width: 290px;
+  display: flex;
+  justify-content: flex-end;
+  height: 18px;
+}
+html body * .rounded-placeholder {
+  border-radius: 2em;
+  overflow: hidden;
+}
+
+html body * .title-min-placeholder {
+  text-align: right;
+  width: 80px;
+  display: flex;
+  justify-content: flex-end;
+  height: 8px;
+}
+html body * .text-line-placeholder {
+  width: 290px;
+  height: 18px;
+}
+
+html body * .gradient-newfile,
+html body * .gradient-newfile:hover {
+  font-weight: bold;
+  color: white;
+  background: #0bad41;
+  background: -webkit-linear-gradient(to right, #06b841c7, #05c7c79d);
+  background: linear-gradient(to right, #06b841c7, #05c7c79d);
+}
+html body * .gradient-truesunset,
+html body * .gradient-truesunset:hover {
+  background: #ec094d80;
+  font-weight: bold;
+  color: white;
+  background: -webkit-linear-gradient(to right, #ec094d80, #d104649c);
+  background: linear-gradient(to right, #ec094d80, #d104649c);
+}
+
+html body * .select-wrapper.mdb-select.md-form .select-dropdown {
+  box-sizing: border-box;
+}
+
+/* PlaceHodler */
+/*  */
+
+html
+  body
+  *
+  .date-input-with-dialog-input-buttons.date-input-with-dialog-calendar,
+html body * .date-input-with-dialog-input-buttons.date-input-with-dialog-empty {
+  display: none;
+}
+
+.sc-dnqmqq.gojxrL {
+  color: aqua;
+}
+
+html body.Admin {
+  background: rgb(2, 0, 36);
+  background: linear-gradient(110deg, #020024 0%, #6b0979 70%, #1f0045 100%);
+}
+
+html body * .header-navbar-shadow {
+  display: none;
+}
+html body * .select-page-module .select-wrapper span.caret {
+  color: white;
+}
+html
+  body
+  *
+  .select-page-module
+  .select-wrapper.mdb-select.md-form
+  .select-dropdown {
+  color: white;
+  font-family: IRANSans, "Roboto", sans-serif
+}
+html
+  body
+  *
+  .select-page-module
+  .select-wrapper.mdb-select.md-form
+  .select-dropdown:focus {
+  background-color: transparent;
+}
+html body * .select-page-module .select-wrapper.mdb-select.md-form label {
+  color: white;
+  font-weight: bold;
+}
