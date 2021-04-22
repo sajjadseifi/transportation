@@ -1,0 +1,139 @@
+{
+	"action types custom": {
+		"prefix": "actyp",
+		"body": [
+		  "import { reducerAction } from \".\";",
+		  "import { errorRequest } from \".\";",
+		  "",
+		  "// fetch request",
+		  "export const ${DEFAULT}_START_REQUEST = \"${DEFAULT}_START_REQUEST\";",
+		  "export const ${DEFAULT}_FINISHED_REQUEST = \"${DEFAULT}_FINISHED_REQUEST\";",
+		  "//error",
+		  "export const ${DEFAULT}_SET_ERRORS = '${DEFAULT}_SET_ERRORS';",
+		  "export const ${DEFAULT}_CLEAR_ERRORS = '${DEFAULT}_CLEAR_ERRORS';",
+		  "",
+		  "export const startRequest = () => reducerAction(${DEFAULT}_START_REQUEST);",
+		  "export const finishedRequest = () => reducerAction(${DEFAULT}_FINISHED_REQUEST);",
+		  "",
+		  "export const setErrors = (error) => errorRequest(${DEFAULT}_SET_ERRORS, error);",
+		  "",
+		  "export const  clearErrors = () => reducerAction(${DEFAULT}_CLEAR_ERRORS);",
+		  "",
+		  "export default {",
+		  "    //action",
+		  "    ${DEFAULT}_START_REQUEST,",
+		  "    ${DEFAULT}_FINISHED_REQUEST,",
+		  "    ${DEFAULT}_SET_ERROR,",
+		  "    ${DEFAULT}_CLEAR_ERRORS,",
+		  "    //action-handler",
+		  "    startRequest,",
+		  "    finishedRequest,",
+		  "    setErrors,",
+		  "    clearErrors",
+		  "};"
+		],
+		"description": "action types custom"
+	  },
+	  "default reducer with action": {
+		"prefix": "defrecuer",
+		"body": [
+		  "import { ${default}ActionType } from \"../@types\";",
+		  "",
+		  "const initialState = {",
+		  "    loading: false,",
+		  "    errors: null,",
+		  "};",
+		  "",
+		  "export const ${default}Reducer = (state = initialState, action) => {",
+		  "",
+		  "    switch (action.type) {",
+		  "        case ${default}ActionType.${DEFAULT}_START_REQUEST:",
+		  "            return { loading: true, errors: initialState.errors };",
+		  "        case ${default}ActionType.${DEFAULT}_FINISHED_REQUEST:",
+		  "            return { loading: false };",
+		  "        case ${default}ActionType.${DEFAULT}_SET_RROR:",
+		  "            return { errors: action.payload };",
+		  "        case ${default}ActionType.${DEFAULT}_CLEAR_RROR:",
+		  "            return { errors: initialState.errors };",
+		  "        case ${default}ActionType.${DEFAULT}_INITIAL_STATE:",
+		  "            return initialState;",
+		  "",
+		  "        //more than action type....     ",
+		  "    }",
+		  "    return state;",
+		  "};",
+		  "",
+		  "export default ${default}Reducer;"
+		],
+		"description": "action types custom"
+	  },
+	  "index action type": {
+		"prefix": "ind.ac.typ",
+		"body": [
+		  "export {",
+		  "    ${DEFAULT}_START_REQUEST,",
+		  "    ${DEFAULT}_FINISHED_REQUEST,",
+		  "    ${DEFAULT}_SET_ERRORS,",
+		  "    ${DEFAULT}_CLEAR_ERRORS,",
+		  "} from \"./default.action.types\";",
+		  "",
+		  "export { default as ${default}ActionTypes } from \"./${default}.action.types\";"
+		],
+		"description": "index action type"
+	  },
+	  "default functional commponent": {
+		"prefix": "fcra",
+		"body": [
+		  "//default",
+		  "import React from \"react\";",
+		  "const ${FunctionalConponent} = (props) => {",
+		  "",
+		  "    reutnr(",
+		  "        <div>",
+		  "",
+		  "        </div>",
+		  "    )",
+		  "};",
+		  "",
+		  "export default ${FunctionalConponent};"
+		],
+		"description": "default functional commponent"
+	  },
+	  "classes import": {
+		"prefix": "module.css",
+		"body": [
+		  "import classes from \"./${FunctionalConponent}.module.css\";",
+		  ""
+		],
+		"description": "classes import"
+	  },
+	  "use fc with dispatch and selector": {
+		"prefix": "fc.redcux",
+		"body": [
+		  "//with dispatch and selector",
+		  "import React, { useEffect } from \"react\";",
+		  "import { useDispatch, useSelector } from 'react-redux';",
+		  "",
+		  "const ${FunctionalConponent} = (props) => {",
+		  "",
+		  "    const dispatch = useDispatch();",
+		  "    ",
+		  "    const state = useSelector(state => state);",
+		  "",
+		  "    useEffect(() => {",
+		  "",
+		  "    }, [dispatch]);",
+		  "",
+		  "",
+		  "    reutnr(",
+		  "        <div>",
+		  "          ${FunctionalConponent}",
+		  "        </div>",
+		  "    )",
+		  "};",
+		  "",
+		  "export default ${FunctionalConponent};"
+		],
+		"description": "use fc with dispatch and selector"
+	  }
+}

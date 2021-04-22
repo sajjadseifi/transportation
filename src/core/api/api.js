@@ -1,4 +1,5 @@
 import axios from "axios";
+import { store } from "../../@redux/store";
 
 const baseURL = process.env.REACT_APP_API_URL || "http://localhost:3000/api/";
 
@@ -10,9 +11,15 @@ axios.defaults.baseURL = baseURL;
 axios.get(baseURL, config).then((res) => { });
 
 axios.interceptors.request.use((config) => {
-    const token = localStorage.getItem("jwt");
+    // const token = localStorage.getItem("jwt");
+    const { userInfo } = store.getState().auth;
+
+    const token = userInfo.token ?
+        userInfo.token :
+        'Basic ' + new Buffer('shid' + ':' + 'test').toString('base64');
 
     config.headers["Authorization"] = token;
+
     config.headers["Content-Type"] = "application/json";
 
     source = axios.CancelToken.source();
@@ -54,10 +61,10 @@ axios.interceptors.response.use(undefined, (error) => {
 const responseBody = (response) => (response ? response.data : response);
 
 export const request = {
-    get: (url, config={}) => axios.get(url, config).then(responseBody),
-    post: (url, body = {}, config={}) => axios.post(url, body, config).then(responseBody),
-    put: (url, body = {}, config={}) => axios.put(url, body, config).then(responseBody),
-    del: (url, config={}) => axios.delete(url, config).then(responseBody),
+    get: (url, config = {}) => axios.get(url, config).then(responseBody),
+    post: (url, body = {}, config = {}) => axios.post(url, body, config).then(responseBody),
+    put: (url, body = {}, config = {}) => axios.put(url, body, config).then(responseBody),
+    del: (url, config = {}) => axios.delete(url, config).then(responseBody),
     postForm: (url, blob) => {
         const formData = new FormData();
         formData.append("File", blob);

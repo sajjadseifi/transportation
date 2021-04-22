@@ -1,4 +1,5 @@
 import { reducerAction } from ".";
+import { errorRequest } from "./all.action.types";
 
 // fetch request
 export const AUTH_START_REQUEST = "AUTH_START_REQUEST";
@@ -23,12 +24,12 @@ export const loaginSuccess = (userInfo) => {
     localStorage.setItem('userInfo', JSON.stringify(userInfo));
     return reducerAction(AUTH_LOGIN_SUCCESS, userInfo);
 };
+export const authLoginFaild = (error) => errorRequest(AUTH_LOGIN_FAIL, error);
 
 export const logoutAction = () => {
     localStorage.removeItem('userInfo');
     return reducerAction(AUTH_LOGOUT);
 };
-
 
 export default {
     //action
@@ -44,5 +45,6 @@ export default {
     startRequest,
     finishedRequest,
     loaginSuccess,
-    logoutAction
+    logoutAction,
+    authLoginFaild
 };

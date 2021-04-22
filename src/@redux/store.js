@@ -17,7 +17,7 @@ const initialState = {
     // userLogin: { userInfo: userInfoFromStorage },
 };
 
-const store = createStore(
+export const store = createStore(
     rootReducer,
     initialState,
     compose(applyMiddleware(...middleware))
