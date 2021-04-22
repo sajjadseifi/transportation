@@ -1,24 +1,24 @@
 import React from "react";
 import ReduxThunk from "redux-thunk";
-import { createStore, combineReducers, applyMiddleware } from "redux";
+import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import { Provider } from "react-redux";
 import { authReducer } from "./reducers";
 
-export const rootReducerPanel = combineReducers({
+export const rootReducer = combineReducers({
     auth: authReducer
 });
+
 const middleware = [ReduxThunk];
 
-const userInfo = localStorage.getItem('userInfo')
-const userInfoFromStorage = userInfo ? JSON.parse(userInfo) : null;
+// const userInfo = localStorage.getItem('userInfo')
+// const userInfoFromStorage = userInfo ? JSON.parse(userInfo) : null;
 
 const initialState = {
-    userLogin: { userInfo: userInfoFromStorage },
-    lotteriesList: { lotteries: [] },
+    // userLogin: { userInfo: userInfoFromStorage },
 };
 
 const store = createStore(
-    reducer,
+    rootReducer,
     initialState,
     compose(applyMiddleware(...middleware))
 );

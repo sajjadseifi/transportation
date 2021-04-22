@@ -3,9 +3,11 @@ import ReactDOM from "react-dom";
 import reportWebVitals from "./reportWebVitals";
 
 //styles
-import "./index.css";
-import "@fortawesome/fontawesome-free/css/all.min.css";
+// import "@fortawesome/fontawesome-free/css/all.min.css";
+// import 'rsuite/lib/'; // or 'rsuite/dist/styles/rsuite-default.css'
 import 'bootstrap/scss/bootstrap.scss';
+import "rsuite/dist/styles/rsuite-default.css";
+import "./index.css";
 //application 
 import App from "./container/App";
 //router app 
@@ -23,11 +25,11 @@ const IndexApp = () => {
         <Router history={history}>
             <Store>
                 <App />
+                sddf
             </Store>
         </Router>
     );
 };
-
 const root = document.getElementById("root");
 
 ReactDOM.render(<IndexApp />, root);

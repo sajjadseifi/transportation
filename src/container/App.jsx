@@ -1,20 +1,18 @@
 import { useEffect } from "react";
-import Pages from "../pages/Pages.jsx";
+import { Screens } from "../screens";
 import { useDispatch } from "react-redux";
-import {AppLoading} from "../components/Loading";
+import { AppLoading } from "../components/Loading";
 
 // const LaizyCmp = lazy(() => import("~/LaizyCmp.jsx"));
 
 function App() {
   const dispatch = useDispatch();
 
-  useEffect(() => { }, [dispatch]);
+  useEffect(() => {}, [dispatch]);
 
+  if (false) return <AppLoading />;
 
-  if(false)
-    return <AppLoading/>
-
-  return (<Pages />);
+  return <Screens />;
 }
 
 export default App;

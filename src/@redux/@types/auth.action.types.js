@@ -1,3 +1,5 @@
+import { reducerAction } from ".";
+
 // fetch request
 export const AUTH_START_REQUEST = "AUTH_START_REQUEST";
 export const AUTH_FINISHED_REQUEST = "AUTH_FINISHED_REQUEST";
@@ -14,32 +16,33 @@ export const AUTH_FORGETPASSWORD_FAIL = "AUTH_FORGETPASSWORD_FAIL";
 // logout
 export const AUTH_LOGOUT = 'USER_LOGOUT';
 
+export const startRequest = () => reducerAction(AUTH_START_REQUEST);
+export const finishedRequest = () => reducerAction(AUTH_FINISHED_REQUEST);
 
-export const startRequest = () => {
-    return {
-        type: AUTH_START_REQUEST,
-    }
-};
-export const finishedRequest = () => {
-    return {
-        type: AUTH_FINISHED_REQUEST,
-    }
-};
 export const loaginSuccess = (userInfo) => {
     localStorage.setItem('userInfo', JSON.stringify(userInfo));
-    return {
-        type: AUTH_LOGIN_SUCCESS,
-        payload: userInfo,
-    };
+    return reducerAction(AUTH_LOGIN_SUCCESS, userInfo);
 };
 
-export const logoutAction= () => {
+export const logoutAction = () => {
     localStorage.removeItem('userInfo');
-    return {type: AUTH_LOGOUT};
+    return reducerAction(AUTH_LOGOUT);
 };
 
-export {
+
+export default {
+    //action
+    AUTH_START_REQUEST,
+    AUTH_FINISHED_REQUEST,
+    AUTH_LOGIN_SUCCESS,
+    AUTH_LOGIN_FAIL,
+    AUTH_REGISTER_SUCCESS,
+    AUTH_REGISTER_FAIL,
+    AUTH_FORGETPASSWORD_SUCCESS,
+    AUTH_FORGETPASSWORD_FAIL,
+    //action-handler
     startRequest,
     finishedRequest,
-    loaginSuccess
+    loaginSuccess,
+    logoutAction
 };

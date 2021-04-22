@@ -1,5 +1,4 @@
 export {
-    default as authActionTypes,
     AUTH_FINISHED_REQUEST,
     AUTH_LOGIN_FAIL,
     AUTH_LOGIN_SUCCESS,
@@ -10,5 +9,7 @@ export {
     AUTH_FORGETPASSWORD_SUCCESS,
     AUTH_FORGETPASSWORD_FAIL
 } from "./auth.action.types";
+export { default as authActionTypes } from "./auth.action.types";
 
-export { default as allActionTypes, errorRequest } from "./all.action.types";
+export { errorRequest, reducerAction } from "./all.action.types";
+

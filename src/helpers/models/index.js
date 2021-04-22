@@ -1,0 +1,1 @@
+export { authLogin } from "./auth.model";
