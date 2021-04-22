@@ -1,7 +1,7 @@
 import React from "react";
 import TransportGif from "../../assets/images/gif/app-loading.gif";
 
-const AppLoading = (props) => {
+const AppLoading = ({ title }) => {
   const loadStyle = { position: "fixed" };
   const appClass =
     "text-cetner w-100 h-100  d-flex align-items-center justify-content-center";
@@ -13,7 +13,7 @@ const AppLoading = (props) => {
     fontWeight: "bold",
     textAlign: "center",
   };
-
+  let textShowed = title ? title : "درحال بارگذاری برنامه ...";
   return (
     <div style={loadStyle} className={appClass}>
       <img
@@ -21,7 +21,7 @@ const AppLoading = (props) => {
         alt="در حال بارگذاری صفحات"
         className="w-100 h-100 d-block"
       />
-      <h2 style={{ ...textStyle }}>در حال رفتن به مقصد لطفا شکیبا باشید</h2>
+      <h2 style={textStyle}>{textShowed}</h2>
     </div>
   );
 };

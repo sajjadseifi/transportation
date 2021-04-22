@@ -2,7 +2,7 @@
 import React from "react";
 const AdminScreen = (props) => {
 
-    reutnr(
+    return(
         <div>
 
         </div>

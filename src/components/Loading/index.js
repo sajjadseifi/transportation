@@ -1,2 +1,2 @@
-export {default as AppLoading} from "./AppLoading";
-export {default as SpinnerLoading} from "./SpinnerLoading";
+export {default as AppLoading} from "./app.loading";
+export {default as SpinnerLoading} from "./spinner.loading";
