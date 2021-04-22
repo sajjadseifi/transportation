@@ -1,0 +1,14 @@
+react
+react-redux
+redux-thunk
+react-router-dom
+yup
+axios
+formik
+date-fns
+fa-icons
+node-sass
+bootstrap
+jalali-moment
+@fortawesome/fontawesome-free
+persian-date
