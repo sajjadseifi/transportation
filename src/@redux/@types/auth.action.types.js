@@ -1,14 +1,19 @@
-//fetch request
+// fetch request
 export const AUTH_START_REQUEST = "AUTH_START_REQUEST";
 export const AUTH_FINISHED_REQUEST = "AUTH_FINISHED_REQUEST";
-//login
-export const AUTH_LOGIN_SUCCESS = "AUTH_SUCCESS_REQUEST";
-export const AUTH_LOGIN_FAIL = "AUTH_FAILD_REQUEST";
-//register
-export const AUTH_REGISTER_SUCCESS = 'USER_REGISTER_SUCCESS';
-export const AUTH_REGISTER_FAIL = "AUTH_FAILD_REQUEST";
-//autoLogin
+// login
+export const AUTH_LOGIN_SUCCESS = "AUTH_LOGIN_SUCCESS";
+export const AUTH_LOGIN_FAIL = "AUTH_LOGIN_FAIL";
+// register
+export const AUTH_REGISTER_SUCCESS = 'AUTH_REGISTER_SUCCESS';
+export const AUTH_REGISTER_FAIL = "AUTH_REGISTER_FAIL";
+// forget password
+export const AUTH_FORGETPASSWORD_SUCCESS = 'AUTH_FORGETPASSWORD_SUCCESS';
+export const AUTH_FORGETPASSWORD_FAIL = "AUTH_FORGETPASSWORD_FAIL";
+
+// logout
 export const AUTH_LOGOUT = 'USER_LOGOUT';
+
 
 export const startRequest = () => {
     return {
@@ -27,6 +32,7 @@ export const loaginSuccess = (userInfo) => {
         payload: userInfo,
     };
 };
+
 export const logoutAction= () => {
     localStorage.removeItem('userInfo');
     return {type: AUTH_LOGOUT};

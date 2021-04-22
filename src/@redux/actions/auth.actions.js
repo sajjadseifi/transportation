@@ -1,35 +1,34 @@
-import {history } from "../..";
-import { authActionTypes, errorRequest,USER_LOGIN_FAIL } from '../@types';
+import { history } from "../..";
+import { authApi } from "../../core/api";
+import { authActionTypes, errorRequest } from '../@types';
+const userFormData = (username, password) => {
+    var formdata = new FormData();
+    formdata.append('user_name', username);
+    formdata.append('password', password);
+    formdata.append('device_information', '{}');
 
+};
 export const login = (username, password) => async (dispatch) => {
     try {
         dispatch(authActionTypes.startRequest());
+         
+        const options = {
+            headers: {
+                Authorization:'Basic ' + new Buffer('shid' + ':' + 'test').toString('base64')
+            },
+            redirect: 'follow',
+        };
+        const formData = userFormData(username, password);
 
-        var formdata = new FormData();
-        formdata.append('user_name', username);
-        formdata.append('password', password);
-        formdata.append('device_information', '{}');
+        const response = authApi.login(formData, options);
 
-        // const response = await fetch(
-        //   'http://club.negarestoun.ir/authService/login',
-        //   {
-        //     method: 'POST',
-        //     body: formdata,
-        //     headers: {
-        //       Authorization:
-        //         'Basic ' + new Buffer('shid' + ':' + 'test').toString('base64'),
-        //     },
-        //     redirect: 'follow',
-        //   }
-        // );
-        const data = await response.json();
-
-        if (data.succsess)
+        if (response.status === 1)
             dispatch(authActionTypes.loaginSuccess(data.data));
         else
             throw data.message;
+
     } catch (error) {
-        dispatch(errorRequest(USER_LOGIN_FAIL,error));
+        dispatch(errorRequest(authActionTypes.USER_LOGIN_FAIL, error));
     } finally {
         dispatch(authActionTypes.finishedRequest());
     }

@@ -1,7 +1,8 @@
-import { request } from ".";
+import { agentAxios } from ".";
+
 
 export default {
-    login: (user, config = {}) => request.post("/auth/login", user, config),
-    register: (user, config = {}) => request.post("/auth/register", user, config = {}),
-    forgetpassword: (email, config = {}) => request.post("/forgetpassword", { email }, config = {}),
+    login: (user, config = {}) => agentAxios.post("/authService/login", user, config),
+    register: (user, config = {}) =>agentAxios.post("/auth/register", user, config = {}),
+    forgetpassword: (email, config = {}) => agentAxios.post("/forgetpassword", { email }, config = {}),
 };
