@@ -9,7 +9,7 @@ import 'bootstrap/scss/bootstrap.scss';
 import "rsuite/dist/styles/rsuite-default.css";
 import "./index.css";
 //application 
-import App from "./container/App";
+import App from "./app/App";
 //router app 
 import { Router } from "react-router-dom";
 //redux store
@@ -20,12 +20,13 @@ export const history = createBrowserHistory();
 //persian date
 export const persianDate = require("persian-date");
 
+
+
 const IndexApp = () => {
     return (
         <Router history={history}>
             <Store>
                 <App />
-                sddf
             </Store>
         </Router>
     );

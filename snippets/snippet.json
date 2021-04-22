@@ -135,5 +135,25 @@
 		  "export default ${FunctionalConponent};"
 		],
 		"description": "use fc with dispatch and selector"
+	  },
+	  "use fc with router": {
+		"prefix": "fc.router",
+		"body": [
+		  "//fc with react router dom",
+		  "import React from \"react\";",
+		  "import { Switch, Route } from \"react-router-dom\";",
+		  "const ${FunctionalConponent} = (props) => {",
+		  "",
+		  "    reutnr(",
+		  "        <Switch>",
+		  "            <Route path=\"/\" component={null} />",
+		  "        </Switch>",
+		  "    )",
+		  "};",
+		  "",
+		  "export default ${FunctionalConponent};",
+		  ""
+		],
+		"description": "use fc with router"
 	  }
 }

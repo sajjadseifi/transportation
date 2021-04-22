@@ -1,0 +1,44 @@
+import Loadable from "react-loadable";
+const CustomComponent = Loadable({
+  loader: () =>
+    new Promise((resolve, reject) => {
+      setTimeout(() => resolve(import("./custom-component")), 2000);
+    }),
+  loading: ({ pastDelay }) => (pastDelay ? <div>Loading...</div> : null),
+  delay: 50
+});
+const CustomComponent2 = Loadable({
+  loader: () =>
+    new Promise((resolve, reject) => {
+      setTimeout(() => resolve(import("./custom-component")), 5000);
+    }),
+  loading: () => <div>Loading...</div>
+});
+const ErrorCustomComponent = Loadable({
+  loader: () =>
+    new Promise((resolve, reject) => {
+      setTimeout(() => reject(import("./custom-component")), 200);
+    }),
+  loading: ({ error }) =>
+    !error ? <div>Loading...</div> : <div>Component could not be loaded!</div>
+});
+const TimeoutComponent = Loadable({
+  loader: () =>
+    new Promise((resolve, reject) => {
+      setTimeout(() => resolve(import("./custom-component")), 2000);
+    }),
+  loading: ({ timedOut }) =>
+    timedOut ? <div>Taking too long...</div> : <div>Loading...</div>,
+  timeout: 50
+});
+function App() {
+  return (
+    <>
+      <CustomComponent label="Component 1" />
+      <CustomComponent2 label="Component 2" />
+      <ErrorCustomComponent label="Component 3" />
+      <TimeoutComponent label="Component 4" />
+    </>
+  );
+}
+Although this library has lots of features and stars, latest remarkable commits were made more than 1 year ago. Although there is any warning on github repo

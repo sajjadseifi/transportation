@@ -8,14 +8,14 @@ export const rootReducer = combineReducers({
     auth: authReducer
 });
 
+const initialState = {
+    // userLogin: { userInfo: userInfoFromStorage },
+};
+
 const middleware = [ReduxThunk];
 
 // const userInfo = localStorage.getItem('userInfo')
 // const userInfoFromStorage = userInfo ? JSON.parse(userInfo) : null;
-
-const initialState = {
-    // userLogin: { userInfo: userInfoFromStorage },
-};
 
 export const store = createStore(
     rootReducer,

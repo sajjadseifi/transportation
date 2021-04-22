@@ -1,11 +1,10 @@
 import React from "react";
 const navbarStyle = {
-  height: 60,
-  background: "green",
   width: "100%",
+  height: 80,
 };
 const NavBar = ({}) => {
-  return <div style={navbarStyle} className=""></div>;
+  return <div style={navbarStyle} className="violet-gradient"></div>;
 };
 
 export default NavBar;
