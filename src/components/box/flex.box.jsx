@@ -10,6 +10,7 @@ const FlexBox = ({
   justCenter,
   className,
   children,
+  culumn,
 }) => {
   const classes = `
   d-flex 
@@ -17,6 +18,7 @@ const FlexBox = ({
     justCenter ? "justify-content-center" : `justify-content-${justifyContent}`
   } 
   ${alignCenter ? "align-items-center" : `align-items-${alignItems}`} 
+  ${culumn ? "flex-column" : "flex-column"}
   ${className}
   `;
   return <div className={classes}>{children}</div>;

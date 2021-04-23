@@ -2,6 +2,11 @@ $FormWidth:360px;
 
 .login-screen {
     background-color: #E5E9FF;
+    .auth-title{
+        width: 100%;
+        text-align: center;
+        color: deeppink;
+    }
 }
 
 .login-card {

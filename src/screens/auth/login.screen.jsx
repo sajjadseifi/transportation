@@ -24,7 +24,8 @@ const LoginScreen = (props) => {
       </div>
       <FixedCenterBox>
         <div className="login-card login-form">
-          <FlexBox justCenter alignCenter className="form-container">
+          <FlexBox culumn justCenter alignCenter className="form-container">
+            <h3 className="auth-title">سامانه حمل و نقل</h3>
             <FormPersonal
               onSubmit={loginHandler}
               formClass="w-100"
