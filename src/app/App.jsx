@@ -2,7 +2,7 @@ import { Suspense, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { AppLoading } from "../components/loading";
 import loadable, { lazy } from "@loadable/component";
-
+import FormPersonal from "../components/form/FormPersonal";
 /* const LaizyCmp = lazy(() => import("~/LaizyCmp.jsx")); */
 
 const Routes = lazy(
@@ -18,7 +18,8 @@ function App() {
 
   useEffect(() => {}, [dispatch]);
 
-  if (true) return <AppLoading title={loadAccountTitle} />;
+  return <FormPersonal />;
+  if (false) return <AppLoading title={loadAccountTitle} />;
 
   return (
     <Suspense fallback={<AppLoading title={appLoadTitle} />}>

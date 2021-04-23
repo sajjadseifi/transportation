@@ -7,18 +7,18 @@
 * moder..
 */
 
-const firstnameValidator = () => { };
+export const firstnameValidator = () => { };
 
-const lastnameValidator = () => { };
+export const lastnameValidator = () => { };
 
-const phonenumberValidator = () => { };
+export const phonenumberValidator = () => { };
 
-const birthdateValidator = () => { };
+export const birthdateValidator = () => { };
 
-const bioValidator = () => { };
+export const bioValidator = () => { };
 
 
-export {
+export default {
     firstnameValidator,
     lastnameValidator,
     phonenumberValidator,

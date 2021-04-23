@@ -12,6 +12,7 @@
     "bootstrap": "^5.0.0-beta3",
     "connected-react-router": "^6.9.1",
     "fa-icons": "^0.2.0",
+    "final-form": "^4.20.2",
     "formik": "^2.2.6",
     "jalali-moment": "^3.3.10",
     "moment": "^2.29.1",
@@ -19,15 +20,18 @@
     "persian-date": "^1.1.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-final-form": "^6.5.3",
     "react-loadable": "^5.5.0",
     "react-redux": "^7.2.3",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "redux-thunk": "^2.3.0",
+    "revalidate": "^1.2.0",
     "rsuite": "^4.9.3",
     "socket.io-client": "^4.0.1",
     "web-vitals": "^1.1.1",
-    "yup": "^0.32.9"
+    "yup": "^0.32.9",
+    "yup-password": "^0.2.1"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -1,1 +1,3 @@
-export { default as PersonalFormik } from "./personal-formik.form";
+export { default as FormPersonal } from "./FormPersonal";
+export { default as FormFieldList } from "./FormFieldList";
+export { default as Form } from "./Form";
