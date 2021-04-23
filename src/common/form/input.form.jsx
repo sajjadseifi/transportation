@@ -1,7 +1,9 @@
 import React from "react";
+import { Icon as IconRsuite } from "rsuite";
 
 const InputForm = ({
   icon,
+  Icon,
   input,
   title,
   width,
@@ -12,9 +14,17 @@ const InputForm = ({
 }) => {
   return (
     <div className={className} style={{ width }}>
-      <label htnlfor={input.name}>{title}</label>
-      <input id={input.name} type={type} {...input} placeholder={placeholder} />
-      {touched && error && <span>{error}</span>}
+      <label htmlfor={input.name}>{title}</label>
+      <div className="input-form-content">
+        {Icon ? Icon : <IconRsuite icon={icon} />}
+        <input
+          id={input.name}
+          type={type}
+          placeholder={placeholder}
+          {...input}
+        />
+      </div>
+      {touched && error && <span className="text-red p-2">{error}</span>}
     </div>
   );
 };

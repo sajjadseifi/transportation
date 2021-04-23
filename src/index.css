@@ -1,11 +1,12 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+    sans-serif; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   direction: rtl;
+  font-family: IRANSansDN, IRANYekanLight, IRANSans, YekanBakh_Light;
 }
 
 code {
@@ -14,13 +15,10 @@ code {
 }
 
 #root {
-  /* background-color: rgba(3, 120, 199, 0.966); */
   position: fixed;
   width: 100%;
   left: 0;
   top: 0;
-  /* display: flex; */
-  /* flex-direction: column; */
   height: 100%;
 }
 

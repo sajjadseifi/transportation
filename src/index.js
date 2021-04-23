@@ -8,6 +8,9 @@ import reportWebVitals from "./reportWebVitals";
 import 'bootstrap/scss/bootstrap.scss';
 import "rsuite/dist/styles/rsuite-default.css";
 import "./index.css";
+import "./_style.scss";
+import "./fontawesome.min.css";
+
 //application 
 import App from "./app/App";
 //router app 

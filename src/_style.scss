@@ -1,0 +1,9 @@
+@import "./styles/scss";
+@import "./screens/screens.scss";
+@import "./common/form/form.scss";
+// reset
+html { box-sizing: border-box; font-size: 10px; }
+*, *:before, *:after { box-sizing: inherit; }
+body, ul, li  { margin: 0; padding: 0; }
+li { list-style: none; }
+a { text-decoration: none; }
