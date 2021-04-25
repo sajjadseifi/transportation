@@ -1,17 +1,15 @@
 /* * email * password * username * */
 import { validationMessages } from ".";
 import { composeValidators, hasLengthGreaterThan, hasLengthLessThan, isRequired } from "revalidate";
-import regexPattern, { createRegexsValidator } from "../regex/pattern";
-
+import regexPattern from "../regex/pattern";
+import { createRegexsValidator } from "./validator";
 
 //-----------------username
 
 const usernamePattern = createRegexsValidator(regexPattern.username);
 
-console.log(validationMessages.isRequeredField("نام کاربری"));
 export const usernameValidator = composeValidators(
     isRequired(validationMessages.isRequeredField("نام کاربری")),
-    // isRequired({ message: "فیلد پسورد اجباری میباشد" }),
     hasLengthGreaterThan(8)(validationMessages.minLength("نام کاربری", 8)),
     hasLengthLessThan(20)(validationMessages.maxLength("نام کاربری", 20)),
     usernamePattern(validationMessages.usernameFortam)

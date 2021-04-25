@@ -31,13 +31,7 @@ const LoginScreen = (props) => {
       </div>
       <FixedCenterBox>
         <div className="login-card login-form">
-          <FlexBox
-            className
-            culumn
-            justCenter
-            alignCenter
-            className="form-container"
-          >
+          <FlexBox culumn justCenter alignCenter className="form-container">
             <h3 className="auth-title">سامانه حمل و نقل</h3>
             <FormPersonal
               validate={authValidate}

@@ -7,10 +7,9 @@
 * moder..
 */
 
-import { composeValidators, hasLengthGreaterThan, hasLengthLessThan } from "revalidate";
+import { composeValidators, hasLengthGreaterThan, hasLengthLessThan, isRequired } from "revalidate";
 import { validationMessages } from ".";
 import regexPattern, { createRegexsValidator } from "../regex/pattern";
-import { isRequired } from "./validation.messages";
 import { strickLengthValidator } from "./validator";
 
 export const firstnameValidator = () => { };
@@ -21,7 +20,7 @@ const phoneNumberPattern = createRegexsValidator(regexPattern.phoneNumber);
 export const phonenumberValidator = composeValidators(
     isRequired(validationMessages.isRequeredField("شماره همراه")),
     hasLengthGreaterThan(9)(validationMessages.minLength("شماره همراه", 9)),
-    hasLengthLessThan(14)(validationMessages.minLength("شماره همراه", 14)),
+    hasLengthLessThan(14)(validationMessages.maxLength("شماره همراه", 14)),
     phoneNumberPattern(validationMessages.phonenumberFortam)
 )({ multiple: true });
 

@@ -1,5 +1,11 @@
 import { createValidator } from "revalidate";
 
+
+export const createRegexsValidator = (regex) => createValidator(
+    (message) => (value) =>
+        value && !regex.test(value) ? message : undefined,
+    (field) => `${field} Error`
+);
 export const createGraterDateValidator = () =>
     createValidator(
         (message) => (value) =>

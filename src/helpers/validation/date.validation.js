@@ -1,25 +1,15 @@
 /* * startdate * enddate * rangedate * moder.. */
-import { parse, isDate } from "date-fns";
-import { composeValidators } from "revalidate";
-import { validationMessages } from ".";
-import { validatorCreator } from ".";
+import { validationMessages,  } from ".";
+import { composeValidators, isRequired } from "revalidate";
 import regexPattern, { createRegexsValidator } from "../regex/pattern";
-import { isRequired } from "./validation.messages";
+import * as validatorCreator from "./validator";
 
-function parseDateString(value, originalValue) {
-
-    const parsedDate = isDate(originalValue)
-        ? originalValue
-        : parse(originalValue, "yyyy-MM-dd", new Date());
-
-    return parsedDate;
-}
 // date condition
 const datePattern = createRegexsValidator(regexPattern.birthday);
 
 const deteIsGrater = validatorCreator.createGraterDateValidator();
 
-const deteIsLesser = validatorCreator.createLesserDateValidator()
+const deteIsLesser = validatorCreator.createLesserDateValidator();
 //
 
 export const dateValidator = composeValidators(
