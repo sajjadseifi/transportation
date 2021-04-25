@@ -5,6 +5,6 @@ export class FormModel {
         this.id = id;
     }
 
-    get FormData();
-    get Model();
+    get FormData() { }
+    get Model() { }
 }
