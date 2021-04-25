@@ -1,6 +1,6 @@
 import { history } from "../..";
 import { authApi } from "../../core/api";
-import { authLogin } from "../../helpers/models";
+import { authLogin } from "../../models";
 import { authActionTypes, errorRequest } from '../@types';
 
 export const login = (username, password) => async (dispatch) => {

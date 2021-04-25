@@ -1,0 +1,10 @@
+.form-panel {
+
+    .progress{
+        height: 20px;
+
+    }
+    .progress-bar-animated {
+        animation: 0.1s linear infinite progress-bar-stripes;
+    }
+}

@@ -1,15 +1,16 @@
-import { FormModel } from "./form.model";
+import { FormModel } from ".";
 
-export class authLogin extends FormModel {
+export default class AuthLogin extends FormModel {
 
     constructor(username, password) {
+        super();
         this.username = username;
         this.password = password;
     }
     get FormData() {
         var formdata = new FormData();
-        formdata.append('user_name', username);
-        formdata.append('password', password);
+        formdata.append('user_name', this.username);
+        formdata.append('password', this.password);
         formdata.append('device_information', '{}');
 
         return formdata;

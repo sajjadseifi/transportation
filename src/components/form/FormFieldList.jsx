@@ -3,7 +3,7 @@ import { Field } from "react-final-form";
 
 const FormFieldList = ({ column, formOptions = [], serverErrors = {} }) => {
   const rowClasses = !column ? "d-flex  align-items-center" : "";
-  const colClasses = "flex-1 mx-3 font-ir";
+  const colClasses = "flex-1 mx-3 font-ir w-100";
   return (
     <div className="app-form-final">
       {formOptions.map((optList = [], index) => (

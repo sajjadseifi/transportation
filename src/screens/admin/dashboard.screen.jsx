@@ -1,8 +1,7 @@
 //default
 import React from "react";
-import { FullLayout } from "../../layout";
-const AdminScreen = (props) => {
-  return <FullLayout></FullLayout>;
+const DahboardScreen = (props) => {
+  return <div>DahboardScreen</div>;
 };
 
-export default AdminScreen;
+export default DahboardScreen;

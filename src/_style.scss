@@ -1,6 +1,7 @@
 @import "./styles/scss";
 @import "./screens/screens.scss";
 @import "./common/form/form.scss";
+@import "./components/form/form.scss";
 // reset
 html { box-sizing: border-box; font-size: 10px; }
 *, *:before, *:after { box-sizing: inherit; }

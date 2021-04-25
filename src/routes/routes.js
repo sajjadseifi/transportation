@@ -4,7 +4,6 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import { NotFoundPage } from "../screens";
 import AdminRoutes from "./admin.routes";
 import AuthRoutes from "./auth.routes";
-import { PrivateRoute } from "../components/router"
 const Routes = (props) => {
 
     return (

@@ -112,6 +112,7 @@ $buton-auth-height:40px;
     line-height: 2.4rem;
     vertical-align: middle;
     font-family: $BodyFontFamilty;
+
     &::-webkit-input-placeholder {
         color: $input-text-inactive;
     }
@@ -143,6 +144,7 @@ $buton-auth-height:40px;
     &.is-loading:not([disabled]):hover {
         opacity: 0.8;
     }
+
     &:not([disabled]):hover {
         opacity: 1;
     }
@@ -150,5 +152,19 @@ $buton-auth-height:40px;
     &[disabled] {
         opacity: 0.6;
 
+    }
+}
+
+
+.form-panel-group {
+    font-size: 18px;
+
+    .form-panel-label,
+    .form-panel-input {
+        font-size: 18px;
+    }
+
+    .form-panel-error {
+        font-size: 14px;
     }
 }

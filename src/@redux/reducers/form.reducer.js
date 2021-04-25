@@ -3,7 +3,7 @@ import { formActionTypes } from "../@types";
 const initialState = {
     loading: false,
     deleteLoaing: false,
-    form: {
+    forms: {
         //key:{form object}
     },
     errors: null,

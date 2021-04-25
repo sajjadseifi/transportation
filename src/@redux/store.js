@@ -2,10 +2,12 @@ import React from "react";
 import ReduxThunk from "redux-thunk";
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import { Provider } from "react-redux";
-import { authReducer } from "./reducers";
+import { authReducer, formReducer, listReducer } from "./reducers";
 
 export const rootReducer = combineReducers({
-    auth: authReducer
+    auth: authReducer,
+    form: formReducer,
+    list: listReducer
 });
 
 const initialState = {

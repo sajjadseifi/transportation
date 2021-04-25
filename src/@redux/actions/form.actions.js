@@ -1,39 +1,45 @@
-import { FormModel } from "../../helpers/models";
+import { FormModel } from "../../models";
 import { formActionTypes } from "../@types";
 import { swalAlert } from "../../components/alert";
+import swal from "sweetalert";
 
-
-export const getFormById = (id, agentForm, keyForm) =>
-    async (dispatch, getState) => {
-
+export const getFormById = (id, agentForm, keyForm) =>async (dispatch) => {
         dispatch(formActionTypes.startRequest());
 
         try {
-            const model = formModel.Model;
-
-
             const resposne = agentForm(id);
 
-            if (!resposne)
-                throw resposne;
+            if (false)
+                throw new Error(resposne || "RESPONSE_FAILD");
 
-            dispatch(formActionTypes.setForm(keyForm, resposne));
+            const temp = {
+                name: "sajjad",
+                code: 12,
+                price: 200
+            };
+
             // dispatch(formActionTypes.removeForm(keyForm));
+            dispatch(formActionTypes.setForm(keyForm, temp));
+
         } catch (error) {
-            swalAlert.warning("خطا هنگام بارگزاری داده مجددا اقدام نمایید");
-            dispatch(formActionTypes.setErrors(error));
+            //redirect if data in not defind
+            swalAlert.warningToLoadData().then((ok) => {
+                if (ok)
+                    dispatch(getFormById(id, agentForm, keyForm));
+            });
+            // dispatch(formActionTypes.setErrors(error));
         } finally {
             dispatch(formActionTypes.finishedRequest());
         }
     };
-export const removeFormByKey = (keyForm) => {
+
+export const removeFormByKey = (keyForm) => (dispatch, getState) => {
     dispatch(formActionTypes.removeForm(keyForm));
 };
 export const formSubmit = (
     formModel = new FormModel(),
     agentCreate = async (obj = {}, config = {}) => { },
-    agentUpdate = async (obj = {}, config = {}) => { },
-    { createDisplay = "", updateDisplay = "" }
+    agentUpdate = async (obj = {}, config = {}) => { }
 ) => async (dispatch, getState) => {
 
     dispatch(formActionTypes.startRequest());
@@ -51,13 +57,13 @@ export const formSubmit = (
 
         //swip alert for update form 
         if (formModel.id)
-            swalAlert.info(`ویرایش  ${updateDisplay}  با موفقیت انجام شد`);
+            swalAlert.info(`ویرایش  ${formModel.dispalyName}  با موفقیت انجام شد`);
         //swip alert for create form 
         else
-            swalAlert.success(`${createDisplay} با موفقیت ثبت شد`);
+            swalAlert.success(`${formModel.dispalyName} با موفقیت ثبت شد`);
 
     } catch (error) {
-        swalAlert.warning("خطا هنگام اجرای عملیات");
+        swalAlert.warning("ذخیره انجام نشد دوباره تلاش کنید");
         dispatch(formActionTypes.setErrors(error));
     } finally {
         dispatch(formActionTypes.finishedRequest());
@@ -67,16 +73,14 @@ export const formSubmit = (
 export const formDelete = (
     formModel = new FormModel(),
     agentDelete = async (obj = {}, config = {}) => { },
-    display
 ) => async (dispatch, getState) => {
     dispatch(formActionTypes.startRequest());
-
     try {
         const resposne = await agentDelete(formModel.id);
         if (!resposne)
             throw resposne;
 
-        swalAlert.success(`${display} با موفقیت حذف شد`);
+        swalAlert.success(`${formModel.dispalyName} با موفقیت حذف شد`);
     } catch (error) {
         swalAlert.warning("خطا هنگام اجرای عملیات");
         dispatch(formActionTypes.setErrors(error));
