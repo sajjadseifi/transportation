@@ -29,3 +29,7 @@ export const formSubmit = (
         dispatch(formActionTypes.finishedRequest());
     }
 };
+
+export const formDelete=()=>{
+
+};

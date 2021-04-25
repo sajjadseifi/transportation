@@ -26,5 +26,6 @@ export {
     FORM_SET_ERRORS,
     FORM_CLEAR_ERRORS,
     FORM_SUCCESS_REQUEST,
+    FORM_INITIAL_STATE
 } from "./form.action.types";
 export { default as formActionTypes } from "./form.action.types";
