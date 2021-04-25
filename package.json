@@ -25,6 +25,7 @@
     "react-redux": "^7.2.3",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
+    "react-typist": "^2.0.5",
     "redux-thunk": "^2.3.0",
     "revalidate": "^1.2.0",
     "rsuite": "^4.9.3",

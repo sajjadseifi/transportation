@@ -14,15 +14,15 @@ const AuthorizeRoute = ({ role = [] || "", component: Component, ...rest }) => {
   //if loaing...
   if (loading) return loading;
 
-  if (!userInfo || !userInfo.user.role)
-    return <Redirect to={path} state={{ from: props.location }} />;
+  // if (!userInfo || !userInfo.user.role)
+  //   return <Redirect to={path} state={{ from: props.location }} />;
 
-  const access =
-    role instanceof Array
-      ? role.includes(userInfo.user.role)
-      : userInfo.user.role;
+  // const access =
+  //   role instanceof Array
+  //     ? role.includes(userInfo.user.role)
+  //     : userInfo.user.role;
 
-  if (access) return <Route {...rest} component={Component} />;
+  // if (access) return <Route {...rest} component={Component} />;
 
   return null;
 };

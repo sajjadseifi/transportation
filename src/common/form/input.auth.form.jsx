@@ -10,7 +10,6 @@ const InputAuthForm = ({
   type,
   placeholder,
   meta: { touched, error },
-  className,
 }) => {
   const inputProps = {
     id: input.name,
@@ -28,7 +27,16 @@ const InputAuthForm = ({
           {Icon ? Icon : <IconRsuite icon={icon} />}
         </button>
       </div>
-      {touched && error && <span className="text-red p-2">{error}</span>}
+      {console.log({})}
+      {touched && error && (
+        <h6 className="text-white p-1 py-2 ">
+          <ul>
+            {[...error].map((er, ind) => (
+              <li key={ind}>{er}</li>
+            ))}
+          </ul>
+        </h6>
+      )}
     </div>
   );
 };

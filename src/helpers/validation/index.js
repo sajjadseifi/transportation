@@ -1,4 +1,7 @@
+import { createValidator } from "revalidate";
 import * as validationMessages from "./validation.messages";
+
+
 export { default as authValidation, usernameValidator, emailValidator, passwordValidator } from "./auth.validation";
 export {
     default as userValidation,
