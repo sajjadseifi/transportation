@@ -1,7 +1,10 @@
 /* * startdate * enddate * rangedate * moder.. */
 import { parse, isDate } from "date-fns";
-import * as  yup from "yup";
-
+import { composeValidators } from "revalidate";
+import { validationMessages } from ".";
+import { validatorCreator } from ".";
+import regexPattern, { createRegexsValidator } from "../regex/pattern";
+import { isRequired } from "./validation.messages";
 
 function parseDateString(value, originalValue) {
 
@@ -11,12 +14,29 @@ function parseDateString(value, originalValue) {
 
     return parsedDate;
 }
+// date condition
+const datePattern = createRegexsValidator(regexPattern.birthday);
 
-export const dateValidator = () => yup.date().transform(parseDateString);
+const deteIsGrater = validatorCreator.createGraterDateValidator();
 
-export const startdateValidator = () => dateValidator().min(new Date());
+const deteIsLesser = validatorCreator.createLesserDateValidator()
+//
 
-export const endateValidator = () => dateValidator().max(new Date());
+export const dateValidator = composeValidators(
+    datePattern(validationMessages.datePattern)
+)({ multiple: true });
+
+export const startdateValidator = composeValidators(
+    isRequired(validationMessages.isRequeredField("تاریخ")),
+    datePattern(validationMessages.datePattern),
+    deteIsGrater(validationMessages.dateIsGrater)
+)({ multiple: true });
+
+export const endateValidator = composeValidators(
+    isRequired(validationMessages.isRequeredField("تاریخ")),
+    datePattern(validationMessages.datePattern),
+    deteIsLesser(validationMessages.dateIsLesser)
+)({ multiple: true });
 
 export const rangedateValidator = () => { };
 
