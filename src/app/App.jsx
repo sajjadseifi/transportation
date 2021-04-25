@@ -2,9 +2,9 @@ import { Suspense, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { AppLoading } from "../components/loading";
 import loadable, { lazy } from "@loadable/component";
-import FormPersonal from "../components/form/FormPersonal";
+import swal from "sweetalert";
 /* const LaizyCmp = lazy(() => import("~/LaizyCmp.jsx")); */
-import {Routes as ROUTE} from "../routes";
+import { Routes as ROUTE } from "../routes";
 const Routes = lazy(
   () =>
     new Promise((resolve) =>
@@ -18,7 +18,7 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {}, [dispatch]);
-
+  
   if (false) return <AppLoading title={loadAccountTitle} />;
 
   return (

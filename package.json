@@ -30,6 +30,7 @@
     "revalidate": "^1.2.0",
     "rsuite": "^4.9.3",
     "socket.io-client": "^4.0.1",
+    "sweetalert": "^2.1.2",
     "web-vitals": "^1.1.1",
     "yup": "^0.32.9",
     "yup-password": "^0.2.1"
