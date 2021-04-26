@@ -1,6 +1,6 @@
 import React from "react";
 import { Icon as IconRsuite } from "rsuite";
-
+import ErrorBoxList from "../../../components/UI/error/ErrorBoxList";
 const InputAuthForm = ({
   icon,
   Icon,

@@ -1,30 +1,33 @@
 import React from "react";
-import { Icon as IconRsuite } from "rsuite";
+import ErrorBoxList from "../../../components/UI/error/ErrorBoxList";
 
 const InputForm = ({
-  icon,
-  Icon,
   input,
   title,
   width,
   type,
   placeholder,
   meta: { touched, error },
-  className,
+  render = ({}) => <></>,
+  children = <></>,
 }) => {
+  const Render = render;
+  const isError = error && error.length === 0;
+  const stateClasses = !error ? "" : isError ? "invalid" : "valid";
   return (
-    <div className={className} style={{ width }}>
-      <label htmlfor={input.name}>{title}</label>
-      <div className="input-form-content">
-        {Icon ? Icon : <IconRsuite icon={icon} />}
-        <input
-          id={input.name}
-          type={type}
-          placeholder={placeholder}
-          {...input}
-        />
-      </div>
-      {touched && error && <span className="text-red p-2">{error}</span>}
+    <div
+      style={{ width }}
+      className={`form-group form-panel-group  has-${stateClasses}`}
+    >
+      <label
+        className="form-control-label form-panel-label my-3"
+        htmlFor={input.name}
+      >
+        {title}
+      </label>
+      <Render {...{ type, placeholder, input, stateClasses }} />
+      {children}
+      {touched && error && <ErrorBoxList isError={isError} error={error} />}
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import { DateForm, InputPanelForm, } from "../ui";
 
-export const formConfiguration={
+export const formConfiguration = {
 
 };
 
@@ -33,8 +33,10 @@ export default [
             title: "تاریخ",
             width: "100%",
             type: "date",
-            placeholder: "قیمت را وارد نمایید",
+            placeholder: "تاریخ را وارد نمایید",
+            isDate: true,
             component: DateForm
+
         }
     ]
 ]

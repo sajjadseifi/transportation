@@ -1,31 +1,21 @@
 import React from "react";
-import ErrorBoxList from "../../../components/UI/error/ErrorBoxList";
-// import { Icon as IconRsuite } from "rsuite";
+import InputForm from "./input.form";
 
-const InputPanelForm = ({
-  input,
-  title,
-  width,
-  type,
-  placeholder,
-  meta: { touched, error },
-}) => {
-  const isError = error && error.length === 0;
-  const stateClasses = !error ? "" : isError ? "invalid" : "valid";
+const InputPanelForm = (props) => {
+  const {
+    type,
+    input,
+    placeholder,
+    meta: { touched, error },
+  } = props;
+
+  const isError = error && error.length != 0;
+  const stateClasses = !error || !touched ? "" : isError ? "invalid" : "valid";
+
   return (
-    <div
-      style={{ width }}
-      className={`form-group form-panel-group  has-${stateClasses}`}
-    >
-      <label
-        className="form-control-label form-panel-label my-3"
-        htmlFor={input.name}
-      >
-        {title}
-      </label>
-
-      <div class="form-group">
-        <div class="input-group mb-3">
+    <InputForm {...props}>
+      <div className="form-group">
+        <div className="input-group mb-3">
           <input
             type={type}
             {...input}
@@ -36,8 +26,7 @@ const InputPanelForm = ({
           />
         </div>
       </div>
-      {touched && error (<ErrorBoxList isError={isError} error={error}  />)}
-    </div>
+    </InputForm>
   );
 };
 
