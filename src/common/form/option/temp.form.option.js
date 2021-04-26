@@ -24,6 +24,7 @@ export default [
         title: "قیمت",
         width: "100%",
         type: "text",
+        isNumber: true,
         placeholder: "قیمت را وارد نمایید",
         component: InputPanelForm
     }],
@@ -32,7 +33,7 @@ export default [
             name: "date",
             title: "تاریخ",
             width: "100%",
-            type: "date",
+            type: "text",
             placeholder: "تاریخ را وارد نمایید",
             isDate: true,
             component: DateForm

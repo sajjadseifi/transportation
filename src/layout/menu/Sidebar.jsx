@@ -1,7 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { useEffect } from "react";
+import { Link, useHistory } from "react-router-dom";
 import { Sidenav, Nav, Dropdown, Icon } from "rsuite";
-
+import navigationSidebar from "../../configs/navigation.sidebar";
+import { NanItemSidebar } from ".";
 const panelStyles = {
   padding: "15px 20px",
   color: "red",
@@ -18,21 +21,34 @@ const sidebarStyle = {
 };
 
 const Sidebar = () => {
+  const history = useHistory();
   return (
     <div className="rsuite h-100" style={sidebarStyle}>
-      <Sidenav className="rtl h-100" defaultOpenKeys={[]}>
+      <Sidenav
+        className="rtl h-100"
+        defaultOpenKeys={navigationSidebar.defaultOpenKeys}
+      >
         <Sidenav.Body>
           <Nav>
-            <Nav.Item eventKey="1" active icon={<Icon icon="dashboard" />}>
-              داشبورد
-            </Nav.Item>
+            {navigationSidebar.navigation.map((navItem, index) => (
+              <NanItemSidebar key={index} index={index} {...navItem} />
+            ))}
+          </Nav>
+          {/* <Nav>
             <Nav.Item
-              style={{ direction: "rtl" }}
-              eventKey="2"
-              icon={<Icon icon="group" />}
-            >
+              eventKey="1"
+              active
+              icon={<Icon icon="dashboard" />}
+            ></Nav.Item>
+            <Nav.Item eventKey="2" icon={<Icon icon="group" />}>
               کاربران
             </Nav.Item>
+            <Dropdown
+              eventKey="10"
+              title=" Test"
+              className="none"
+              icon={<Icon icon="magic" />}
+            ></Dropdown>
             <Dropdown
               eventKey="5"
               title="ماشین ها"
@@ -46,7 +62,7 @@ const Sidebar = () => {
               title="ماشین ها"
               icon={<Icon icon="magic" />}
             >
-              <Dropdown.Item eventKey="6-5-1">Action Name</Dropdown.Item>
+              <Dropdown.Item  eventKey="6-5-1">Action Name</Dropdown.Item>
               <Dropdown.Item eventKey="6-5-2">Action Params</Dropdown.Item>
             </Dropdown>
             <Dropdown
@@ -60,6 +76,7 @@ const Sidebar = () => {
               <Dropdown.Item eventKey="3-4">Visit Depth</Dropdown.Item>
             </Dropdown>
           </Nav>
+       */}
         </Sidenav.Body>
       </Sidenav>
     </div>
