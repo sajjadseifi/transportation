@@ -54,8 +54,11 @@ const FormPanel = ({
   }, [formId]);
 
   useEffect(() => {
-    console.log({forms});
     if (!forms || !forms[formKey]) return;
+
+    setInitialValues(forms[formKey]);
+
+    return () => setInitialValues({});
   }, [forms]);
 
   const onSubmit = (values) => {

@@ -1,3 +1,4 @@
+import { updateObject } from "../../core/utils";
 import { formActionTypes } from "../@types";
 import { finishedDeleteRequest, finishedRequest, startDeleteRequest, startRequest } from "./all.redcuer";
 
@@ -11,7 +12,7 @@ const initialState = {
 };
 
 export const formReducer = (state = initialState, action) => {
-
+    console.log({action});
     switch (action.type) {
         case formActionTypes.FORM_START_REQUEST:
             return startRequest(state);
@@ -29,15 +30,38 @@ export const formReducer = (state = initialState, action) => {
             return initialState;
         //more than action type....     
         case formActionTypes.FORM_SET_VALUES:
-            return {};
+            return setFormValue(state, action);
+        case formActionTypes.FORM_REMOVE_VALUES:
+            return removeFormValue(state, action);
+
     }
     return state;
 };
 
 export default formReducer;
 
+const setFormValue = (state, action) => {
+    const { keyForm, form } = action.payload;
 
+    const updateState = {
+        forms: {
+            ...state.forms,
+            [keyForm]: form
+        }
+    }
 
+    return updateObject(state, updateState);
+};
+const removeFormValue = (state, action) => {
+    const { keyForm } = action.payload;
+
+    const forms = { ...state.forms };
+
+    if (forms[keyForm])
+        delete forms[keyForm];
+
+    return updateObject(state, { forms });
+};
 
 
 

@@ -15,9 +15,10 @@ const TempFormAdminScreen = () => {
   const buildInitialModel = (formValue = {}) => {
     //set initial  formValue with  get in redux form state in inner component
     const { name, code, price } = formValue;
+    
     //or set form
-    console.log({ formValue });
-    formValue = { name: "", code: "", price: "" };
+    // formValue = { name: "", code: "", price: "" };
+
     return formValue;
   };
 

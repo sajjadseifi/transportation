@@ -1,7 +1,6 @@
 import { FormModel } from "../../models";
 import { formActionTypes } from "../@types";
 import { swalAlert } from "../../components/alert";
-import swal from "sweetalert";
 
 export const getFormById = (id, agentForm, keyForm) => async (dispatch) => {
     dispatch(formActionTypes.startRequest());
@@ -25,7 +24,6 @@ export const getFormById = (id, agentForm, keyForm) => async (dispatch) => {
 
         // dispatch(formActionTypes.removeForm(keyForm));
         dispatch(formActionTypes.setForm(keyForm, temp));
-
     } catch (error) {
         //redirect if data in not defind
         swalAlert.warningToLoadData().then((ok) => {
