@@ -2,7 +2,6 @@ import React, { useEffect, useState, useRef } from "react";
 import momentJalaali from "moment-jalaali";
 import DatePicker from "react-datepicker2";
 import { InputForm } from ".";
-import { updateObject } from "../../../core/utils";
 const DateForm = ({
   placeholder,
   inputJalaaliFormat = "",

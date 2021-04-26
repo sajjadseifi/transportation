@@ -1,5 +1,5 @@
 import React from "react";
-
+import { ListTable } from "../../../components/table";
 import { useHistory } from "react-router-dom";
 
 export const TempListAdminScreen = () => {
@@ -13,7 +13,9 @@ export const TempListAdminScreen = () => {
       <div>
         <span>{pageNumber}</span>,<span>{pageSize}</span>
       </div>
-      <ul>Body</ul>
+      <ul>
+        <ListTable />
+      </ul>
     </div>
   );
 };

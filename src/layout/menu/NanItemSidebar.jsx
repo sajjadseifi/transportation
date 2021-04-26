@@ -1,6 +1,14 @@
 //default
-import React, { useEffect, useState } from "react";
-import { matchPath, useHistory, Router } from "react-router-dom";
+import React, { useEffect, useState, Fragment } from "react";
+import { withRouter } from "react-router-dom";
+import { rolesLevel } from "../../constants";
+import { roleType } from "../../constants/role";
+const authorizex = {
+  reverse: false,
+  level: 0,
+  rolesAccess: [],
+  rolesNotAccess: [],
+};
 const NavItemSidebar = ({
   component: Component,
   Icon,
@@ -9,8 +17,11 @@ const NavItemSidebar = ({
   title,
   index,
   items = [],
+  authorize = authorizex,
+  history,
 }) => {
-  const history = useHistory();
+  const userRole = roleType.SUPPER_ADMIN;
+
   const [active, setActive] = useState(false);
 
   useEffect(() => {
@@ -21,6 +32,9 @@ const NavItemSidebar = ({
     return () => setActive(false);
   }, [history]);
 
+  if (authorize && authorize.level && authorize.level > rolesLevel[userRole])
+    return <></>;
+
   const eventKey = index + "";
   if (children) return <Component icon={Icon}>{children}</Component>;
 
@@ -28,17 +42,30 @@ const NavItemSidebar = ({
   const className = items.length == 0 ? "none-sub-item" : "";
   return (
     <Component {...{ title, icon, eventKey, className }}>
-      {items.map(({ component: Component, title, Icon, route }, subIndex) => {
-        const eventKey = index + "-" + subIndex;
-        const active = false;
-        return (
-          <Component  key={eventKey} {...{ active, eventKey }}>
-            {title}
-          </Component>
-        );
-      })}
+      {items.map(
+        (
+          { component: Component, title, Icon, route, authorize = authorizex },
+          subIndex
+        ) => {
+          const eventKey = index + "-" + subIndex;
+          const active = false;
+
+          if (
+            authorize &&
+            authorize.level &&
+            authorize.level > rolesLevel[userRole]
+          )
+            return <Fragment key={eventKey}></Fragment>;
+
+          return (
+            <Component key={eventKey} {...{ active, eventKey }}>
+              {title}
+            </Component>
+          );
+        }
+      )}
     </Component>
   );
 };
 
-export default NavItemSidebar;
+export default withRouter(NavItemSidebar);

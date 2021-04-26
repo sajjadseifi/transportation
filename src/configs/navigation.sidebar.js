@@ -1,4 +1,14 @@
-import {  Nav, Dropdown, Icon } from "rsuite";
+import { Nav, Dropdown, Icon } from "rsuite";
+import { rolesLevel } from "../constants";
+
+// authorize: {
+//      reverse:false,defult if revers access section lower level and 
+//     high level is not access thi part 
+//     level: rolesLevel.TRANSPORT_ADMIN, level for index 
+//     rolesAccess: [],//acces this section 
+//     rolesNotAccess: [],//not access this section
+// },
+//roles
 export default {
     defaultOpenKeys: [],
     navigation: [
@@ -19,6 +29,11 @@ export default {
             Icon: <Icon icon="magic" />,
             title: "جادویی",
             route: "/admin/magic",
+            authorize: {
+                level: rolesLevel.TRANSPORT_ADMIN,
+                // rolesAccess: [],
+                // rolesNotAccess: [],
+            },
             items: [
                 {
                     component: Dropdown.Item,
@@ -31,6 +46,9 @@ export default {
                     title: "Action Params",
                     Icon: <Icon icon="paragraph" />,
                     route: "/admin/magic/Params",
+                    authorize: {
+                        level: rolesLevel.SUPPER_ADMIN,
+                    },
                 }
             ]
         },
@@ -50,12 +68,18 @@ export default {
                     component: Dropdown.Item,
                     title: "Devices",
                     route: "/admin/cars/Geo",
+                    authorize: {
+                        level: rolesLevel.TRANSPORT_ADMIN,
+                    },
                     // Icon: <Icon icon="paragraph" />
                 },
                 {
                     component: Dropdown.Item,
                     title: "Loyalty",
                     route: "/admin/cars/Loyalty",
+                    authorize: {
+                        level: rolesLevel.SUPPER_ADMIN,
+                    },
                     // Icon: <Icon icon="plus" />
                 },
                 {
@@ -63,6 +87,9 @@ export default {
                     title: "Visit Depth",
                     route: "/admin/cars/Visit-Depth",
                     // Icon: <Icon icon="paragraph" />
+                    authorize: {
+                        level: rolesLevel.SUPPER_ADMIN,
+                    },
                 }
             ]
         }
