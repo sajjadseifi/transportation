@@ -1,0 +1,1 @@
+export {default as confirmRemoveSwal} from "./confirm-remove.swal";

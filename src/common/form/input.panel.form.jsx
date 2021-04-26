@@ -16,7 +16,7 @@ const InputPanelForm = ({
       style={{ width }}
       className={`form-group form-panel-group  has-${stateClasses}`}
     >
-      <label className="form-control-label form-panel-label my-3" for={input.name}>
+      <label className="form-control-label form-panel-label my-3" htmlFor={input.name}>
         {title}
       </label>
       <input

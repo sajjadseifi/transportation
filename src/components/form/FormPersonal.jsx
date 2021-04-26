@@ -13,6 +13,7 @@ const initialValidate = combineValidators({
 
 const FormPersonal = ({
   validate = initialValidate,
+  initialValues = {},
   beformFileds = ({ loading, disabled, pristine, invalid }) => <></>,
   afterFields = ({ loading, disabled, pristine, invalid }) => <></>,
   formOptions = [],
@@ -29,11 +30,11 @@ const FormPersonal = ({
 
   return (
     <FinalForm
+      initialValues={initialValues}
       onSubmit={onSubmit}
       validate={validate}
       render={({ handleSubmit, invalid, pristine, error, errors }) => (
         <Form className={formClass} onSubmit={handleSubmit}>
-          {console.log({ error, errors })}
           <BeformFileds
             {...{ disabled: invalid || loading, pristine, loading }}
           />

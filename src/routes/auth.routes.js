@@ -4,7 +4,6 @@ import { Switch, Route } from "react-router-dom";
 import { LoginScreen } from "../screens/auth";
 
 const AuthRoutes = (props) => {
-   console.log("sajjad")
     return(
         <Switch>
             <Route exact path="/auth/login" component={LoginScreen} />

@@ -155,15 +155,19 @@ $buton-auth-height:40px;
     }
 }
 
-
+$font-form-label-panel:16px;
+$font-form-input-panel:16px;
 .form-panel-group {
     font-size: 18px;
 
-    .form-panel-label,
-    .form-panel-input {
-        font-size: 18px;
+    .form-panel-label{
+        font-size:$font-form-label-panel;
     }
-
+    
+    .form-panel-input {
+        font-size:$font-form-input-panel;
+    }
+    
     .form-panel-error {
         font-size: 14px;
     }

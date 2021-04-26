@@ -2,18 +2,22 @@
 import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useParams, withRouter, Link, useHistory } from "react-router-dom";
 import { combineValidators } from "revalidate";
-import { FormPersonal } from ".";
-import { ButtonAuthForm } from "../../common/form";
-import { loginFormOption } from "../../common/form.option";
+import { FormPersonal, FormPanelTop } from ".";
 import * as formActions from "../../@redux/actions/form.actions";
 import { useState } from "react";
+import ButtonForm from "../UI/button/button.form";
+import swal from "sweetalert";
+import { confirmRemoveSwal } from "../../common/swal";
+import { Icon } from "rsuite";
+import { FlexBox } from "../box";
 
 //default validate
 const validate = combineValidators({});
 
 const FormPanel = ({
+  singleName = "",
   formTitle = "",
   formKey = "",
   agentForm = async (id) => {},
@@ -25,25 +29,25 @@ const FormPanel = ({
   buildInitialModel = (values) => {},
   formOptions = [],
   column = false,
+  addFormPath = "/",
 }) => {
-  const history = useHistory();
-  const { formId } = history.location.state;
-  console.log({ formId });
-
-  const [loading, setLoading] = useState(false);
-  const [initialValues, setInitialValues] = useState(buildInitialModel() || {});
-  const { loading: fromLoading, deleteLoading, forms } = useSelector(
+  const { loading: fromLoading, deleteLoading: dl, forms } = useSelector(
     (state) => state.form
   );
 
-  const isUpdate = !(formId == undefined || formId == null);
+  const [loading, setLoading] = useState(false);
+  const [deleteLoading, setDeleteLoading] = useState(false);
+  const [initialValues, setInitialValues] = useState(buildInitialModel() || {});
+
+  const { id: formId } = useParams();
 
   const dispatch = useDispatch();
+
+  const isUpdate = !!formId;
 
   useEffect(() => {
     if (isUpdate) {
       //fetch data to show list....
-      console.log("GET FORM");
       dispatch(formActions.getFormById(formId, agentForm, formKey));
     }
     return () => dispatch(formActions.removeFormByKey(formId));
@@ -54,51 +58,72 @@ const FormPanel = ({
   }, [forms]);
 
   const onSubmit = (values) => {
-    const formModel = buildFormModel(formId, values);
+    setLoading(true);
 
-    dispatch(formActions.formSubmit(formModel, createAgent, updateAgent));
+    setTimeout(() => {
+      setLoading(false);
+      const formModel = buildFormModel(formId, values);
+
+      dispatch(formActions.formSubmit(formModel, createAgent, updateAgent));
+    }, 2000);
   };
   const deleteHandler = () => {
-    console.log("DELETE : ", formId);
+    setDeleteLoading(true);
+    setTimeout(() => setDeleteLoading(false), 3000);
+    return;
     if (!formId) return;
 
-    dispatch(formActions.formDelete(formId, deleteAgent, ""));
+    swal(confirmRemoveSwal).then((value) => {
+      if (value == "remove")
+        dispatch(formActions.formDelete(formId, deleteAgent, ""));
+    });
   };
 
-  const formButtonTitle = isUpdate ? "ویرایش" : "ثبت";
-  const formClass = "w-100";
   return (
     <div className="form-panel px-5">
-      <div className="form-panel-top  m-3">
-        <h3 className="form-panel-title p-5 mx-5">
-          <span>{formTitle}</span>
-        </h3>
-        <div className="progress">
-          <div
-            className={`progress-bar progress-bar-striped ${
-              loading ? "progress-bar-animated  bg-info" : "opacity-0"
-            }`}
-            role="progressbar"
-            ariaValuenow="75"
-            ariaValuemin="0"
-            ariaValuemax="100"
-            style={{ width: "100%", height: 20 }}
-          ></div>
-        </div>
-      </div>
+      <FormPanelTop
+        {...{
+          formTitle,
+          loading: loading || deleteLoading,
+          isUpdate,
+          deleting: deleteLoading,
+        }}
+      />
 
       <div className="form-panel-body">
         <FormPersonal
-          {...{ column, formOptions, validate, onSubmit, formClass }}
+          initialValues={initialValues}
+          {...{ column, formOptions, validate, onSubmit, formClass: "w-100" }}
           afterFields={({ disabled }) => (
-            <>
-              <ButtonAuthForm
-                className="mt-5"
-                title={formButtonTitle}
-                {...{ disabled, loading }}
-              />
-              {isUpdate && <span onClick={deleteHandler}>حذف</span>}
-            </>
+            <div className="py-5  d-flex align-items-center  justify-content-between">
+              {isUpdate && (
+                <Link className="px-4" to={addFormPath}>
+                  <FlexBox alignCenter justCenter>
+                    <Icon icon="arrow-left" />
+                    <h4 className="px-2">{`افزودن ${singleName}`}</h4>
+                  </FlexBox>
+                </Link>
+              )}
+              <div>
+                {isUpdate && (
+                  <ButtonForm
+                    onClick={deleteHandler}
+                    disabled={deleteLoading}
+                    loading={deleteLoading}
+                    type="danger"
+                  >
+                    حذف
+                  </ButtonForm>
+                )}
+                <ButtonForm
+                  IsButton
+                  type={isUpdate ? "info" : "success"}
+                  {...{ disabled, loading }}
+                >
+                  {isUpdate ? "ویرایش" : "ثبت"}
+                </ButtonForm>
+              </div>
+            </div>
           )}
         />
       </div>
@@ -106,4 +131,4 @@ const FormPanel = ({
   );
 };
 
-export default FormPanel;
+export default withRouter(FormPanel);

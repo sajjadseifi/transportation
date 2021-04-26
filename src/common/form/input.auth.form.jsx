@@ -27,7 +27,6 @@ const InputAuthForm = ({
           {Icon ? Icon : <IconRsuite icon={icon} />}
         </button>
       </div>
-      {console.log({})}
       {touched && error && (
         <h6 className="text-white p-1 py-2 ">
           <ul>

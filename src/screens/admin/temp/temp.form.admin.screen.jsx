@@ -42,6 +42,7 @@ const TempFormAdminScreen = () => {
       createAgent={async (temp) => {}}
       updateAgent={async (id, temp) => {}}
       deleteAgent={async (id) => {}}
+      addFormPath="/admin/temp/form"
     />
   );
 };

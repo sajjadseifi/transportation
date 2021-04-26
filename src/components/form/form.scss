@@ -1,10 +1,25 @@
 .form-panel {
 
-    .progress{
-        height: 20px;
+    .progress {
+        height: 15px;
 
+        .progress-bar {
+            width: 100%;
+        }
     }
+
     .progress-bar-animated {
         animation: 0.1s linear infinite progress-bar-stripes;
+    }
+
+    .progress-bar-striped {
+        background-image:
+            linear-gradient(45deg,
+                rgba(255, 255, 255, 0.5) 25%,
+                transparent 25%, transparent 50%,
+                rgba(255, 255, 255, 0.5) 50%,
+                rgba(255, 255, 255, 0.5) 75%,
+                transparent 75%, transparent);
+        background-size: 1rem 1rem;
     }
 }

@@ -18,7 +18,7 @@ const FlexBox = ({
     justCenter ? "justify-content-center" : `justify-content-${justifyContent}`
   } 
   ${alignCenter ? "align-items-center" : `align-items-${alignItems}`} 
-  ${culumn ? "flex-column" : "flex-column"}
+  ${culumn ? "flex-column" : "flex-row"}
   ${className}
   `;
   return <div className={classes}>{children}</div>;

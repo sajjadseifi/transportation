@@ -1,0 +1,24 @@
+.loader-abs-cneter {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: block;
+
+    &>* {
+        display: block;
+    }
+}
+
+.text- {
+    transition: 0.2s;
+
+    &transparent {
+        color: transparent;
+    }
+}
+
+.deactive {
+    cursor: not-allowed;
+    opacity: 0.7;
+}

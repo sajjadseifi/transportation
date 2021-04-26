@@ -7,7 +7,6 @@ export const TempListAdminScreen = () => {
 
   const { pageNumber, pageSize, search } = history.location.state;
 
-  console.log({ search });
   return (
     <div>
       <h3>TempListAdminScreen</h3>
