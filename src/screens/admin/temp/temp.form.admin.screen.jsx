@@ -1,7 +1,7 @@
 //default
 import React from "react";
 import { combineValidators } from "revalidate";
-import { tempFormOption } from "../../../common/form/option";
+import { tempFormConfig } from "../../../common/form/config";
 import { FormPanel } from "../../../components/form";
 import { TempModel } from "../../../models";
 
@@ -32,17 +32,9 @@ const TempFormAdminScreen = () => {
 
   return (
     <FormPanel
-      formTitle="عنوان نمونه"
-      formKey="temp"
       buildFormModel={buildFormModel}
       buildInitialModel={buildInitialModel}
-      validate={validate}
-      formOptions={tempFormOption}
-      agentForm={async (id) => {}}
-      createAgent={async (temp) => {}}
-      updateAgent={async (id, temp) => {}}
-      deleteAgent={async (id) => {}}
-      addFormPath="/admin/temp/form"
+      {...tempFormConfig}
     />
   );
 };

@@ -80,7 +80,7 @@ const FormPanel = ({
   };
 
   return (
-    <div className="form-panel px-5">
+    <div className="form-panel px-5 position-relative">
       <FormPanelTop
         {...{
           formTitle,

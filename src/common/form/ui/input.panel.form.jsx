@@ -1,4 +1,5 @@
 import React from "react";
+import ErrorBoxList from "../../../components/UI/error/ErrorBoxList";
 // import { Icon as IconRsuite } from "rsuite";
 
 const InputPanelForm = ({
@@ -16,22 +17,26 @@ const InputPanelForm = ({
       style={{ width }}
       className={`form-group form-panel-group  has-${stateClasses}`}
     >
-      <label className="form-control-label form-panel-label my-3" htmlFor={input.name}>
+      <label
+        className="form-control-label form-panel-label my-3"
+        htmlFor={input.name}
+      >
         {title}
       </label>
-      <input
-        type={type}
-        {...input}
-        placeholder={placeholder}
-        id={input.name}
-        type="text"
-        className={`form-control form-panel-input is-${stateClasses} `}
-      />
-      {touched && error && isError && (
-        <div className={isError ? "valid-feedback form-panel-error" : "invalid-feedback form-panel-error"}>
-          {error.map((x) => `<div>${x}</div>`).join(" ")}
+
+      <div class="form-group">
+        <div class="input-group mb-3">
+          <input
+            type={type}
+            {...input}
+            placeholder={placeholder}
+            id={input.name}
+            type="text"
+            className={`form-control form-panel-input is-${stateClasses} `}
+          />
         </div>
-      )}
+      </div>
+      {touched && error (<ErrorBoxList isError={isError} error={error}  />)}
     </div>
   );
 };
