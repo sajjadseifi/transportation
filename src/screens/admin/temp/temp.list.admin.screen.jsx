@@ -1,5 +1,6 @@
 import React from "react";
 import { ListTable } from "../../../components/table";
+import { TablePagination } from "../../../components/pagination";
 import { useHistory } from "react-router-dom";
 
 export const TempListAdminScreen = () => {
@@ -15,6 +16,7 @@ export const TempListAdminScreen = () => {
       </div>
       <ul>
         <ListTable />
+        <TablePagination />
       </ul>
     </div>
   );

@@ -52,6 +52,7 @@ const table = {
 const ListTable = ({
   culumns = table.culumns,
   data = table.data,
+  onClickRow = (row) => {},
   tableClassName,
   trClassName,
   thClassName,
@@ -62,7 +63,7 @@ const ListTable = ({
     <th key={id}>{displayName}</th>
   ));
   const TableBody = data.map((d) => (
-    <tr className="rwd-row">
+    <tr onClick={() => onClickRow(d)} className="rwd-row">
       {Object.keys(d).map((ck) => (
         <td dataTh={ck}>{d[ck]}</td>
       ))}
