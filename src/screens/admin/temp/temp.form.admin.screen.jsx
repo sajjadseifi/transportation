@@ -1,7 +1,7 @@
 //default
 import React from "react";
 import { combineValidators } from "revalidate";
-import { tempFormOption } from "../../../common/form.option";
+import { tempFormOption } from "../../../common/form/option";
 import { FormPanel } from "../../../components/form";
 import { TempModel } from "../../../models";
 

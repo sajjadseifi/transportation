@@ -93,7 +93,8 @@ const FormPanel = ({
       <div className="form-panel-body">
         <FormPersonal
           initialValues={initialValues}
-          {...{ column, formOptions, validate, onSubmit, formClass: "w-100" }}
+          formClass="w-100"
+          {...{ column, formOptions, validate, onSubmit }}
           afterFields={({ disabled }) => (
             <div className="py-5  d-flex align-items-center  justify-content-between">
               {isUpdate && (

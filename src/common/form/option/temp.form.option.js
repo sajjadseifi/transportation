@@ -1,4 +1,8 @@
-import { InputPanelForm } from "../form";
+import { InputPanelForm } from "../ui";
+
+export const formConfiguration={
+
+};
 
 export default [
     [{

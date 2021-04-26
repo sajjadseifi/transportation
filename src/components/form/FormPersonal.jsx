@@ -1,10 +1,9 @@
 //default
 import React from "react";
-import { Form as FinalForm, Field } from "react-final-form";
+import { Form as FinalForm } from "react-final-form";
 import { authValidation } from "../../helpers/validation";
 import { combineValidators } from "revalidate";
 import { FormFieldList, Form } from ".";
-import InputForm from "../../common/form/input.form";
 
 const initialValidate = combineValidators({
   // email: valisator.emailValidateor,

@@ -2,9 +2,9 @@
 import React from "react";
 import { FixedCenterBox, FlexBox } from "../../components/box";
 import { FormPersonal } from "../../components/form";
-import { loginFormOption } from "../../common/form.option";
+import { loginFormOption } from "../../common/form/option";
 import LoginAsset from "../../assets/images/SVG/login-asset.svg";
-import { ButtonAuthForm } from "../../common/form";
+import { ButtonAuthForm } from "../../common/form/ui";
 import { useState } from "react";
 import { authValidation } from "../../helpers/validation";
 import { combineValidators } from "revalidate";

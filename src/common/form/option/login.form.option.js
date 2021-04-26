@@ -1,4 +1,4 @@
-import { InputAuthForm } from "../form";
+import { InputAuthForm } from "../ui";
 
 export default [
     [{
