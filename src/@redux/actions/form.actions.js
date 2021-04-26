@@ -3,35 +3,40 @@ import { formActionTypes } from "../@types";
 import { swalAlert } from "../../components/alert";
 import swal from "sweetalert";
 
-export const getFormById = (id, agentForm, keyForm) =>async (dispatch) => {
-        dispatch(formActionTypes.startRequest());
+export const getFormById = (id, agentForm, keyForm) => async (dispatch) => {
+    dispatch(formActionTypes.startRequest());
 
-        try {
-            const resposne = agentForm(id);
+    try {
+        const resposne = agentForm(id);
 
-            if (false)
-                throw new Error(resposne || "RESPONSE_FAILD");
+        if (false)
+            throw new Error(resposne || "RESPONSE_FAILD");
 
-            const temp = {
-                name: "sajjad",
-                code: 12,
-                price: 200
-            };
+        await new Promise((resolve, reject) => {
+            setTimeout(() => resolve(), 1000);
+        });
 
-            // dispatch(formActionTypes.removeForm(keyForm));
-            dispatch(formActionTypes.setForm(keyForm, temp));
+        const temp = {
+            name: "sajjad",
+            code: "FX-500",
+            price: 500475,
+            date: new Date()
+        };
 
-        } catch (error) {
-            //redirect if data in not defind
-            swalAlert.warningToLoadData().then((ok) => {
-                if (ok)
-                    dispatch(getFormById(id, agentForm, keyForm));
-            });
-            // dispatch(formActionTypes.setErrors(error));
-        } finally {
-            dispatch(formActionTypes.finishedRequest());
-        }
-    };
+        // dispatch(formActionTypes.removeForm(keyForm));
+        dispatch(formActionTypes.setForm(keyForm, temp));
+
+    } catch (error) {
+        //redirect if data in not defind
+        swalAlert.warningToLoadData().then((ok) => {
+            if (ok)
+                dispatch(getFormById(id, agentForm, keyForm));
+        });
+        // dispatch(formActionTypes.setErrors(error));
+    } finally {
+        dispatch(formActionTypes.finishedRequest());
+    }
+};
 
 export const removeFormByKey = (keyForm) => (dispatch, getState) => {
     dispatch(formActionTypes.removeForm(keyForm));
@@ -47,11 +52,13 @@ export const formSubmit = (
     try {
         const model = formModel.Model;
 
-
         const resposne = !!formModel.id ?
             await agentUpdate(formModel.id, model) :
             await agentCreate(model);
 
+
+
+        return;
         if (!resposne)
             throw resposne;
 

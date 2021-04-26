@@ -1,4 +1,5 @@
 import { formActionTypes } from "../@types";
+import { finishedDeleteRequest, finishedRequest, startDeleteRequest, startRequest } from "./all.redcuer";
 
 const initialState = {
     loading: false,
@@ -13,13 +14,13 @@ export const formReducer = (state = initialState, action) => {
 
     switch (action.type) {
         case formActionTypes.FORM_START_REQUEST:
-            return { loading: true, errors: initialState.errors };
+            return startRequest(state);
         case formActionTypes.FORM_FINISHED_REQUEST:
-            return { loading: false };
+            return finishedRequest(state);
         case formActionTypes.FORM_DELETE_START_REQUEST:
-            return { deleteLoaing: true };
+            return startDeleteRequest(state);
         case formActionTypes.FORM_DELETE_FINISHED_REQUEST:
-            return { deleteLoaing: false };
+            return finishedDeleteRequest(state);
         case formActionTypes.FORM_SET_ERRORS:
             return { errors: action.payload };
         case formActionTypes.FORM_CLEAR_ERRORS:
@@ -27,8 +28,16 @@ export const formReducer = (state = initialState, action) => {
         case formActionTypes.FORM_INITIAL_STATE:
             return initialState;
         //more than action type....     
+        case formActionTypes.FORM_SET_VALUES:
+            return {};
     }
     return state;
 };
 
 export default formReducer;
+
+
+
+
+
+

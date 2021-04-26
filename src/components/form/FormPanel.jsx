@@ -54,6 +54,7 @@ const FormPanel = ({
   }, [formId]);
 
   useEffect(() => {
+    console.log({forms});
     if (!forms || !forms[formKey]) return;
   }, [forms]);
 
