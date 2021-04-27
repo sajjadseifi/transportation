@@ -10,7 +10,7 @@ const InputPanelForm = (props) => {
     meta: { touched, error },
   } = props;
 
-  const isError = error && error.length != 0;
+  const isError = error && error.length !== 0;
   const stateClasses = !error || !touched ? "" : isError ? "invalid" : "valid";
 
   const onChangeHandler = (e) => {
@@ -23,7 +23,7 @@ const InputPanelForm = (props) => {
       ...e,
       target: {
         ...e.target,
-        value: text && text[0] || "",
+        value:( text && text[0]) || "",
       },
     });
   };
@@ -37,11 +37,8 @@ const InputPanelForm = (props) => {
         <div className="input-group mb-3">
           <input
             {...inpProps}
-            type={type}
+            {...{type,placeholder}}
             id={input.name}
-            onChange={onChangeHandler}
-            placeholder={placeholder}
-            type="text"
             className={`form-control form-panel-input is-${stateClasses} `}
           />
         </div>

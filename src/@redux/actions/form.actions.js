@@ -56,7 +56,6 @@ export const formSubmit = (
 
 
 
-        return;
         if (!resposne)
             throw resposne;
 

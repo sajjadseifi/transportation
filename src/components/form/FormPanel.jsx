@@ -2,7 +2,7 @@
 import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, withRouter, Link, useHistory } from "react-router-dom";
+import { useParams, withRouter, Link } from "react-router-dom";
 import { combineValidators } from "revalidate";
 import { FormPersonal, FormPanelTop } from ".";
 import * as formActions from "../../@redux/actions/form.actions";
@@ -14,7 +14,7 @@ import { Icon } from "rsuite";
 import { FlexBox } from "../box";
 
 //default validate
-const validate = combineValidators({});
+const validateDemo = combineValidators({});
 
 const FormPanel = ({
   singleName = "",
@@ -24,7 +24,7 @@ const FormPanel = ({
   createAgent = async (temp) => {},
   updateAgent = async (id, temp) => {},
   deleteAgent = async (id) => {},
-  validate = validate,
+  validate = validateDemo,
   buildFormModel = (formId, values) => {},
   buildInitialModel = (values) => {},
   formOptions = [],

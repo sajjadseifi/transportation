@@ -15,9 +15,10 @@ const ListRoute = ({ component: Component, ...rest }) => {
     return <Route {...{ rest }} component={Component} />;
   }
 
-  const pageNumber = qs.pageNumber || 1;
-  const pageSize = qs.pageSize || 1;
+  const pageNumber = qs.pageNumber ? +qs.pageNumber : 1;
+  const pageSize = qs.pageSize ? +qs.pageSize : 5;
   const state = { pageNumber, pageSize };
+  
   const search = "?" + queryString.stringify(state);
   const pathname = history.location.pathname;
 

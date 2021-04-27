@@ -3,7 +3,7 @@ import momentJalali from "moment-jalaali";
 import React from "react";
 import "./table.scss";
 momentJalali.locale("fa");
-const table = {
+export const table = {
   culumns: [
     {
       id: "name",
@@ -50,8 +50,8 @@ const table = {
   ],
 };
 const ListTable = ({
-  culumns = table.culumns,
-  data = table.data,
+  columns = [],
+  data = [],
   onClickRow = (row) => {},
   tableClassName,
   trClassName,
@@ -59,20 +59,24 @@ const ListTable = ({
   hraderClasses,
   tdClassName,
 }) => {
-  const TableHeade = culumns.map(({ displayName, id }) => (
-    <th key={id}>{displayName}</th>
+  const TableHeade = columns.map(({ displayName, id }, index) => (
+    <th key={id + index} key={id}>
+      {displayName}
+    </th>
   ));
-  const TableBody = data.map((d) => (
-    <tr onClick={() => onClickRow(d)} className="rwd-row">
-      {Object.keys(d).map((ck) => (
-        <td dataTh={ck}>{d[ck]}</td>
+  const TableBody = data.map((d, index) => (
+    <tr key={index} onClick={() => onClickRow(d)}>
+      {Object.keys(d).map((ck, infex) => (
+        <td key={infex} data-th={ck}>
+          {d[ck]}
+        </td>
       ))}
     </tr>
   ));
   return (
     <div>
-      <table class="rwd-table">
-        <tr className="rwd-header">{TableHeade}</tr>
+      <table className="rwd-table">
+        <tr key="TableHeade">{TableHeade}</tr>
         {TableBody}
       </table>
     </div>

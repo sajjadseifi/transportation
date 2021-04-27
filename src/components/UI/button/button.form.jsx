@@ -6,7 +6,7 @@ import { Button, Span } from "../html";
 export const buttonType = {
   info: "success",
   info: "info",
-  info: "info",
+  danger: "danger",
 };
 const ButtonForm = ({
   title,

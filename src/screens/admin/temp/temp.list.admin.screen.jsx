@@ -1,25 +1,16 @@
 import React from "react";
-import { ListTable } from "../../../components/table";
-import { TablePagination } from "../../../components/pagination";
-import { useHistory } from "react-router-dom";
+import PanelListTable from "../../../components/table/panel.list.table";
+import { table } from "../../../components/table/list.table";
+import { tempDetale } from "../../../common/list";
 
 export const TempListAdminScreen = () => {
-  const history = useHistory();
+ 
+  const builtOwnData = (data = []) => {
+    alert("table.data");
+    return table.data;
+  };
 
-  const { pageNumber, pageSize, search } = history.location.state;
-
-  return (
-    <div>
-      <h3>TempListAdminScreen</h3>
-      <div>
-        <span>{pageNumber}</span>,<span>{pageSize}</span>
-      </div>
-      <ul>
-        <ListTable />
-        <TablePagination />
-      </ul>
-    </div>
-  );
+  return <PanelListTable {...tempDetale} builtOwnData={builtOwnData} />;
 };
 
 export default TempListAdminScreen;

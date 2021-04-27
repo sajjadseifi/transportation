@@ -12,7 +12,6 @@ const initialState = {
 };
 
 export const formReducer = (state = initialState, action) => {
-    console.log({action});
     switch (action.type) {
         case formActionTypes.FORM_START_REQUEST:
             return startRequest(state);
@@ -33,9 +32,9 @@ export const formReducer = (state = initialState, action) => {
             return setFormValue(state, action);
         case formActionTypes.FORM_REMOVE_VALUES:
             return removeFormValue(state, action);
-
+        default:
+            return state;
     }
-    return state;
 };
 
 export default formReducer;

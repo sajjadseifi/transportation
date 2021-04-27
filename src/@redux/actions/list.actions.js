@@ -1,3 +1,4 @@
+import { io } from "socket.io-client";
 import { listActionTypes } from "../@types";
 
 
@@ -5,28 +6,44 @@ const errorLoadList = (error, dispatch = () => { }) => {
     dispatch(listActionTypes.loadListFaild(error));
 };
 
-export const loadList = (agentGet = async (config = {}) => { },) => async (dispatch, getState) => {
-    const {
-        userLogin: { userInfo },
-    } = getState();
+export const loadList = ({
+    agentGet = async (config = {}) => { },
+    pageNumber,
+    pageSize,
+    keyList,
+}) => async (dispatch, getState) => {
+    const auth = getState().auth;
 
-    const config = {
-        headers: {
-            Authorization: `${userInfo.token}`,
-        },
-    };
+    // const config = {
+    //     headers: {
+    //         Authorization: `${""}`,
+    //     },
+    // };
 
-    dispatch(listActionTypes.startRequest());
+    dispatch(listActionTypes.startRequest(keyList));
     try {
-        console.log(userInfo);
-        const data = await agentGet(config);
+        // const data = await agentGet(config);
 
-        dispatch({ type: QUESTION_LIST_SUCCESS, payload: data });
+
+        await new Promise((res, rej) => {
+            setTimeout(() => res(), 3000)
+        })
+        
+
+        const xx = {
+            keyList,
+            list: [],
+            counts: 50,
+            pageNumber,
+            pageSize
+        }
+        dispatch(listActionTypes.loadListSuccess(xx));
+
 
     } catch (error) {
         dispatch(listActionTypes.loadListFaild(error));
     } finally {
-        dispatch(listActionTypes.finishedRequest());
+        dispatch(listActionTypes.finishedRequest(keyList));
     }
 };
 

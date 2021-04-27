@@ -12,8 +12,8 @@ const DateForm = ({
 }) => {
   let jformat = inputJalaaliFormat;
   if (isDate) jformat += "YYYY/MM/DD";
-  if (isTime) jformat += jformat ? " " : "" + "hh:mm:ss";
-  if (isAPM) jformat += jformat ? " " : "" + "a";
+  if (isTime) jformat += jformat ? "" : " " + "hh:mm:ss";
+  if (isAPM) jformat += jformat ? "" : " " + "a";
 
   const [state, setState] = useState();
   const ref = useRef();

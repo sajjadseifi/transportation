@@ -1,0 +1,1 @@
+export {default as tempDetale} from "./temp.detale";

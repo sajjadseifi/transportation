@@ -2,28 +2,20 @@
 import React from "react";
 import "./pagination.scss";
 import { TableArrowPagination } from ".";
-import { useState } from "react";
-import { useCallback } from "react";
 const SIDE_NUMBER_PAGE = 2;
 
 const TablePagination = ({
   maxPages = 20,
-  pagex = 12,
-  //   onSelect = (page) => {},
+  page = 12,
+  prevText = "قبلی",
+  nextText = "بعدی",
+  onSelect = (page) => {},
 }) => {
-  const [page, setPage] = useState(pagex);
-
-  const onSelect = useCallback(
-    (page) => {
-      setPage(page);
-    },
-    [setPage]
-  );
-
+  page = +page || 0;
+  console.log({ page, maxPages });
   let start = 1;
-  let end = maxPages;
+  let end = maxPages || 0;
   let arrPage = [];
-
   if (maxPages > 5) {
     start = page - SIDE_NUMBER_PAGE;
     end = page + SIDE_NUMBER_PAGE;
@@ -39,8 +31,6 @@ const TablePagination = ({
       end = maxPages;
     }
   }
-
-  console.log({ end, start });
   [...Array(end - start + 1)].map((_, i) => arrPage.push(start + i));
   if (maxPages > 2 * (2 * SIDE_NUMBER_PAGE + 1)) {
     if (page * 2 > maxPages) arrPage = [1, 2, "...", ...arrPage];
@@ -53,18 +43,18 @@ const TablePagination = ({
           <TableArrowPagination
             onClick={() => onSelect(page - 1)}
             direction="right"
-            afterText="قبلی"
+            afterText={prevText}
           />
         )}
         <div className="d-flex">
           {arrPage.map((i, index) => {
-            const nonPage = !(typeof i == "number");
+            const nonPage = !(typeof i === "number");
             return (
               <div
                 onClick={nonPage ? () => {} : () => onSelect(i)}
                 key={index}
                 className={`pagination:number  
-              ${i == page ? "pagination:active" : ""}
+              ${i === page ? "pagination:active" : ""}
               ${nonPage ? "pagination:none-page" : ""}
               `}
               >
@@ -77,7 +67,7 @@ const TablePagination = ({
           <TableArrowPagination
             onClick={() => onSelect(page + 1)}
             direction="left"
-            prevText="بعدی"
+            prevText={nextText}
           />
         )}
       </div>
