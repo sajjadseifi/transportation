@@ -4,7 +4,8 @@ import "./pagination.scss";
 import { TableArrowPagination } from ".";
 import { useState } from "react";
 import { useCallback } from "react";
-const SIDE_NUMBER_PAGE = 3;
+const SIDE_NUMBER_PAGE = 2;
+
 const TablePagination = ({
   maxPages = 20,
   pagex = 12,
@@ -21,7 +22,7 @@ const TablePagination = ({
 
   let start = 1;
   let end = maxPages;
-  const arrPage = [];
+  let arrPage = [];
 
   if (maxPages > 5) {
     start = page - SIDE_NUMBER_PAGE;
@@ -31,39 +32,50 @@ const TablePagination = ({
       end = (spase + end) % (maxPages + 1);
       start = 1;
     }
+
     if (end > maxPages) {
       let spase = end - maxPages;
       start = start <= spase ? 1 : start - spase;
       end = maxPages;
     }
   }
-  console.log({ end, start });
-  [...Array(end - start)].map((_, i) => arrPage.push(start + i));
 
+  console.log({ end, start });
+  [...Array(end - start + 1)].map((_, i) => arrPage.push(start + i));
+  if (maxPages > 2 * (2 * SIDE_NUMBER_PAGE + 1)) {
+    if (page * 2 > maxPages) arrPage = [1, 2, "...", ...arrPage];
+    else arrPage = [...arrPage, "...", maxPages - 1, maxPages];
+  }
   return (
     <div className="table-pagination">
       <div className="pagination:container">
         {start > 1 && maxPages > 5 && (
           <TableArrowPagination
-            onClick={() => onSelect(arrPage[arrPage.length - 1])}
+            onClick={() => onSelect(page - 1)}
             direction="right"
             afterText="قبلی"
           />
         )}
-        {arrPage.map((i, index) => (
-          <div
-            onClick={() => onSelect(i)}
-            key={index}
-            className={`pagination:number  ${
-              i == page ? "pagination:active" : ""
-            }`}
-          >
-            {i}
-          </div>
-        ))}
+        <div className="d-flex">
+          {arrPage.map((i, index) => {
+            const nonPage = !(typeof i == "number");
+            return (
+              <div
+                onClick={nonPage ? () => {} : () => onSelect(i)}
+                key={index}
+                className={`pagination:number  
+              ${i == page ? "pagination:active" : ""}
+              ${nonPage ? "pagination:none-page" : ""}
+              `}
+              >
+                {i}
+              </div>
+            );
+          })}
+        </div>
         {end < maxPages && maxPages > 5 && (
           <TableArrowPagination
-            onClick={() => onSelect(arrPage[0])}
+            onClick={() => onSelect(page + 1)}
             direction="left"
             prevText="بعدی"
           />

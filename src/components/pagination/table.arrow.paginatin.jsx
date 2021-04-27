@@ -4,11 +4,11 @@ const TableArrowPagination = ({
   direction = "left" || "right",
   afterText = "",
   prevText = "",
-  onClick=()=>{}
+  onClick = () => {},
 }) => {
   return (
     <div>
-      <div className="pagination:number arrow">
+      <div onClick={onClick} className="pagination:number arrow">
         {prevText && <span className="arrow:text">{prevText}</span>}
         <svg width="18" height="18">
           <use xlinkHref={`#${direction}`} />

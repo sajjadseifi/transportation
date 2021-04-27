@@ -1,31 +1,32 @@
 @import url('https://rsms.me/inter/inter.css');
 
 .table-pagination {
-    font-family: 'Inter', sans-serif;
+    // font-family: 'Inter', sans-serif;
 }
 
 @supports (font-variation-settings: normal) {
     .table-pagination {
-        font-family: 'Inter var', sans-serif;
+        // font-family: 'Inter var', sans-serif;
     }
 }
+
+$bg-item-color:#3f3f3f;
 
 .table-pagination {
 
 
     * {
         box-sizing: border-box;
-        font-family: "Inter var", sans-serif;
         font-size: 16px;
         font-weight: 400;
         user-select: none;
         transition: all 200ms ease;
+        color: white;
 
         &:focus {
             outline: none;
         }
     }
-
 
     .hide {
         display: none;
@@ -42,15 +43,18 @@
         display: block;
         vertical-align: middle;
         font-size: 13px;
-        vertical-align: middle;
     }
 
+    .pagination\:number.arrow {
+        padding: 0 14px;
+    }
+  
     .pagination\:number {
         --size: 32px;
         --margin: 6px;
         margin: 0 var(--margin);
         border-radius: 6px;
-        background: #202020;
+        background: $bg-item-color;
         max-width: auto;
         min-width: var(--size);
         height: var(--size);
@@ -59,21 +63,20 @@
         justify-content: center;
         cursor: pointer;
         padding: 0 6px;
-
-        @media (hover: hover) {
-            &:hover {
-                // ose darken qysh te dush 
-                background: lighten(#202020, 3%);
-            }
+        &.pagination\:none-page{
+            cursor: default;
+        } 
+        &:not(.pagination\:none-page):hover {
+            background: lighten($bg-item-color, 20%);
         }
 
-        &:active {
-            background: lighten(#202020, 3%);
+        &:not(.pagination\:none-page):active {
+            background: darken($bg-item-color, 5%);
         }
     }
 
     .pagination\:active {
-        background: lighten(#202020, 3%);
+        background: #37618b;
         position: relative;
     }
 }
