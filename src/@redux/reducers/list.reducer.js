@@ -41,8 +41,8 @@ const startRequestList = (state, action) => {
     let updatedList = state.lists[keyList] || {
         data: [],
         errors: null,
-        maxPages: 1,
-        page: 1,
+        maxPages: 0,
+        page: 0,
     };
 
     updatedList = updateObject(updatedList, { loading: true });

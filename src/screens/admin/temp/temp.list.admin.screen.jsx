@@ -6,7 +6,7 @@ import { tempDetale } from "../../../common/list";
 export const TempListAdminScreen = () => {
  
   const builtOwnData = (data = []) => {
-    alert("table.data");
+    // console.log("table.data");
     return table.data;
   };
 

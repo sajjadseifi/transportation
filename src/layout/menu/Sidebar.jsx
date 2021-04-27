@@ -14,7 +14,7 @@ const headerStyles = {
   color: " #fff",
 };
 const sidebarStyle = {
-  width: 300,
+  width: 340,
 };
 
 const Sidebar = () => {

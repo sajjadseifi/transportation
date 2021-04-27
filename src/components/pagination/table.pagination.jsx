@@ -12,7 +12,6 @@ const TablePagination = ({
   onSelect = (page) => {},
 }) => {
   page = +page || 0;
-  console.log({ page, maxPages });
   let start = 1;
   let end = maxPages || 0;
   let arrPage = [];

@@ -1,6 +1,6 @@
 //default
 import React, { useEffect, useState, Fragment } from "react";
-import { withRouter } from "react-router-dom";
+import { useHistory, withRouter } from "react-router-dom";
 import { rolesLevel } from "../../constants";
 import { roleType } from "../../constants/role";
 const authorizex = {
@@ -18,10 +18,9 @@ const NavItemSidebar = ({
   index,
   items = [],
   authorize = authorizex,
-  history,
 }) => {
   const userRole = roleType.SUPPER_ADMIN;
-
+  const history = useHistory();
   const [active, setActive] = useState(false);
 
   useEffect(() => {
@@ -31,17 +30,21 @@ const NavItemSidebar = ({
 
     return () => setActive(false);
   }, [history]);
+  const goToRoute = () => {
+
+    history.push(route);
+  };
 
   if (authorize && authorize.level && authorize.level > rolesLevel[userRole])
     return <></>;
 
   const eventKey = index + "";
-  if (children) return <Component icon={Icon}>{children}</Component>;
+  if (children) return <Component onClick={goToRoute} icon={Icon}>{children}</Component>;
 
   const icon = Icon;
   const className = items.length == 0 ? "none-sub-item" : "";
   return (
-    <Component {...{ title, icon, eventKey, className }}>
+    <Component  {...{ title, icon, eventKey, className }}>
       {items.map(
         (
           { component: Component, title, Icon, route, authorize = authorizex },
@@ -58,7 +61,11 @@ const NavItemSidebar = ({
             return <Fragment key={eventKey}></Fragment>;
 
           return (
-            <Component key={eventKey} {...{ active, eventKey }}>
+            <Component
+              onClick={goToRoute}
+              key={eventKey}
+              {...{ active, eventKey }}
+            >
               {title}
             </Component>
           );
