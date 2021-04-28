@@ -63,7 +63,6 @@ export default {
             authorize: {
                 level: rolesLevel.SUPPER_ADMIN,
             },
-            agentAsync=async () => { }
         },
     ]
 }

@@ -1,11 +1,11 @@
 import React from "react";
 import ManagementTable from "../../management.table";
+import { managmentCol } from "../../../../common/list/culumn";
 
 export default function DataMapperTable({
   managment = [],
   columns = [],
   data = [],
-//   componet: Componet,
   children:Componet
 }) {
   let cols = [...columns];

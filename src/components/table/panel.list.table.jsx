@@ -11,7 +11,6 @@ import { HealthyLoading } from "../loading";
 import { TablePagination } from "../pagination";
 import { FlexBox } from "../box";
 import { updateObject, updateRouteState } from "../../core/utils/utils";
-import { managmentCol } from "../../common/list/culumn";
 import ManagementTable from "./management.table";
 import {
   SizingBoxPanelTable,

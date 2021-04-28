@@ -1,7 +1,7 @@
 //default
-import React from "react";
+import React, { useCallback } from "react";
 import { useLocation } from "react-router-dom";
-import TablePagination from "rsuite/lib/Table/TablePagination";
+import {TablePagination} from "../../../pagination"
 const FooterTablePanel = ({
   loading = false,
   maxPages = 0,
@@ -32,9 +32,9 @@ const FooterTablePanel = ({
         </div>
       </div>
       {!loading && (
-        <h5 onClick={requestHandler} className="cursor-pointer">
+        <h6 onClick={requestHandler} className="cursor-pointer">
           بارگیری مجدد
-        </h5>
+        </h6>
       )}
     </footer>
   );

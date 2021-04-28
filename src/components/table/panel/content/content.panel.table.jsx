@@ -1,6 +1,8 @@
 //default
 import React from "react";
 import { FlexBox } from "../../../box";
+import { HealthyLoading } from "../../../loading";
+import ListTable from "../../list.table";
 import DataMapperTable from "./data.mapper.table";
 
 const ContentPanelTable = ({ managment, loading, columns = [], data = [] }) => {
@@ -14,8 +16,9 @@ const ContentPanelTable = ({ managment, loading, columns = [], data = [] }) => {
   return (
     <section>
       <DataMapperTable {...{ managment, data, columns }}>
-        {(columns, data) => (
+        {({ columns, data }) => (
           <div className="full-table">
+            {console.log({columns, data})}
             <ListTable {...{ columns, data }} />
           </div>
         )}

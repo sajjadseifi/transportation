@@ -1,7 +1,7 @@
 //default
 import React, { useCallback } from "react";
 import { useLocation } from "react-router-dom";
-import { SelectionDropDown } from "../../UI/dropdown";
+import { SelectionDropDown } from "../../../UI/dropdown";
 const SizingBoxPanelTable = ({ selections, upateActionForm = (opt) => {} }) => {
   const location = useLocation();
 
