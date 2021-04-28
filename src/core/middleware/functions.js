@@ -6,12 +6,26 @@ export const use = (props = {}, ...cb) => {
 
     let levelf = 0;
     let updatedProps = props;
-    const nextHandler = (newProps = {}) => {
+    //cb refrence...
+    const nextHandler = (newProps = {}, ref = null) => {
+        //shooting ref cb to next or prev
+        let shoot = null;
         //end of middle ware
         if (typeof props == "error")
             return;
 
-        levelf++;
+
+        if (ref) {
+            for (let i = 0; i < cb.length; i++)
+                if (ref === cb[i]) {
+                    console.log(ref)
+                    shoot = i;
+                    break;
+                }
+        }
+
+        //upgrate level
+        levelf = shoot ?? levelf + 1;
         //update props
         updatedProps = Object.assign(updatedProps, newProps);
         //nextLevel

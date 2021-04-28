@@ -9,4 +9,6 @@ export {
     TRANSPORT_ADMIN_LEVEL,
     SUPPER_ADMIN_LEVEL,
     rolesLevel,
-} from "./role";
+    roleType,
+    securityOption
+} from "./security";

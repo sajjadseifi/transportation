@@ -23,6 +23,7 @@ export {
 
 export { authorizeSecurity };
 
+export { SecurityProvider, useSecurity } from "./context.security";
 
 export default {
     ...authorizeSecurity,

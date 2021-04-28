@@ -14,8 +14,7 @@ export const createAuthorizeObject = () => ({ ...initalAuthorize });
 
 export const isRevers = (authorize = initalAuthorize) => !!authorize.reverse;
 
-export const accesLevelAuthorize = ({ origin = initalAuthorize, user = userInfo }, next = (props) => { }) => {
-
+export const accesLevelAuthorize = ({ origin = initalAuthorize, user = userInfo }, next = (props,ref) => { }) => {
     //access lower level user
     if (isRevers(origin) && origin.level >= user.level)
         return next();
@@ -27,8 +26,8 @@ export const accesLevelAuthorize = ({ origin = initalAuthorize, user = userInfo 
     return;
 };
 
-export const accesRoleAuthorize = ({ origin = initalAuthorize, user = userInfo }, next = (props) => { }) => {
-
+export const accesRoleAuthorize = ({ origin = initalAuthorize, user = userInfo }, next = (props,ref) => { }) => {
+    //if contain role in array cann use dis section
     const access = (origin.rolesAccess.length == 0) || origin.rolesAccess.some(rl => rl && rl === user.role);
 
     if (access)
@@ -37,8 +36,8 @@ export const accesRoleAuthorize = ({ origin = initalAuthorize, user = userInfo }
     return false;
 };
 
-export const acccesNotRoleAuthorize = ({ origin = initalAuthorize, user = userInfo }, next = (props) => { }) => {
-
+export const acccesNotRoleAuthorize = ({ origin = initalAuthorize, user = userInfo }, next = (props,ref) => { }) => {
+    //if contain role in array cannot use dis section
     const access = (origin.rolesNotAccess.length == 0) || !origin.rolesNotAccess.some(rl => rl && rl === user.role);
 
     if (access)
@@ -57,7 +56,6 @@ export const propsAuthorizeInfo = {
     user: userInfo
 }
 export const checkAuthorization = (authorizeInfo = propsAuthorizeInfo, cbResult = (data) => { console.log({ data }) }) => {
-    console.log({ authorizeInfo });
     middleware.use(authorizeInfo,
         //check level user
         accesLevelAuthorize,

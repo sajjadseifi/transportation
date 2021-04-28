@@ -10,37 +10,44 @@ export const loadList = ({
     agentGet = async (config = {}) => { },
     pageNumber,
     pageSize,
+    search,
     keyList,
 }) => async (dispatch, getState) => {
-    const auth = getState().auth;
 
-    // const config = {
-    //     headers: {
-    //         Authorization: `${""}`,
-    //     },
-    // };
+    const config = {
+        // headers: {
+        //     Authorization: `${""}`,
+        // },
+    };
 
     dispatch(listActionTypes.startRequest(keyList));
     try {
-        // const data = await agentGet(config);
 
-
+        // const d= 
+        const paramsReq = {
+            pageNumber,
+            pageSize,
+            search
+        };
+        const data = await agentGet(paramsReq, config);
+        console.log({ paramsReq,data });
         await new Promise((res, rej) => {
-            setTimeout(() => res(), 3000)
+            setTimeout(() => res(), 1000)
         })
-        
 
         const xx = {
             keyList,
-            list: [],
-            counts: 50,
+            list: data.result.courses || [],
+            counts: data.result.count || 50,
             pageNumber,
-            pageSize
+            pageSize,
+            search
         }
         dispatch(listActionTypes.loadListSuccess(xx));
 
 
     } catch (error) {
+        console.log({error})
         dispatch(listActionTypes.loadListFaild(error));
     } finally {
         dispatch(listActionTypes.finishedRequest(keyList));

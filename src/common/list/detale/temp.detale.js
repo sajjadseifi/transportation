@@ -1,6 +1,7 @@
 import tempColumn from "../culumn/temp.column";
 import momentJalali from "moment-jalaali";
 import { rolesLevel } from "../../../constants";
+import { tempApi } from "../../../core/api";
 let data = [
     {
         name: "سبزینه",
@@ -32,6 +33,7 @@ export default {
     title: "لیست تمپلیت ها",
     keyList: "temp",
     columns: tempColumn,
+    getAgent:tempApi.list,
     // initialData: data,
     selections: {
         size: [5, 10, 15, 20]
