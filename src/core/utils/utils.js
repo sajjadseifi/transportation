@@ -8,7 +8,7 @@ export const updateObject = (orginal, target) => {
 };
 
 export const updateRouteState = (history,state) => {
-
+    
     const search = "?" + queryString.stringify(state);
     history.push({
         pathname: history.location.pathname,

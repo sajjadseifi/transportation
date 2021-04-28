@@ -24,7 +24,7 @@ $breakpoint-alpha: 480px; // adjust to your needs
     td {
         text-align: center;
         display: block;
-        cursor: pointer;
+        // cursor: pointer;
 
         &:first-child {
             padding-top: .5em;
@@ -79,6 +79,28 @@ $breakpoint-alpha: 480px; // adjust to your needs
 $bg-table-color-1:#555;
 
 .rwd-table {
+    .managment-talbe-box {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .managment-talbe-icon {
+            margin: 0 5px;
+            transition: 0.2s;
+            background-color: transparent;
+            border-radius: 50%;
+            display: block;
+            min-height: 30px;
+            min-width: 30px;
+            text-align: center;
+            vertical-align: middle;
+            line-height: 30px;
+            &:hover {
+                background-color: #ffffff21;
+            }
+        }
+    }
+
     h1 {
         font-weight: normal;
         letter-spacing: -1px;

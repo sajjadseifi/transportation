@@ -25,7 +25,6 @@ const FormPersonal = ({
 }) => {
   const AfterFields = afterFields;
   const BeformFileds = beformFileds;
-
   return (
     <FinalForm
       initialValues={initialValues}

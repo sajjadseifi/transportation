@@ -33,12 +33,12 @@ export default {
     title: "لیست تمپلیت ها",
     keyList: "temp",
     columns: tempColumn,
-    getAgent:tempApi.list,
+    getAgent: tempApi.list,
     // initialData: data,
     selections: {
         size: [5, 10, 15, 20]
     },
-    managment: {
+    managment: [
         // "prop":{
         // showLevel:0 or 1 or 2 ..... 
         // show:false //#by default show options true,
@@ -47,15 +47,23 @@ export default {
         // render={({ loading })=>< Component  loading={ loading } />}
         // }
         //by defaut rendered icon...
-        edit: {
+        {
+            name: "edit",
+            icon: "edit",
+            paramName: "edit",
             authorize: {
                 level: rolesLevel.TRANSPORT_ADMIN
             },
+            
         },
-        delete: {
+        {
+            name: "delete",
+            icon: "trash",
+            paramName: "delete",
             authorize: {
                 level: rolesLevel.SUPPER_ADMIN,
             },
+            agentAsync=async () => { }
         },
-    }
+    ]
 }

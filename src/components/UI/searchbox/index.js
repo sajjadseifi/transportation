@@ -1,1 +1,1 @@
-export {default as TablePanelSearchBox} from "./table.panel.searchbox";
+export {default as IconSearchBox} from "./icon.searchbox";

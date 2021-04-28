@@ -1,4 +1,5 @@
 import React from "react";
+import { useEffect } from "react";
 import InputForm from "./input.form";
 
 const InputPanelForm = (props) => {

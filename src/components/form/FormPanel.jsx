@@ -2,7 +2,7 @@
 import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, withRouter, Link } from "react-router-dom";
+import { useParams, withRouter, Link, useHistory } from "react-router-dom";
 import { combineValidators } from "revalidate";
 import { FormPersonal, FormPanelTop } from ".";
 import * as formActions from "../../@redux/actions/form.actions";
@@ -12,6 +12,8 @@ import swal from "sweetalert";
 import { confirmRemoveSwal } from "../../common/swal";
 import { Icon } from "rsuite";
 import { FlexBox } from "../box";
+import { SecurityLayout } from "../../layout";
+import { rolesLevel } from "../../constants";
 
 //default validate
 const validateDemo = combineValidators({});
@@ -35,26 +37,33 @@ const FormPanel = ({
     (state) => state.form
   );
 
+  const history = useHistory();
   const [loading, setLoading] = useState(false);
   const [deleteLoading, setDeleteLoading] = useState(false);
-  const [initialValues, setInitialValues] = useState(buildInitialModel() || {});
-
+  const [initialValues, setInitialValues] = useState({});
   const { id: formId } = useParams();
-
   const dispatch = useDispatch();
 
   const isUpdate = !!formId;
 
   useEffect(() => {
     if (isUpdate) {
+      console.log("UPDATE");
       //fetch data to show list....
       dispatch(formActions.getFormById(formId, agentForm, formKey));
+    } else {
+      //remove exist value
+      const formObject = buildInitialModel() || {};
+      setInitialValues(formObject);
     }
-    return () => dispatch(formActions.removeFormByKey(formId));
-  }, [formId]);
+    return () => {
+      dispatch(formActions.removeFormByKey(formId));
+      setInitialValues({});
+    };
+  }, [dispatch, formId]);
 
   useEffect(() => {
-    if (!forms || !forms[formKey]) return;
+    if (!isUpdate || !forms || !forms[formKey]) return;
 
     setInitialValues(forms[formKey]);
 
@@ -110,16 +119,18 @@ const FormPanel = ({
                 </Link>
               )}
               <div>
-                {isUpdate && (
-                  <ButtonForm
-                    onClick={deleteHandler}
-                    disabled={deleteLoading || loading}
-                    loading={deleteLoading}
-                    type="danger"
-                  >
-                    حذف
-                  </ButtonForm>
-                )}
+                <SecurityLayout level={rolesLevel.SUPPER_ADMIN} >
+                  {isUpdate && (
+                    <ButtonForm
+                      onClick={deleteHandler}
+                      disabled={deleteLoading || loading}
+                      loading={deleteLoading}
+                      type="danger"
+                    >
+                      حذف
+                    </ButtonForm>
+                  )}
+                </SecurityLayout>
                 <ButtonForm
                   IsButton
                   type={isUpdate ? "info" : "success"}

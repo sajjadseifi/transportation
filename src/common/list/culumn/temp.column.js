@@ -15,4 +15,5 @@ export default [
         id: "date",
         displayName: "تاریخ",
     },
+
 ];

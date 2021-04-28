@@ -10,10 +10,17 @@ import { listActions } from "../../@redux/actions";
 import { HealthyLoading } from "../loading";
 import { TablePagination } from "../pagination";
 import { FlexBox } from "../box";
-import SelectionDropDown from "../UI/dropdown/selection.dropdown";
 import { updateObject, updateRouteState } from "../../core/utils/utils";
-import { Icon } from "rsuite";
-import { TablePanelSearchBox } from "../UI/searchbox";
+import { managmentCol } from "../../common/list/culumn";
+import ManagementTable from "./management.table";
+import {
+  SizingBoxPanelTable,
+  SearchBoxPanelTable,
+  HeaderPanelTable,
+} from "./panel/header";
+import FooterTablePanel from "./panel/footer/footer.panel.table";
+import { ContentPanelTable } from "./panel/content";
+
 const options = {
   keyList: "panelList",
   title: "عنوان جدول",
@@ -22,6 +29,7 @@ const options = {
   builtOwnData: (data = []) => {},
   initialData: [],
   selections: {},
+  managment: [],
 };
 const PanelListTable = ({
   keyList,
@@ -33,6 +41,7 @@ const PanelListTable = ({
   getAgent,
   initialData,
   selections,
+  managment = [],
 } = options) => {
   const location = useLocation();
   const dispatch = useDispatch();
@@ -47,14 +56,10 @@ const PanelListTable = ({
 
   useEffect(() => {
     requestHandler();
-  }, [dispatch, location]);
+  }, [dispatch, location.state]);
 
   useEffect(() => {
-    if (!list) return;
-
-    if (!list.page || !list.maxPages) return;
-
-    if (loading) return;
+    if (loading || !list || !list.page || !list.maxPages) return;
 
     if (builtOwnData) list.data = builtOwnData(lists[keyList]);
 
@@ -63,35 +68,6 @@ const PanelListTable = ({
   }, [lists, keyList]);
 
   //#region handleling changes actions
-  //psh new history for new page
-  const onSelectPage = useCallback(
-    (page) => {
-      //get new page item...
-      upateActionForm({ pageNumber: page });
-    },
-    [location]
-  );
-  //send onchange size page
-  const onChagePageSize = useCallback(
-    (size) => {
-      upateActionForm({
-        pageSize: size,
-        pageNumber: 1,
-      });
-    },
-    [location]
-  );
-  //send search value...
-  const onSubmitedSearch = useCallback(
-    (search) => {
-      upateActionForm({
-        search,
-        pageNumber: 1,
-      });
-    },
-    [location]
-  );
-  //custom updae action
   const upateActionForm = useCallback(
     (targetObject) => {
       const state = { ...location.state };
@@ -101,77 +77,28 @@ const PanelListTable = ({
     },
     [location]
   );
-
   //#endregion
 
   //send rqeuest with multy options
-  const requestHandler = useCallback(
-    (size) => {
-      const getOptinos = {
-        keyList,
-        agentGet: getAgent,
-        pageNumber: location.state.pageNumber,
-        pageSize: location.state.pageSize,
-      };
-      console.log({ getOptinos });
-
-      dispatch(listActions.loadList(getOptinos));
-    },
-    [dispatch, location]
-  );
+  const requestHandler = useCallback(() => {
+    const getOptinos = {
+      keyList,
+      agentGet: getAgent,
+      pageNumber: location.state.pageNumber,
+      pageSize: location.state.pageSize,
+    };
+    dispatch(listActions.loadList(getOptinos));
+  }, [dispatch, location]);
 
   return (
     <div className="px-5 py-5  text-muted-light">
-      <header>
-        <h3 className="title px-4">{title}</h3>
-        <FlexBox alignCenter justifyContent="between" className="p-5 py-0 pt-5">
-          <div className="search-box">
-            <TablePanelSearchBox
-              placeholder="جستوجو"
-              value={location.state.search}
-              onSubmited={onSubmitedSearch}
-            />
-          </div>
-          {selections && selections.size && (
-            <div className="category-picker">
-              <SelectionDropDown
-                selected={location.state.pageSize}
-                items={selections.size}
-                title="اندازه لیست"
-                trigger={["click", "hover"]}
-                onSelect={onChagePageSize}
-              />
-            </div>
-          )}
-        </FlexBox>
-      </header>
-      <section className="">
-        {loading && true ? (
-          <FlexBox className="py-5 my-5" alignCenter justCenter>
-            <HealthyLoading />
-          </FlexBox>
-        ) : (
-          <div className="full-table">
-            <ListTable {...{ data, columns }} />
-          </div>
-        )}
-      </section>
-      <footer className="py-4 d-flex align-items-start justify-content-between">
-        <div>
-          <TablePagination onSelect={onSelectPage} {...{ maxPages, page }} />
-          <div className="p-3 p-2">
-            <div>{`تعداد کل صفحات : ${maxPages}`}</div>
-            {loading && maxPages != 0 && (
-              <div className="py-3">{`درحال بارگزاری صفحه ${location.state.pageNumber} ...`}</div>
-            )}
-          </div>
-        </div>
-        {!loading && (
-          <h5 onClick={requestHandler} className="cursor-pointer">
-            بارگیری مجدد
-          </h5>
-        )}
-      </footer>
+      <HeaderPanelTable {...{ upateActionForm, selections, title }} />
+      <ContentPanelTable {...{ loading, data, columns, managment }} />
+      <FooterTablePanel
+        requestHandler={requestHandler}
+        upateActionForm={upateActionForm}
+        {...{ loading, maxPages, page }}
+      />
     </div>
   );
 };

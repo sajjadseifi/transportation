@@ -18,7 +18,7 @@ const TempFormAdminScreen = () => {
     
     //or set form
     // formValue = { name: "", code: "", price: "" };
-
+    console.log({formValue})
     return formValue;
   };
 

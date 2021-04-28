@@ -19,9 +19,10 @@ export const TempListAdminScreen = () => {
     console.log("table.data", data);
     const table = data.map((dt) => {
       return {
+        rowId: dt._id,
         name: dt.courseName,
         code: dt._id,
-        price:  Math.floor(new Date().getTime() / 10000) + " ریال ",
+        price: Math.floor(new Date().getTime() / 10000) + " ریال ",
         date: momentJalali(new Date(dt.createDate)).format("YYYY/MM/DD"),
       };
     });
