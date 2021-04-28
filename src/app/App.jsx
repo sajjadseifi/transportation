@@ -35,9 +35,6 @@ function App() {
         }}
         options={securityOption}
       >
-        <SecurityLayout level={rolesLevel[roleType.TRANSPORT_ADMIN]}>
-          SALLAM
-        </SecurityLayout>
         <ROUTE />
       </SecurityProvider>
     </Suspense>
