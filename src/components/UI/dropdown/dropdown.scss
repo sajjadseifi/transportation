@@ -1,22 +1,25 @@
-.my-dropdown {
+.rs-dropdown.my-dropdown {
+    
     &>.rs-dropdown-menu {
         min-width: 100%;
 
-        .my-dropdown-item {
+        &>.rs-dropdown-item.my-dropdown-item {
+
             &:hover {
-                background-color: rgb(127, 179, 221);
+                background-color: rgb(139, 196, 243);
             }
-        }
 
-        &>.selected,
-        &>.selected:hover {
-            background-color: steelblue;
-            color: white;
-
-            & * {
+            &.selected,
+            &.selected:hover {
+                background-color: steelblue;
                 color: white;
+
+                & * {
+                    color: white;
+                }
             }
         }
+
     }
 
 

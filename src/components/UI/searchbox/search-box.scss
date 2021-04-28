@@ -1,0 +1,48 @@
+$table-panel-wdith:200px;
+$table-panel-active-wdith:300px;
+$table-panel-transition:0.4s;
+
+.search-box {
+
+    &.table-panel {
+        position: relative;
+
+        input {
+            transition: $table-panel-transition;
+            min-width: $table-panel-wdith;
+            border-bottom: 1px solid #b5b8bb;
+
+            &+.icon-search {
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+
+        &:hover input,
+        input:focus {
+            min-width: $table-panel-active-wdith;
+
+            &+.icon-search {
+                transition: 0.2s;
+                opacity: 0.7;
+                visibility: visible;
+
+                &:hover {
+                    opacity: 1;
+                }
+            }
+
+        }
+
+        .icon-search {
+            transition-delay: $table-panel-transition;
+            transition: $table-panel-transition;
+            position: absolute;
+            left: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+    }
+
+}

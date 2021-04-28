@@ -27,8 +27,8 @@ export default {
         {
             component: Dropdown,
             Icon: <Icon icon="magic" />,
-            title: "جادویی",
-            route: "/admin/magic",
+            title: "تمپلیت",
+            route: "/admin/temp/",
             authorize: {
                 level: rolesLevel.TRANSPORT_ADMIN,
                 // rolesAccess: [],
@@ -37,15 +37,24 @@ export default {
             items: [
                 {
                     component: Dropdown.Item,
-                    title: "Action Name",
+                    title: "لیست ها",
                     Icon: <Icon icon="plus" />,
-                    route: "/admin/magic/Name",
+                    route: "/admin/temp/list",
                 },
                 {
                     component: Dropdown.Item,
-                    title: "Action Params",
+                    title: "افزودن",
                     Icon: <Icon icon="paragraph" />,
-                    route: "/admin/magic/Params",
+                    route: "/admin/temp/form",
+                    authorize: {
+                        level: rolesLevel.TRANSPORT_ADMIN,
+                    },
+                },
+                {
+                    component: Dropdown.Item,
+                    title: "ویرایش",
+                    Icon: <Icon icon="paragraph" />,
+                    route: "/admin/temp/form/10",
                     authorize: {
                         level: rolesLevel.SUPPER_ADMIN,
                     },

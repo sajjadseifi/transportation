@@ -14,7 +14,11 @@ const SelectionDropDown = ({
   return (
     <Dropdown {...props} className="my-dropdown">
       {items.map((item, key) => (
-        <Dropdown.Item className={key==selected?"selected":"" + " my-dropdown-item"} onSelect={() => onSelect(item, key)} key={key}>
+        <Dropdown.Item
+          className={"my-dropdown-item " + (item == selected ? "selected" : "")}
+          onSelect={item == selected ? () => {} : () => onSelect(item, key)}
+          key={key}
+        >
           {item}
         </Dropdown.Item>
       ))}

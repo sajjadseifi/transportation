@@ -75,22 +75,23 @@ $breakpoint-alpha: 480px; // adjust to your needs
 
 // presentational styling
 
-
+// $bg-table-color-1:#34495E;
+$bg-table-color-1:#555;
 
 .rwd-table {
     h1 {
         font-weight: normal;
         letter-spacing: -1px;
-        color: #34495E;
+        color: $bg-table-color-1;
     }
 
-    background: #34495E;
+    background: $bg-table-color-1;
     color: #fff;
     border-radius: .4em;
     overflow: hidden;
 
     tr {
-        border-color: lighten(#34495E, 20%);
+        border-color: lighten($bg-table-color-1, 20%);
 
         &:not(:first-child) {
             background-color: transparent;

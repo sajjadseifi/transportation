@@ -1,0 +1,7 @@
+authorize: {
+      reverse:false,defult if revers access section lower level and 
+     high level is not access thi part 
+     level: rolesLevel.TRANSPORT_ADMIN, level for index 
+     rolesAccess: [],//acces this section 
+     rolesNotAccess: [],//not access this section
+},

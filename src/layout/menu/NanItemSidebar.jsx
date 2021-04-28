@@ -31,23 +31,35 @@ const NavItemSidebar = ({
     return () => setActive(false);
   }, [history]);
   const goToRoute = () => {
-
-    history.push(route);
+    history.push({
+      pathname: route,
+    });
   };
 
   if (authorize && authorize.level && authorize.level > rolesLevel[userRole])
     return <></>;
 
   const eventKey = index + "";
-  if (children) return <Component onClick={goToRoute} icon={Icon}>{children}</Component>;
+  if (children)
+    return (
+      <Component onClick={goToRoute.bind(route)} icon={Icon}>
+        {children}
+      </Component>
+    );
 
   const icon = Icon;
   const className = items.length == 0 ? "none-sub-item" : "";
   return (
-    <Component  {...{ title, icon, eventKey, className }}>
+    <Component {...{ title, icon, eventKey, className }}>
       {items.map(
         (
-          { component: Component, title, Icon, route, authorize = authorizex },
+          {
+            component: Component,
+            title,
+            Icon,
+            route: subRoute,
+            authorize = authorizex,
+          },
           subIndex
         ) => {
           const eventKey = index + "-" + subIndex;
@@ -62,7 +74,7 @@ const NavItemSidebar = ({
 
           return (
             <Component
-              onClick={goToRoute}
+              onClick={() => history.push({ pathname: subRoute })}
               key={eventKey}
               {...{ active, eventKey }}
             >

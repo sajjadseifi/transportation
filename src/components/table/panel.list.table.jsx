@@ -10,9 +10,10 @@ import { listActions } from "../../@redux/actions";
 import { HealthyLoading } from "../loading";
 import { TablePagination } from "../pagination";
 import { FlexBox } from "../box";
-import queryString from "query-string";
 import SelectionDropDown from "../UI/dropdown/selection.dropdown";
-import { updateRouteState } from "../../core/utils/utils";
+import { updateObject, updateRouteState } from "../../core/utils/utils";
+import { Icon } from "rsuite";
+import { TablePanelSearchBox } from "../UI/searchbox";
 const options = {
   keyList: "panelList",
   title: "عنوان جدول",
@@ -20,6 +21,7 @@ const options = {
   getAgent: async () => {},
   builtOwnData: (data = []) => {},
   initialData: [],
+  selections: {},
 };
 const PanelListTable = ({
   keyList,
@@ -30,6 +32,7 @@ const PanelListTable = ({
   },
   getAgent,
   initialData,
+  selections,
 } = options) => {
   const location = useLocation();
   const dispatch = useDispatch();
@@ -59,25 +62,29 @@ const PanelListTable = ({
     return () => setData([]);
   }, [lists, keyList]);
 
+  //#region handleling changes actions
   //psh new history for new page
   const onSelectPage = useCallback((page) => {
     //get new page item...
-    const state = {
-      pageSize: location.state.pageSize,
-      pageNumber: page,
-    };
-    console.log(state);
-
-    updateRouteState(history, state);
+    upateActionForm({ pageNumber: page });
   }, []);
-  //
+  //send onchange size page
   const onChagePageSize = useCallback((size) => {
-    const state = {
-      pageNumber: location.state.pageNumber,
-      pageSize: size,
-    };
-    updateRouteState(history, state);
+    upateActionForm({ pageSize: size, pageNumber: 1 });
   }, []);
+  //send search value...
+  const onSubmitedSearch = useCallback((search) => {
+    upateActionForm({ search });
+  }, []);
+  //custom updae action
+  const upateActionForm = useCallback((targetObject) => {
+    const updatedState = updateObject(location.state, targetObject);
+
+    updateRouteState(history, updatedState);
+  }, []);
+
+  //#endregion
+
   //send rqeuest with multy options
   const requestHandler = useCallback(
     (size) => {
@@ -98,6 +105,26 @@ const PanelListTable = ({
     <div className="px-5 py-5  text-muted-light">
       <header>
         <h3 className="title px-4">{title}</h3>
+        <FlexBox alignCenter justifyContent="between" className="p-5 py-0 pt-5">
+          <div className="search-box">
+            <TablePanelSearchBox
+              placeholder="جستوجو"
+              value={location.state.search}
+              onSubmited={onSubmitedSearch}
+            />
+          </div>
+          {selections && selections.size && (
+            <div className="category-picker">
+              <SelectionDropDown
+                selected={location.state.pageSize}
+                items={selections.size}
+                title="اندازه لیست"
+                trigger={["click", "hover"]}
+                onSelect={onChagePageSize}
+              />
+            </div>
+          )}
+        </FlexBox>
       </header>
       <section className="">
         {loading && true ? (
@@ -106,28 +133,6 @@ const PanelListTable = ({
           </FlexBox>
         ) : (
           <div className="full-table">
-            <FlexBox
-              alignCenter
-              justifyContent="between"
-              className="p-5 py-0 pt-5"
-            >
-              <div className="search-box">
-                <input
-                  placeholder="جستوجو"
-                  className="py-3 px-1"
-                  style={{ borderBottom: "1px solid #b5b8bb" }}
-                />
-              </div>
-              <div className="category-picker">
-                <SelectionDropDown
-                  selected={location.state.pageSize}
-                  items={[5, 10, 15, 20]}
-                  title="اندازه لیست"
-                  trigger={["click", "hover"]}
-                  onSelect={onChagePageSize}
-                />
-              </div>
-            </FlexBox>
             <ListTable {...{ data, columns }} />
           </div>
         )}

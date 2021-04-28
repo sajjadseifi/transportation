@@ -9,7 +9,7 @@ const ListRoute = ({ component: Component, ...rest }) => {
     rest.location.state = {
       pageNumber: qs.pageNumber,
       pageSize: qs.pageSize,
-      search: qs.search || "",
+      search: (qs.search || "").trim(),
     };
 
     return <Route {...{ rest }} component={Component} />;
@@ -18,7 +18,7 @@ const ListRoute = ({ component: Component, ...rest }) => {
   const pageNumber = qs.pageNumber ? +qs.pageNumber : 1;
   const pageSize = qs.pageSize ? +qs.pageSize : 5;
   const state = { pageNumber, pageSize };
-  
+
   const search = "?" + queryString.stringify(state);
   const pathname = history.location.pathname;
 
