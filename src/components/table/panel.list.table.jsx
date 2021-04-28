@@ -64,24 +64,43 @@ const PanelListTable = ({
 
   //#region handleling changes actions
   //psh new history for new page
-  const onSelectPage = useCallback((page) => {
-    //get new page item...
-    upateActionForm({ pageNumber: page });
-  }, []);
+  const onSelectPage = useCallback(
+    (page) => {
+      //get new page item...
+      upateActionForm({ pageNumber: page });
+    },
+    [location]
+  );
   //send onchange size page
-  const onChagePageSize = useCallback((size) => {
-    upateActionForm({ pageSize: size, pageNumber: 1 });
-  }, []);
+  const onChagePageSize = useCallback(
+    (size) => {
+      upateActionForm({
+        pageSize: size,
+        pageNumber: 1,
+      });
+    },
+    [location]
+  );
   //send search value...
-  const onSubmitedSearch = useCallback((search) => {
-    upateActionForm({ search });
-  }, []);
+  const onSubmitedSearch = useCallback(
+    (search) => {
+      upateActionForm({
+        search,
+        pageNumber: 1,
+      });
+    },
+    [location]
+  );
   //custom updae action
-  const upateActionForm = useCallback((targetObject) => {
-    const updatedState = updateObject(location.state, targetObject);
+  const upateActionForm = useCallback(
+    (targetObject) => {
+      const state = { ...location.state };
+      const updatedState = updateObject(state, targetObject);
 
-    updateRouteState(history, updatedState);
-  }, []);
+      updateRouteState(history, updatedState);
+    },
+    [location]
+  );
 
   //#endregion
 

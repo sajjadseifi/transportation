@@ -19,34 +19,18 @@ html {
 
 body,
 ul,
-li {
-    margin: 0;
-    padding: 0;
-}
+li {margin: 0;padding: 0;}
+li {list-style: none;}
+a { text-decoration: none;}
+.cursor-pointer {cursor: pointer;}
+.text-muted-light {color: #b5b8bb !important}
+body {background-color: #1D1F20;}
 
-li {
-    list-style: none;
-}
-
-a {
-    text-decoration: none;
-}
-
-.cursor-pointer {
-    cursor: pointer;
-}
-
-.text-muted-light {
-    color: #b5b8bb !important;
-}
-
-body {
-    background-color: #1D1F20;
-}
-
-.them1 {
-    &.body {
-        background-color: #1D1F20;
+.them1 {&.body {background-color: #1D1F20;}}
+.overflow{
+    &-y{
+        &-auto{
+            overflow-y: auto;
+        }
     }
-
 }

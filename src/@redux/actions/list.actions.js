@@ -30,10 +30,16 @@ export const loadList = ({
             search
         };
         const data = await agentGet(paramsReq, config);
-        console.log({ paramsReq,data });
+        console.log({ paramsReq, data });
         await new Promise((res, rej) => {
             setTimeout(() => res(), 1000)
         })
+
+        if (data.success == false) {
+            alert("داده ای یافت نشد");
+            throw data.message;
+        }
+        
 
         const xx = {
             keyList,
@@ -47,8 +53,8 @@ export const loadList = ({
 
 
     } catch (error) {
-        console.log({error})
-        dispatch(listActionTypes.loadListFaild(error));
+        console.log({ error })
+        // dispatch(listActionTypes.loadListFaild(error));
     } finally {
         dispatch(listActionTypes.finishedRequest(keyList));
     }

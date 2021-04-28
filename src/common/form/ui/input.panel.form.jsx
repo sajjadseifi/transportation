@@ -16,14 +16,16 @@ const InputPanelForm = (props) => {
   const onChangeHandler = (e) => {
     let text = e.target.value + "";
 
-    if (isNumber) text = text.match(/\d+/);
-    console.log({ isNumber, text });
-    
+    if (isNumber) {
+      text = text.match(/\d+/);
+      text = (text && text[0]) || "";
+    }
+
     input.onChange({
       ...e,
       target: {
         ...e.target,
-        value:( text && text[0]) || "",
+        value: text,
       },
     });
   };
@@ -37,7 +39,7 @@ const InputPanelForm = (props) => {
         <div className="input-group mb-3">
           <input
             {...inpProps}
-            {...{type,placeholder}}
+            {...{ type, placeholder }}
             id={input.name}
             className={`form-control form-panel-input is-${stateClasses} `}
           />

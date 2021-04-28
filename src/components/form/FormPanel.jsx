@@ -84,7 +84,7 @@ const FormPanel = ({
   };
 
   return (
-    <div className="form-panel px-5 position-relative">
+    <div className="form-panel px-5 position-relative text-muted-light">
       <FormPanelTop
         {...{
           formTitle,
@@ -113,7 +113,7 @@ const FormPanel = ({
                 {isUpdate && (
                   <ButtonForm
                     onClick={deleteHandler}
-                    disabled={deleteLoading}
+                    disabled={deleteLoading || loading}
                     loading={deleteLoading}
                     type="danger"
                   >
@@ -123,7 +123,8 @@ const FormPanel = ({
                 <ButtonForm
                   IsButton
                   type={isUpdate ? "info" : "success"}
-                  {...{ disabled, loading }}
+                  loading={loading}
+                  disabled={disabled || deleteLoading}
                 >
                   {isUpdate ? "ویرایش" : "ثبت"}
                 </ButtonForm>

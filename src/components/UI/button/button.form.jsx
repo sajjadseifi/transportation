@@ -23,26 +23,27 @@ const ButtonForm = ({
   const style = {
     fontSize: size,
   };
-  const className = `btn btn-${type} text-white px-5 mx-3 position-relative ${
-    disabled || loading ? "deactive" : ""
-  }`;
+
+  const className = `btn btn-${type} px-5  text-white ${disabled || loading ? "deactive" : ""}`;
 
   return (
-    <CMP
-      {...props}
-      style={style}
-      className={className}
-      disabled={disabled || loading}
-    >
-      <span className={loading ? "text-transparent" : ""}>
-        {title || children}
-      </span>
+    <div className="mx-3 position-relative d-inline-block">
+      <CMP
+        {...props}
+        style={style}
+        className={className}
+        disabled={disabled || loading}
+      >
+        <span className={loading ? "text-transparent" : ""}>
+          {title || children}
+        </span>
+      </CMP>
       {loading && (
-        <span className="loader-abs-cneter">
-          <Loader inverse />
+        <span className="loader-abs-cneter text-muted-light">
+          <Loader className="text-muted-light" inverse />
         </span>
       )}
-    </CMP>
+    </div>
   );
 };
 

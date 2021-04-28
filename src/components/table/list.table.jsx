@@ -76,8 +76,10 @@ const ListTable = ({
   return (
     <div>
       <table className="rwd-table">
-        <tr key="TableHeade">{TableHeade}</tr>
-        {TableBody}
+        <thead>
+          <tr key="TableHeade">{TableHeade}</tr>
+        </thead>
+        <tbody>{TableBody}</tbody>
       </table>
     </div>
   );

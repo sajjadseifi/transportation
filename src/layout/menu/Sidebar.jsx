@@ -31,8 +31,8 @@ const Sidebar = () => {
             {navigationSidebar.navigation.map((navItem, index) => {
               const authorize = navItem.authorize || {};
               return (
-                <SecurityLayout {...authorize}>
-                  <NanItemSidebar key={index} index={index} {...navItem} />
+                <SecurityLayout key={index} {...authorize}>
+                  <NanItemSidebar  index={index} {...navItem} />
                 </SecurityLayout>
               );
             })}

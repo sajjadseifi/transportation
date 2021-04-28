@@ -10,7 +10,9 @@ const FullLayout = ({ children }) => {
       </div>
       <div className="d-flex h-100">
         <Sidebar />
-        <div className="flex-1 w-100">{children}</div>
+        <div className="pb-5 mb-5 flex-1 w-100 overflow-y-auto">
+          <div className="pb-5">{children}</div>
+        </div>
       </div>
     </>
   );
