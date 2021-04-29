@@ -2,12 +2,11 @@ import { Suspense, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { AppLoading } from "../components/loading";
 import { Routes as ROUTE } from "../routes";
-import { SecurityLayout } from "../layout";
-import { rolesLevel, SecurityProvider } from "../core/security";
+import {  SecurityProvider } from "../core/security";
 import { roleType } from "../core/security/roles.security";
-import { securityOption } from "../constants";
+import { securityOption, securitySimpleOption } from "../constants";
 import loadable, { lazy } from "@loadable/component";
-import swal from "sweetalert";
+
 /* const LaizyCmp = lazy(() => import("~/LaizyCmp.jsx")); */
 const Routes = lazy(
   () =>
@@ -29,13 +28,8 @@ function App() {
   return (
     <Suspense fallback={<AppLoading title={appLoadTitle} />}>
       <SecurityProvider
-        user={{
-          role: roleType.SUPPER_ADMIN,
-          level: rolesLevel[roleType.SUPPER_ADMIN],
-        }}
-        options={securityOption}
-      >
-
+        user={{role: roleType.SUPPER_ADMIN,levelInRole: 2}}
+        options={securitySimpleOption} >
         <ROUTE />
       </SecurityProvider>
     </Suspense>

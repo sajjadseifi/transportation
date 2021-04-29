@@ -6,7 +6,7 @@ export default function DataMapperTable({
   managment = [],
   columns = [],
   data = [],
-  children:Componet
+  children: Componet,
 }) {
   let cols = [...columns];
   let rows = data instanceof Array ? [...data] : [];
@@ -18,7 +18,7 @@ export default function DataMapperTable({
       const managmentsCmp = managment.map((props, index) => (
         <ManagementTable key={index} rowId={rowId} {...props} />
       ));
-
+      
       return {
         ...rd,
         managment: <div className="managment-talbe-box">{managmentsCmp}</div>,

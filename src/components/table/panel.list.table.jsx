@@ -5,18 +5,9 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
-import { ListTable } from ".";
 import { listActions } from "../../@redux/actions";
-import { HealthyLoading } from "../loading";
-import { TablePagination } from "../pagination";
-import { FlexBox } from "../box";
 import { updateObject, updateRouteState } from "../../core/utils/utils";
-import ManagementTable from "./management.table";
-import {
-  SizingBoxPanelTable,
-  SearchBoxPanelTable,
-  HeaderPanelTable,
-} from "./panel/header";
+import { HeaderPanelTable } from "./panel/header";
 import FooterTablePanel from "./panel/footer/footer.panel.table";
 import { ContentPanelTable } from "./panel/content";
 

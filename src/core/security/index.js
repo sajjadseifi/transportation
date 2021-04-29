@@ -1,5 +1,5 @@
 import * as authorizeSecurity from "./authorize.security";
-;
+export { default as Security } from "./security";
 export {
     SUPPER_ADMIN,
     TRANSPORT_ADMIN,
@@ -10,14 +10,12 @@ export {
     rolesLevel,
 } from "./roles.security";
 
-
 export {
-
     accesLevelAuthorize,
     accesRoleAuthorize,
     createAuthorizeObject,
     isRevers,
-    acccesNotRoleAuthorize,
+    acccesStrickNotRoleAuthorize,
     checkAuthorization
 } from "./authorize.security";
 

@@ -19,7 +19,6 @@ const SecurityLayout = ({
   level = 0,
   children,
 } = props) => {
-  const [loading, setLoading] = useState(true);
   const [authorized, setAuthorized] = useState(false);
   const { state } = useSecurity();
   let Component = authorized ? children : null;
@@ -35,12 +34,10 @@ const SecurityLayout = ({
   }, [rolesNotAccess, rolesAccess, reverse, level]);
 
   const authorizationHanle = (isAuthorize) => {
-    setLoading(false);
+    // setLoading(false);
 
     if (isAuthorize) setAuthorized(true);
   };
-
-  // if (loading) return "loading...";
 
   return <Fragment>{Component}</Fragment>;
 };

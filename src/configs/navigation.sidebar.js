@@ -1,10 +1,10 @@
 import { Nav, Dropdown, Icon } from "rsuite";
-import { rolesLevel } from "../constants";
+import { roleType } from "../constants";
 
 // authorize: {
-//      reverse:false,defult if revers access section lower level and 
-//     high level is not access thi part 
-//     level: rolesLevel.TRANSPORT_ADMIN, level for index 
+//      (reverse & reverse):false,defult if revers access section lower role and 
+//     high role is not access thi part 
+//     role: roleType.TRANSPORT_ADMIN, role for index 
 //     rolesAccess: [],//acces this section 
 //     rolesNotAccess: [],//not access this section
 // },
@@ -30,7 +30,7 @@ export default {
             title: "تمپلیت",
             route: "/admin/temp/",
             authorize: {
-                level: rolesLevel.TRANSPORT_ADMIN,
+                role: roleType.TRANSPORT_ADMIN,
                 // rolesAccess: [],
                 // rolesNotAccess: [],
             },
@@ -47,7 +47,7 @@ export default {
                     Icon: <Icon icon="paragraph" />,
                     route: "/admin/temp/form",
                     authorize: {
-                        level: rolesLevel.TRANSPORT_ADMIN,
+                        role: roleType.TRANSPORT_ADMIN,
                     },
                 },
                 {
@@ -56,7 +56,7 @@ export default {
                     Icon: <Icon icon="paragraph" />,
                     route: "/admin/temp/form/10",
                     authorize: {
-                        level: rolesLevel.SUPPER_ADMIN,
+                        role: roleType.SUPPER_ADMIN,
                     },
                 }
             ]
@@ -78,7 +78,7 @@ export default {
                     title: "Devices",
                     route: "/admin/cars/Geo",
                     authorize: {
-                        level: rolesLevel.TRANSPORT_ADMIN,
+                        role: roleType.TRANSPORT_ADMIN,
                     },
                     // Icon: <Icon icon="paragraph" />
                 },
@@ -87,7 +87,7 @@ export default {
                     title: "Loyalty",
                     route: "/admin/cars/Loyalty",
                     authorize: {
-                        level: rolesLevel.SUPPER_ADMIN,
+                        role: roleType.SUPPER_ADMIN,
                     },
                     // Icon: <Icon icon="plus" />
                 },
@@ -97,7 +97,7 @@ export default {
                     route: "/admin/cars/Visit-Depth",
                     // Icon: <Icon icon="paragraph" />
                     authorize: {
-                        level: rolesLevel.SUPPER_ADMIN,
+                        role: roleType.SUPPER_ADMIN,
                     },
                 }
             ]

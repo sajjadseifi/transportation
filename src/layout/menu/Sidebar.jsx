@@ -1,6 +1,6 @@
 import React from "react";
 import { Sidenav, Nav } from "rsuite";
-import { SecurityLayout } from "../../layout";
+import { Security } from "../../core/security";
 import navigationSidebar from "../../configs/navigation.sidebar";
 import { NanItemSidebar } from ".";
 const panelStyles = {
@@ -31,9 +31,9 @@ const Sidebar = () => {
             {navigationSidebar.navigation.map((navItem, index) => {
               const authorize = navItem.authorize || {};
               return (
-                <SecurityLayout key={index} {...authorize}>
-                  <NanItemSidebar  index={index} {...navItem} />
-                </SecurityLayout>
+                <Security key={index} {...authorize}>
+                  <NanItemSidebar index={index} {...navItem} />
+                </Security>
               );
             })}
           </Nav>

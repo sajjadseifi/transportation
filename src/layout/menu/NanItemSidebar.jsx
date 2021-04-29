@@ -1,7 +1,7 @@
 //default
 import React, { useEffect, useState } from "react";
 import { useHistory, withRouter } from "react-router-dom";
-import { SecurityLayout } from "../../layout";
+import { Security } from "../../core/security";
 import { roleType } from "../../constants/role";
 
 const NavItemSidebar = ({
@@ -51,7 +51,7 @@ const NavItemSidebar = ({
         const Component = component;
         const subRoute = route;
         return (
-          <SecurityLayout {...authorize}>
+          <Security {...authorize}>
             <Component
               onClick={() => history.push({ pathname: subRoute })}
               key={eventKey}
@@ -59,7 +59,7 @@ const NavItemSidebar = ({
             >
               {title}
             </Component>
-          </SecurityLayout>
+          </Security>
         );
       })}
     </Component>

@@ -8,16 +8,13 @@ export const TRANSPORT_ADMIN = "TRANSPORT_ADMIN";
 export const USER_ADMIN = "USER_ADMIN";
 
 
+
 export const rolesLevel = {
     [SUPPER_ADMIN]: SUPPER_ADMIN_LEVEL,
     [TRANSPORT_ADMIN]: TRANSPORT_ADMIN_LEVEL,
     [USER_ADMIN]: USER_ADMIN_LEVEL,
 };
 
-export const allow = {
-    ALL: "ALL",
-    NEVER: "NEVER",
-};
 
 export const roleType = {
     SUPPER_ADMIN,

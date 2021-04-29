@@ -34,13 +34,55 @@ const initialState = {
         role: null,
         level: 0,
     },
-    options: [
-        // {role:"",level:0}        
-    ]
-};
+    options: {
+        // "user": {
+        //     roleLevel: 0,by default role level is zero
+        //     levelInRole: 5,by default levelin role is zero
+        // },
+    }
 
-function SecurityProvider({ user, levelRole = 0, userRole = null, options = [], children } = initialState) {
-    const [state, dispatch] = React.useReducer(SecurityReducer, { user, userRole, options, levelRole });
+};
+const opt1 = {
+    "user": {
+        roleLevel: 0,
+        levelInRole: 5
+    },
+    "transport": {
+        roleLevel: 1,
+        levelInRole: 3
+    },
+    "admin": {
+        roleLevel: 2,
+        levelInRole: 4
+    },
+}
+const opt2 = {
+    "user": 0,
+    "transport": 1,
+    "admin": 2
+}
+
+
+function SecurityProvider({ user, levelRole = 0, userRole = null, options = {}, children } = initialState) {
+    let opt = { ...options };
+    Object.keys(options).forEach((roleKey, i) => {
+        if (typeof options[roleKey] !== "number") {
+            opt[roleKey] = options[roleKey];
+            return;
+        }
+
+        opt[roleKey] = {
+            roleLevel: opt[roleKey],
+            levelInRole: 0
+        };
+    });
+
+    const [state, dispatch] = React.useReducer(SecurityReducer, {
+        user,
+        userRole,
+        levelRole,
+        options: opt
+    });
 
     const value = { state, dispatch };
 
@@ -50,11 +92,12 @@ function SecurityProvider({ user, levelRole = 0, userRole = null, options = [], 
         </SecurityStateContext.Provider>
     );
 }
-function useSecurity() {
+function useSecurity(origin, user) {
     const context = React.useContext(SecurityStateContext)
     if (context === undefined) {
         throw new Error('useSecurity must be used within a SecurityProvider');
     }
+
     return context;
 }
 export { SecurityProvider, useSecurity };

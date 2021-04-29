@@ -12,8 +12,8 @@ import swal from "sweetalert";
 import { confirmRemoveSwal } from "../../common/swal";
 import { Icon } from "rsuite";
 import { FlexBox } from "../box";
-import { SecurityLayout } from "../../layout";
-import { rolesLevel } from "../../constants";
+import { roleType } from "../../constants";
+import { Security } from "../../core/security";
 
 //default validate
 const validateDemo = combineValidators({});
@@ -119,7 +119,7 @@ const FormPanel = ({
                 </Link>
               )}
               <div>
-                <SecurityLayout level={rolesLevel.SUPPER_ADMIN} >
+                <Security  role={roleType.SUPPER_ADMIN}>
                   {isUpdate && (
                     <ButtonForm
                       onClick={deleteHandler}
@@ -130,7 +130,7 @@ const FormPanel = ({
                       حذف
                     </ButtonForm>
                   )}
-                </SecurityLayout>
+                </Security>
                 <ButtonForm
                   IsButton
                   type={isUpdate ? "info" : "success"}

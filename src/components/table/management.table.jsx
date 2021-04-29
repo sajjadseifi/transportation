@@ -1,7 +1,7 @@
 //default
 import React from "react";
 import { Icon } from "rsuite";
-import { SecurityLayout } from "../../layout";
+import { Security } from "../../core/security";
 const ManagementTable = ({
   name,
   authorize,
@@ -24,7 +24,7 @@ const ManagementTable = ({
   };
 
   return (
-    <SecurityLayout {...authorize}>
+    <Security {...authorize}>
       <span
         onClick={onSubmit}
         name={name}
@@ -32,7 +32,7 @@ const ManagementTable = ({
       >
         {!icon ? name : <Icon icon={icon} />}
       </span>
-    </SecurityLayout>
+    </Security>
   );
 };
 

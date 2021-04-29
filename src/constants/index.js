@@ -8,7 +8,7 @@ export {
     USER_ADMIN_LEVEL,
     TRANSPORT_ADMIN_LEVEL,
     SUPPER_ADMIN_LEVEL,
-    rolesLevel,
     roleType,
-    securityOption
+    securityOption,
+    securitySimpleOption,
 } from "./security";
