@@ -6,10 +6,11 @@ const actionTypes = {
     UPDATE_STATE: "UPDATE_STATE",
     CLEAR_STATE: "CLEAR_STATE",
     SET_OPTIONS: "SET_OPTIONS",
+    SET_USER: "SET_USER",
 };
 
 function SecurityReducer(state, action) {
-
+    console.log(action);
     switch (action.type) {
         case actionTypes.INITIAL_STATE:
             const { userRole, levelRole } = action;
@@ -20,7 +21,8 @@ function SecurityReducer(state, action) {
             return { userRole: null, levelRole: 0 };
         case actionTypes.SET_OPTIONS:
             return { options: action.payload };
-
+        case actionTypes.SET_USER:
+            return { ...state, user: action.payload };
         default:
             throw new Error(`Unhandled action type: ${action.type}`);
     }

@@ -2,7 +2,7 @@
 import React, { Fragment } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
-import security, { useSecurity } from "../core/security";
+import security, { useSecurity } from ".";
 
 export const props = {
   reverse: false, //defult if revers access section lower level and  high level is not access thi part
@@ -19,7 +19,7 @@ export const props = {
 
 const Security = ({
   reverse = false,
-  role = "_____ROLE_USER____",
+  role = "",
   levelRevers = false,
   levelInRole = 0,
   rolesAccess = [],
@@ -48,13 +48,24 @@ const Security = ({
     const config = {
       origin: authorizeOptions, //compoent rendered in authorize setting
       options: state.options, //roles setting...
-      user: customUser || state.user, //user role and role in level
+      user:state.user, //user role and role in level
     };
+    console.log({user:state.user});
+
     //sned payout to check authorized
     security.checkAuthorization(config, authorizationHanle);
-  }, [rolesNotAccess, rolesAccess, reverse, role, levelRevers, levelInRole]);
+  }, [
+    rolesNotAccess,
+    rolesAccess,
+    reverse,
+    role,
+    levelRevers,
+    levelInRole,
+    state.user,
+  ]);
 
   const authorizationHanle = (isAuthorize) => {
+    console.log({isAuthorize});
     if (isAuthorize) setAuthorized(true);
   };
 

@@ -17,6 +17,8 @@ export const isRevers = (authorize = initalAuthorize) => !!authorize.reverse;
 export const isLevelRevers = (authorize = initalAuthorize) => !!authorize.levelRevers;
 
 export const accesRoleAuthorize = ({ options, origin = initalAuthorize, user = userInfo }, next = (props, ref) => { }) => {
+    // next({ error: "error" });
+
     let oor = options[origin.role]?.roleLevel || 0;
     let our = options[user.role]?.roleLevel || 0;
     if (typeof (oor | our) !== "number")
@@ -76,9 +78,11 @@ export const userInfo = {
 };
 export const propsAuthorizeInfo = {
     origin: initalAuthorize,
-    user: userInfo
+    user: userInfo,
+    options: {},
 }
 export const checkAuthorization = (authorizeInfo = propsAuthorizeInfo, cbResult = (data) => { console.log({ data }) }) => {
+    console.log({ authorizeInfo });
     middleware.use(authorizeInfo,
         //check role access
         accesStrickRoleAuthorize,

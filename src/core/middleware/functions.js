@@ -1,19 +1,28 @@
 
 
-export const use = (props = {}, ...cb) => {
-    if (!cb || cb.length <= 0)
+export const use = (props = {}, ...cbmw) => {
+    if (!cbmw || cbmw.length <= 0)
         return;
 
+    let cb = [...cbmw];
     let levelf = 0;
     let updatedProps = props;
     //cb refrence...
     const nextHandler = (newProps = {}, ref = null) => {
+        //cn finction is down
+        if (cb.length == 0){
+            console.warn("CalBack function is Empty");
+            return;
+        }
         //shooting ref cb to next or prev
         let shoot = null;
         //end of middle ware
-        if (typeof props == "error")
+        console.log({ props });
+        if (typeof props == "error" || props.error) {
+            console.error(props);
+            cb = [];
             return;
-
+        }
 
         if (ref) {
             for (let i = 0; i < cb.length; i++)

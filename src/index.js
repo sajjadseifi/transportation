@@ -19,6 +19,8 @@ import { Router } from "react-router-dom";
 import Store from "./@redux/store";
 //location and hidtory of route
 import { createBrowserHistory } from "history";
+import { SecurityProvider } from "./core/security";
+import { roleType, securitySimpleOption } from "./constants";
 export const history = createBrowserHistory();
 //persian date
 export const persianDate = require("persian-date");
@@ -29,7 +31,14 @@ const IndexApp = () => {
     return (
         <Router history={history}>
             <Store>
-                <App />
+                <SecurityProvider
+                    user={{
+                        role: roleType.USER_ADMIN,
+                        levelInRole: 0
+                    }}
+                    options={securitySimpleOption}>
+                    <App />
+                </SecurityProvider>
             </Store>
         </Router>
     );
