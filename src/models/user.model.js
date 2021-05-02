@@ -1,6 +1,6 @@
 import FormModel from "./form.model";
 
-export class User extends FormModel {
+export class UserModel extends FormModel {
     username;
     email;
     first_name;

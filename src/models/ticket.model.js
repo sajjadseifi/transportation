@@ -1,10 +1,11 @@
 import FormModel from "./form.model"
+import { UserInfoModel } from ".";
 
 export class TicketModel extends FormModel {
     title;
     description;// "desc test",
     response;// "response of expert test",
-    customer; //"http://127.0.0.1:8000/userinfo/8/",
+    customer= new UserInfoModel(); //"http://127.0.0.1:8000/userinfo/8/",
     updated_at;//date
     created_at;//date
     expert = null; //
