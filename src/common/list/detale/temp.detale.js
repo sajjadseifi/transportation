@@ -8,7 +8,7 @@ export default {
     keyList: "temp",
     columns: tempColumn,
     getAgent: tempApi.list,
-    // initialData: data,
+    initialData: data,
     selections: {
         size: [5, 10, 15, 20]
     },
@@ -43,7 +43,7 @@ export default {
 
 
 
-let data = [
+var data = [
     {
         name: "سبزینه",
         code: "FC-402",
