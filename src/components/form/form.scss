@@ -23,3 +23,11 @@
         background-size: 1rem 1rem;
     }
 }
+@media screen and (max-width: 600px) {
+    .app-form-final {
+        &-row {
+            flex-direction: column;
+        }
+    }
+
+}

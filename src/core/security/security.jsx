@@ -50,7 +50,7 @@ const Security = ({
       options: state.options, //roles setting...
       user:state.user, //user role and role in level
     };
-    console.log({user:state.user});
+    // console.log({user:state.user});
 
     //sned payout to check authorized
     security.checkAuthorization(config, authorizationHanle);
@@ -65,7 +65,6 @@ const Security = ({
   ]);
 
   const authorizationHanle = (isAuthorize) => {
-    console.log({isAuthorize});
     if (isAuthorize) setAuthorized(true);
   };
 

@@ -1,4 +1,5 @@
-import { DateForm, InputPanelForm, } from "../ui";
+import { DateForm, InputPanelForm, SelectFormPanel, } from "../ui";
+import CheckBoxFormPanel from "../ui/checkbox.form";
 
 export const formConfiguration = {
 
@@ -38,6 +39,37 @@ export default [
             isDate: true,
             component: DateForm
 
+        },
+        {
+            name: "solam",
+            title: "حال حرکت میزنن خفنا رو",
+            width: "100%",
+            options: [
+                { value: "0", label: "تمیزو خوب" },
+                { value: "1", label: "عالی و زیبا" },
+                { value: "2", label: "امین و زمین" },
+                { value: "3", label: "کال و تازه" }
+            ],
+            value: "sallam chtori",
+            component: SelectFormPanel
+        }
+    ],
+    [
+        {
+            full: true,
+            name: "checkbox-name",
+            type: "checkbox",
+            title:"عنوان...",
+            label: "این چک‌باکس سفارشی را انتخاب کنید",
+            component: CheckBoxFormPanel
+        }
+    ], [
+        {
+            name: "radio-name",
+            type: "radio",
+            // title:"عنوان...",
+            label: "این رادیو سفارشی را تغییر دهید",
+            component: CheckBoxFormPanel
         }
     ]
 ]

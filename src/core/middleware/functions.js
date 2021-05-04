@@ -17,7 +17,6 @@ export const use = (props = {}, ...cbmw) => {
         //shooting ref cb to next or prev
         let shoot = null;
         //end of middle ware
-        console.log({ props });
         if (typeof props == "error" || props.error) {
             console.error(props);
             cb = [];

@@ -1,0 +1,48 @@
+.login-screen {
+  background-color: #E5E9FF;
+}
+
+.login-screen .auth-title {
+  width: 100%;
+  text-align: center;
+  color: deeppink;
+}
+
+.login-card {
+  width: 90%;
+  height: 87%;
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+.login-card-show {
+  background-color: white;
+  -webkit-box-shadow: 0 0 30px 1px #0000002a;
+          box-shadow: 0 0 30px 1px #0000002a;
+}
+
+.login-card img {
+  position: absolute;
+  top: 0;
+  width: auto;
+  height: 100%;
+  right: 0;
+}
+
+.login-form .form-container {
+  float: left;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 0 20px;
+  min-width: 360px;
+  width: 40%;
+  max-width: 540px;
+  height: 100%;
+  background-image: radial-gradient(circle at 0% 0%, #373b52, #252736 51%, #1d1e26);
+  background-color: white;
+  -webkit-box-shadow: 2px 0 20px 1px rgba(0, 0, 0, 0.1);
+          box-shadow: 2px 0 20px 1px rgba(0, 0, 0, 0.1);
+  border-radius: 10px 0 0 10px;
+}
+/*# sourceMappingURL=auth.screeen.css.map */

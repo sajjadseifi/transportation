@@ -1,5 +1,5 @@
 import FormModel from "./form.model";
-import { User } from "./user.model";
+import { UserModel } from "./user.model";
 
 export class SavedAddressModel extends FormModel {
     name;//name
@@ -7,7 +7,7 @@ export class SavedAddressModel extends FormModel {
     created_at;//date stirng
     updated_at;//date stirng
     user_Id = null;
-    user = new User();//user,
+    user = new UserModel();//user,
     constructor(name, address, user_Id, user, created_at, updated_at) {
         super();
         this.name = name;

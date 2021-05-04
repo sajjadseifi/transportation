@@ -3,6 +3,7 @@ import React from "react";
 import { Form as FinalForm } from "react-final-form";
 import { combineValidators } from "revalidate";
 import { FormFieldList, Form } from ".";
+import { SelectFormPanel } from "../../common/form/ui";
 
 const initialValidate = combineValidators({
   // email: valisator.emailValidateor,
@@ -27,11 +28,12 @@ const FormPersonal = ({
   const BeformFileds = beformFileds;
   return (
     <FinalForm
-      initialValues={initialValues}
+      initialValues={{ ...initialValues, solam: "Chtori" }}
       onSubmit={onSubmit}
       validate={validate}
-      render={({ handleSubmit, invalid, pristine, error, errors }) => (
+      render={({ handleSubmit, invalid, pristine, values, error, errors }) => (
         <Form className={formClass} onSubmit={handleSubmit}>
+          {console.log({ values })}
           <BeformFileds
             {...{ disabled: invalid || loading, pristine, loading }}
           />

@@ -3,6 +3,8 @@ import React from "react";
 import { combineValidators } from "revalidate";
 import { tempFormConfig } from "../../../common/form/config";
 import { FormPanel } from "../../../components/form";
+import CodePenSelect from "../../../components/UI/select/code-pen.select";
+import CustomSelect from "../../../components/UI/select/custom.select";
 import { TempModel } from "../../../models";
 
 const validate = combineValidators({});
@@ -15,10 +17,10 @@ const TempFormAdminScreen = () => {
   const buildInitialModel = (formValue = {}) => {
     //set initial  formValue with  get in redux form state in inner component
     const { name, code, price } = formValue;
-    
+
     //or set form
     // formValue = { name: "", code: "", price: "" };
-    console.log({formValue})
+    console.log({ formValue });
     return formValue;
   };
 
@@ -32,11 +34,14 @@ const TempFormAdminScreen = () => {
   };
 
   return (
-    <FormPanel
-      buildFormModel={buildFormModel}
-      buildInitialModel={buildInitialModel}
-      {...tempFormConfig}
-    />
+    <>
+      <FormPanel
+        buildFormModel={buildFormModel}
+        buildInitialModel={buildInitialModel}
+        {...tempFormConfig}
+      />
+  
+    </>
   );
 };
 

@@ -82,7 +82,6 @@ export const propsAuthorizeInfo = {
     options: {},
 }
 export const checkAuthorization = (authorizeInfo = propsAuthorizeInfo, cbResult = (data) => { console.log({ data }) }) => {
-    console.log({ authorizeInfo });
     middleware.use(authorizeInfo,
         //check role access
         accesStrickRoleAuthorize,
@@ -95,7 +94,7 @@ export const checkAuthorization = (authorizeInfo = propsAuthorizeInfo, cbResult 
         //send data with property ok (true or false)
         (props) => {
             cbResult(true);
-            console.log("authorized successfully");
+            // console.log("authorized successfully");
         }
     );
 };

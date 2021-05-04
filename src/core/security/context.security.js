@@ -10,7 +10,6 @@ const actionTypes = {
 };
 
 function SecurityReducer(state, action) {
-    console.log(action);
     switch (action.type) {
         case actionTypes.INITIAL_STATE:
             const { userRole, levelRole } = action;

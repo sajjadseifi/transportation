@@ -10,7 +10,7 @@ export class DisCountModel extends FormModel {
     expire_date;//date,
     description;//text
     constructor(
-        did = null,
+        id = null,
         count,
         price,
         percent,
