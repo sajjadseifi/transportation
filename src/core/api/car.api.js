@@ -1,6 +1,9 @@
 import { agentAxios } from ".";
 
-
 export default {
-    create: (car, config = {}) => agentAxios.post("/car",car, config),
+    all: (config = {}) => agentAxios.get(`/car`, config),
+    get: (carId, config = {}) => agentAxios.get(`/car/${carId}`, config),
+    create: (car, config = {}) => agentAxios.post(`/car`, car, config),
+    update: (carId, car, config = {}) => agentAxios.put(`/car/${carId}`, car, config),
+    delete: (carId, config = {}) => agentAxios.del(`/car/${carId}`, config)
 };
