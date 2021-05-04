@@ -8,10 +8,13 @@ export class UserModel extends FormModel {
     password;
     is_active;//boolean
     is_superuser;//boolean
+    is_staff;//boolean
     date_joined;//date time string
     constructor(
-        first_name, last_name, username, email, password,
-        is_active = null, is_superuser = null, date_joined = null
+        first_name, last_name,
+        username, email, password,
+        is_active = null, is_superuser = null,
+        is_staff = null, date_joined = null
     ) {
         super();
         this.first_name = first_name;
@@ -22,7 +25,7 @@ export class UserModel extends FormModel {
         this.is_active = is_active;
         this.is_superuser = is_superuser;
         this.date_joined = date_joined;
-
+        this.is_staff = is_staff;
     }
     get FormData() { return null }
     get Model() {

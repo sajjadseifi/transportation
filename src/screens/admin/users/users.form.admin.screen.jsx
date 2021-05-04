@@ -19,6 +19,7 @@ const UsersFormAdminScreen = () => {
       values.password,
       values.is_active,
       values.is_superuser,
+      values.is_staff,
       values.date_joined
     );
 

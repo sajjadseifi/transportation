@@ -82,8 +82,18 @@ export default [
         {
             full: true,
             name: "is_superuser",
-            type: "پشتیبان",
-            label: "این چک‌باکس سفارشی را انتخاب کنید",
+            type: "checkbox",
+            label: "پشتیبان میباشد",
+            component: CheckBoxFormPanel
+        }
+    ]
+    ,
+    [
+        {
+            full: true,
+            name: "is_staff",
+            type: "checkbox",
+            label: "ابر کاربر (دسترسی به تمام بخش ها)",
             component: CheckBoxFormPanel
         }
     ]
