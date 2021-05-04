@@ -16,3 +16,4 @@ export { default as userColumn } from "./user.column";
 export { default as carDetale } from "./car.detale";
 export { default as discountDetale } from "./discount.detale";
 export { default as ticketDetale } from "./ticket.detale";
+export { default as userDetale } from "./user.detale";

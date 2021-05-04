@@ -1,7 +1,7 @@
 import axios from "axios";
 import { store } from "../../@redux/store";
 
-const baseURL =  "http://localhost:5000/api/" // || process.env.REACT_APP_API_URL ;
+const baseURL = "http://127.0.0.1:8000/" // || process.env.REACT_APP_API_URL ;
 
 export let source = axios.CancelToken.source();
 export let config = { cancelToken: source.token };
@@ -12,16 +12,18 @@ axios.defaults.baseURL = baseURL;
 
 axios.interceptors.request.use((config) => {
     // const token = localStorage.getItem("jwt");
-    const { userInfo } = store.getState().auth;
+    // const { userInfo } = store.getState().auth;
 
-    const token = userInfo &&  userInfo.token ?
-        userInfo.token :
-        'Basic ' + new Buffer('shid' + ':' + 'test').toString('base64');
+    // const token = userInfo &&  userInfo.token ?
+    //     userInfo.token :
+    //     'Basic ' + new Buffer('shid' + ':' + 'test').toString('base64');
 
-    config.headers["Authorization"] = token;
+    // config.headers["Authorization"] = token;
 
     config.headers["Content-Type"] = "application/json";
 
+    // config.headers.username = "admin";
+    config.headers.password = "admin";
     source = axios.CancelToken.source();
     config.cancelToken = source.token;
 

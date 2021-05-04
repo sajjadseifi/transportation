@@ -5,26 +5,22 @@ export default [
     },
     {
         id: "email",
-        description: "ایمیل",
+        displayName: "ایمیل",
     },
     {
-        id: "first_name",
-        description: "نام",
-    },
-    {
-        id: "last_name",
-        response: "نام خانوادگی",
+        id: "fullName",
+        displayName: "نام",
     },
     {
         id: "is_active",
-        updated_at: "وضفیت کاربر",
+        displayName: "وضفیت کاربر",
     },
     {
         id: "is_superuser",
-        created_at: "پشتیبان",
+        displayName: "پشتیبان",
     },
     {
         id: "date_joined",
-        created_at: "تاریخ ملحق شدن",
+        displayName: "تاریخ ملحق شدن",
     }
 ];

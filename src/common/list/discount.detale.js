@@ -1,4 +1,4 @@
-import { roleType } from "../../../constants";
+import { roleType } from "../../constants";
 import { discountApi } from "../../core/api";
 import { discountColumn } from ".";
 

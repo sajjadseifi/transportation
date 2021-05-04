@@ -1,6 +1,6 @@
-import { roleType } from "../../../constants";
 import { carApi } from "../../core/api";
 import { carColumn } from ".";
+import { roleType } from "../../constants";
 
 export default {
     title: "ماشین ها",

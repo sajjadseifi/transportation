@@ -1,4 +1,4 @@
-import { roleType } from "../../../constants";
+import { roleType } from "../../constants";
 import { userApi } from "../../core/api";
 import { userColumn } from ".";
 
@@ -6,7 +6,7 @@ export default {
     title: "کاربران",
     keyList: "discounts",
     columns: userColumn,
-    getAgent: userApi.all,
+    getAgent: userApi.list,
     
     selections: {
         size: [5, 10, 15, 20]
