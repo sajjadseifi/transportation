@@ -1,5 +1,5 @@
 import React from "react";
-import { Navbar, Sidebar } from "./menu";
+import {  Sidebar } from "./menu";
 import "./layout.css";
 import { HeaderLayout } from "./header";
 

@@ -24,7 +24,7 @@ const BurgerIcon = ({ clicked = (opened) => {} }) => {
 
   return (
     <label className="burger-icon" for="check">
-      <input type="checkbox" id="check" />
+      <input onChange={clickedHandler} type="checkbox" id="check" />
       <span></span>
       <span></span>
       <span></span>

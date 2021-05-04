@@ -33,3 +33,9 @@ export {
     FORM_INITIAL_STATE
 } from "./form.action.types";
 export { default as formActionTypes } from "./form.action.types";
+
+export {
+    ACTIVE_SIDEBAR,
+    DEACTIVE_SIDEBAR
+} from "./menu.action.types";
+export { default as menuActionTypes } from "./menu.action.types";

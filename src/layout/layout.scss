@@ -1,0 +1,21 @@
+$move-transition:0.4s;
+.panel-side-bar {
+    transition: $move-transition;
+    direction: ltr;
+
+    .side-bar-container {
+        direction: rtl;
+    }
+
+    &.close-side-bar {
+        width: 0;
+    }
+    &.active-side-bar {}
+}
+
+@media screen and (max-width:900px) {
+    .panel-side-bar{
+        position: absolute;
+        z-index: 20000000;
+    }
+}

@@ -65,10 +65,27 @@ export default [
         }
     ], [
         {
-            name: "radio-name",
+            name: "radioname",
+            id: "radioname1",
             type: "radio",
-            // title:"عنوان...",
             label: "این رادیو سفارشی را تغییر دهید",
+            value:"1",
+            component: CheckBoxFormPanel
+        },
+        {
+            name: "radioname",
+            id: "radioname2",
+            type: "radio",
+            label: "این رادیو سفارشی را تغییر دهید",
+            value:"2",
+            component: CheckBoxFormPanel
+        },
+        {
+            name: "radioname",
+            id:"radioname3",
+            type: "radio",
+            label: "این رادیو سفارشی را تغییر دهید",
+            value:"3",
             component: CheckBoxFormPanel
         }
     ]
