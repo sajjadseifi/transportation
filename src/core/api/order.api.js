@@ -17,3 +17,7 @@ export const customer = {
     accept: (id, config = {}) => agentAxios.get(`/order/${id}/CustomerAccept`, config),
     cancel: (id, config = {}) => agentAxios.get(`/order/${id}/CustomerAccept`, config),
 };
+export default{
+    customer,
+    driver
+};
