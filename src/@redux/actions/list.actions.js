@@ -32,26 +32,22 @@ export const loadList = ({
         const data = await agentGet(paramsReq, config);
         console.log({ paramsReq, data });
         await new Promise((res, rej) => {
-            setTimeout(() => res(), 1000)
+            setTimeout(() => res(), 300)
         })
 
         if (data.success == false) {
             alert("داده ای یافت نشد");
             throw data.message;
         }
-        
 
-        const xx = {
+        dispatch(listActionTypes.loadListSuccess({
             keyList,
-            list: data.result.courses || [],
-            counts: data.result.count || 50,
+            list: data.results || [],
+            counts: data.count || 0,
             pageNumber,
             pageSize,
             search
-        }
-        dispatch(listActionTypes.loadListSuccess(xx));
-
-
+        }));
     } catch (error) {
         console.log({ error })
         // dispatch(listActionTypes.loadListFaild(error));

@@ -21,18 +21,18 @@ export default [
     },
     {
         id: "refrigerator",
-        displayName: "refrigerator",
+        displayName: "یخچال",
     },
     {
         id: "transit",
         displayName: "ترانزیت",
     },
-    {
-        id: "updated_at",
-        displayName: "تاریخ ثبت",
-    },    
-    {
-        id: "updated_at",
-        displayName: "اخرین ویرایش",
-    },
+    // {
+    //     id: "create_at",
+    //     displayName: "تاریخ ثبت",
+    // },    
+    // {
+    //     id: "updated_at",
+    //     displayName: "اخرین ویرایش",
+    // },
 ];

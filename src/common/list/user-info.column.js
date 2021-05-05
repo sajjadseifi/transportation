@@ -12,11 +12,11 @@ export default [
         id: "sex",
         displayName: "جنسیت",
     }, {
-        id: "birth_date",
-        displayName: "تاریخ تولد",
-    }, {
         id: "phone_number",
         displayName: "شماره تلفن",
+    }, {
+        id: "birth_date",
+        displayName: "تاریخ تولد",
     }, {
         id: "national_code",
         displayName: "کد ملی",

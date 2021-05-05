@@ -21,6 +21,7 @@ const validateDemo = combineValidators({});
 const FormPanel = ({
   singleName = "",
   formTitle = "",
+  formUpdateTitle="",
   formKey = "",
   agentForm = async (id) => {},
   createAgent = async (temp) => {},
@@ -100,6 +101,7 @@ const FormPanel = ({
           loading: loading || deleteLoading,
           isUpdate,
           deleting: deleteLoading,
+          formUpdateTitle
         }}
       />
 

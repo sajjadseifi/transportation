@@ -4,6 +4,10 @@ export default [
         displayName: "کد",
     },
     {
+        id: "user",
+        displayName: "کاربر",
+    },
+    {
         id: "count",
         displayName: "تعداد",
     },

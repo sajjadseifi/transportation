@@ -5,26 +5,30 @@ export default [
     },
     {
         id: "description",
-        description: "توضیحات",
-    },
-    {
-        id: "response",
-        description: "پاسخ پشتیبان",
+        displayName: "توضیحات",
     },
     {
         id: "customer",
-        response: "مشتری",
+        displayName: "مشتری",
     },
     {
         id: "expert",
-        updated_at: "تاریخ انقضا",
+        displayName: "پشتیبان",
     },
     {
-        id: "created_at",
-        created_at: "تاریخ ثبت",
+        id: "response",
+        displayName: "پاسخ پشتیبان",
     },
     {
-        id: "updated_at",
-        created_at: "اخرین ویرایش",
-    }
+        id: "condition",
+        displayName: "وضعیت تیکت",
+    },
+    // {
+    //     id: "created_at",
+    //     created_at: "تاریخ ثبت",
+    // },
+    // {
+    //     id: "updated_at",
+    //     created_at: "اخرین ویرایش",
+    // }
 ];

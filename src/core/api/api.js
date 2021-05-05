@@ -8,22 +8,24 @@ export let config = { cancelToken: source.token };
 
 axios.defaults.baseURL = baseURL;
 
-// axios.get(baseURL, config).then((res) => { });
+export function authHeader() {
+    // let user = JSON.parse(localStorage.getItem('user'));
+    const authdata = {
+        username: "admin", password: "admin"
+    }
 
+    if (authdata) {
+        return { 'Authorization': 'Basic ' + authdata };
+    } else {
+        return {};
+    }
+}
 axios.interceptors.request.use((config) => {
-    // const token = localStorage.getItem("jwt");
-    // const { userInfo } = store.getState().auth;
 
-    // const token = userInfo &&  userInfo.token ?
-    //     userInfo.token :
-    //     'Basic ' + new Buffer('shid' + ':' + 'test').toString('base64');
-
-    // config.headers["Authorization"] = token;
+    config.headers["Authorization"] = "Basic YWRtaW46YWRtaW4=";
 
     config.headers["Content-Type"] = "application/json";
 
-    // config.headers.username = "admin";
-    config.headers.password = "admin";
     source = axios.CancelToken.source();
     config.cancelToken = source.token;
 
@@ -64,6 +66,9 @@ const responseBody = (response) => (response ? response.data : response);
 
 export const request = {
     get: (url, config = {}) => axios.get(url, config).then(responseBody),
+    list: (url, { pageNumber, pageSize }, config = {}) =>
+        axios.get(`${url}/?limit=${pageSize}&offset=${(pageNumber - 1) * pageSize}`, config)
+            .then(responseBody),
     post: (url, body = {}, config = {}) => axios.post(url, body, config).then(responseBody),
     put: (url, body = {}, config = {}) => axios.put(url, body, config).then(responseBody),
     del: (url, config = {}) => axios.delete(url, config).then(responseBody),

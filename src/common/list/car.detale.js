@@ -6,7 +6,7 @@ export default {
     title: "ماشین ها",
     keyList: "cars",
     columns: carColumn,
-    getAgent: carApi.all,
+    getAgent: carApi.list,
     // initialData: data,
     selections: {
         size: [5, 10, 15, 20]
@@ -19,6 +19,7 @@ export default {
             authorize: {
                 role: roleType.TRANSPORT_ADMIN
             },
+            path: "/admin/car/form"
         },
         {
             name: "delete",

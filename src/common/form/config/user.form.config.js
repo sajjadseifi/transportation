@@ -6,7 +6,8 @@ const validate = combineValidators({
 });
 
 export default {
-    formTitle: "فرم کاربر",
+    formTitle: "افزودن کاربر جدید",
+    formUpdateTitle:"ویرایش کاربر",
     formKey: "user",
     validate: validate,
     formOptions: userFormOption,

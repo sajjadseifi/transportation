@@ -10,8 +10,8 @@ export const UsersListAdminScreen = () => {
         username: dt.username,
         email: dt.email,
         fullName: dt.first_name + " " + dt.last_name,
-        is_active: <div>{dt.is_active ? "بله" : "خیر"}</div>,
-        is_superuser: <div>{dt.is_superuser ? "بله" : "خیر"}</div>,
+        is_active: <span>{dt.is_active ? "فعال" : "غیر فعال"}</span>,
+        is_superuser: <span>{dt.is_superuser ? "بله" : "خیر"}</span>,
         date_joined: momentJalali(new Date(dt.date_joined)).format(
           "YYYY/MM/DD"
         ),

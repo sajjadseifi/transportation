@@ -59,17 +59,25 @@ const ListTable = ({
   hraderClasses,
   tdClassName,
 }) => {
-  const TableHeade = columns.map(({ displayName, id }, index) => (
-    <th key={id + index} key={id}>
-      {displayName}
-    </th>
-  ));
+  let ckeys = {};
+  const TableHeade = columns.map(({ displayName, id }, index) => {
+    ckeys[id] = displayName;
+    return (
+      <th key={id + index} key={id}>
+        {displayName}
+      </th>
+    );
+  });
   const TableBody = data.map((d, index) => (
     <tr key={index} onClick={() => onClickRow(d)}>
       {Object.keys(d).map((ck, infex) => (
-        <td key={infex} data-th={ck}>
-          {d[ck]}
-        </td>
+        <>
+          {ckeys[ck] && (
+            <td key={infex} data-th={ckeys[ck]}>
+              {d[ck]}
+            </td>
+          )}
+        </>
       ))}
     </tr>
   ));

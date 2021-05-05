@@ -13,7 +13,7 @@ export default [
     },
     {
         id: "is_active",
-        displayName: "وضفیت کاربر",
+        displayName: "وضفیت حساب",
     },
     {
         id: "is_superuser",

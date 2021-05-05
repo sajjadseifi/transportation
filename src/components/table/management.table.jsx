@@ -1,5 +1,7 @@
 //default
 import React from "react";
+import { Fragment } from "react";
+import { Link, Route } from "react-router-dom";
 import { Icon } from "rsuite";
 import { Security } from "../../core/security";
 const ManagementTable = ({
@@ -10,28 +12,32 @@ const ManagementTable = ({
   paramName,
   component,
   render,
+  path,
 }) => {
   const onSubmit = () => {
     console.log({ rowId, name });
-
-    // const search = {
-    //   pageNumber: location.state.pageNumber,
-    //   pageSize: location.state.pageSize,
-    //   search: location.state.search,
-    //   [paramName]: rowId,
-    // };
-    // history.location.search = "?" + queryString.stringify(search);
   };
+
+  const CMP = path ? Link : Fragment;
+
+  let props = {};
+
+  if (path) {
+    props.className = "ancor-icon";
+    props.to = `${path}/${rowId}`;
+  }
 
   return (
     <Security {...authorize}>
-      <span
-        onClick={onSubmit}
-        name={name}
-        className="mx-2 cursor-pointer managment-talbe-icon"
-      >
-        {!icon ? name : <Icon icon={icon} />}
-      </span>
+      <CMP {...props}>
+        <span
+          onClick={onSubmit}
+          name={name}
+          className="mx-2 cursor-pointer managment-talbe-icon"
+        >
+          {!icon ? name : <Icon icon={icon} />}
+        </span>
+      </CMP>
     </Security>
   );
 };

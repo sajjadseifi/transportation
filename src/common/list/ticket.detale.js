@@ -3,21 +3,22 @@ import { ticketApi } from "../../core/api";
 import { ticketColumn } from ".";
 
 export default {
-    title: "بلیت ها",
+    title: "تیکت ها",
     keyList: "discounts",
     columns: ticketColumn,
-    getAgent: ticketApi.all,
+    getAgent: ticketApi.list,
     selections: {
         size: [5, 10, 15, 20]
     },
     managment: [
         {
-            name: "edit",
-            icon: "edit",
-            paramName: "edit",
+            name: "eye",
+            icon: "eye",
+            paramName: "eye",
             authorize: {
                 role: roleType.TRANSPORT_ADMIN
             },
+            path:"/admin/ticket/form"
         },
         {
             name: "delete",

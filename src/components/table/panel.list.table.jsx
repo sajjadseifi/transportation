@@ -38,7 +38,7 @@ const PanelListTable = ({
   const history = useHistory();
   const { lists } = useSelector((state) => state.list);
   const [data, setData] = useState(initialData);
-
+  const [start, setStart] = useState(true);
   const list = lists[keyList];
   const loading = list ? list.loading : true;
   const page = list && list.page ? list.page : 0;

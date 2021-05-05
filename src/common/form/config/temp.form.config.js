@@ -7,6 +7,7 @@ const validate = combineValidators({
 
 export default {
     formTitle: "عنوان نمونه",
+    formUpdateTitle:"ویرایش نمونه",
     formKey: "temp",
     validate: validate,
     formOptions: tempFormOption,

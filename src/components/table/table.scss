@@ -3,7 +3,7 @@
 // More practical CSS...
 // using mobile first method (IE8,7 requires respond.js polyfill https://github.com/scottjehl/Respond)
 
-$breakpoint-alpha: 480px; // adjust to your needs
+$breakpoint-alpha: 700px; // adjust to your needs
 
 .rwd-table {
     margin: 1em 0;
@@ -24,7 +24,10 @@ $breakpoint-alpha: 480px; // adjust to your needs
     td {
         text-align: center;
         display: block;
-        // cursor: pointer;
+
+        @media (min-width: $breakpoint-alpha) {
+            text-align: right;
+        }
 
         &:first-child {
             padding-top: .5em;
@@ -79,8 +82,13 @@ $breakpoint-alpha: 480px; // adjust to your needs
 $bg-table-color-1:#555;
 
 .rwd-table {
+    a.ancor-icon {
+        text-decoration: none;
+        color: white;
+    }
+
     .managment-talbe-box {
-        display: flex;
+        display: inline-flex;
         align-items: center;
         justify-content: center;
 
@@ -95,6 +103,7 @@ $bg-table-color-1:#555;
             text-align: center;
             vertical-align: middle;
             line-height: 30px;
+
             &:hover {
                 background-color: #ffffff21;
             }
@@ -135,11 +144,21 @@ $bg-table-color-1:#555;
 
         @media (min-width: $breakpoint-alpha) {
             padding: 1em !important;
+
         }
     }
 
     th,
     td:before {
         color: #dd5;
+    }
+}
+
+@media screen and (max-width: $breakpoint-alpha) {
+    .rwd-table tbody tr td {
+        text-align: right;
+        &::before{
+            width:160px;
+        }
     }
 }
