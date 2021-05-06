@@ -4,7 +4,7 @@ import { finishedDeleteRequest, finishedRequest, startDeleteRequest, startReques
 
 const initialState = {
     loading: false,
-    deleteLoaing: false,
+    deleteLoading: false,
     forms: {
         //key:{form object}
     },
@@ -22,9 +22,9 @@ export const formReducer = (state = initialState, action) => {
         case formActionTypes.FORM_DELETE_FINISHED_REQUEST:
             return finishedDeleteRequest(state);
         case formActionTypes.FORM_SET_ERRORS:
-            return { errors: action.payload };
+            return updateObject(state, { errors: action.payload });
         case formActionTypes.FORM_CLEAR_ERRORS:
-            return { errors: null };
+            return updateObject(state, { errors: null });
         case formActionTypes.FORM_INITIAL_STATE:
             return initialState;
         //more than action type....     

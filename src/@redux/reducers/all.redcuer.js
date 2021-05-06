@@ -8,9 +8,9 @@ export const finishedRequest = (state, action) => {
     return updateObject(state, { loading: false });
 };
 export const startDeleteRequest = (state, action) => {
-    return updateObject(state, { deleteLoaing: true, });
+    return updateObject(state, { deleteLoading: true, });
 };
 
 export const finishedDeleteRequest = (state, action) => {
-    return updateObject(state, { deleteLoaing: false });
+    return updateObject(state, { deleteLoading: false });
 };

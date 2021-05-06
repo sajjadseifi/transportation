@@ -1,36 +1,32 @@
 import { FormModel } from "../../models";
 import { formActionTypes } from "../@types";
 import { swalAlert } from "../../components/alert";
+import { history } from "../..";
 
-export const getFormById = (id, agentForm, keyForm) => async (dispatch) => {
+export const getFormById = (id, agentForm, keyForm, redirectPath = "/") => async (dispatch) => {
     dispatch(formActionTypes.startRequest());
 
     try {
-        const resposne = agentForm(id);
+        const response = await agentForm(id);
 
-        if (false)
-            throw new Error(resposne || "RESPONSE_FAILD");
+        if (!response)
+            throw response;
 
         await new Promise((resolve, reject) => {
-            setTimeout(() => resolve(), 1000);
+            setTimeout(() => resolve(), 200);
         });
-
-        const temp = {
-            name: "sajjad",
-            code: "FX-500",
-            price: 500475,
-            date: new Date()
-        };
 
         // dispatch(formActionTypes.removeForm(keyForm));
-        dispatch(formActionTypes.setForm(keyForm, temp));
+        dispatch(formActionTypes.setForm(keyForm, response));
     } catch (error) {
-        //redirect if data in not defind
-        swalAlert.warningToLoadData().then((ok) => {
-            if (ok)
-                dispatch(getFormById(id, agentForm, keyForm));
-        });
-        // dispatch(formActionTypes.setErrors(error));
+        if (error && error.response && error.response.data)
+            swalAlert.warning(error.response.data.detail);
+        else
+            swalAlert.warningToLoadData().then((ok) => ok && dispatch(getFormById(id, agentForm, keyForm)));
+
+        if (error && error.response && error.response.status === 404)
+            history.push(redirectPath);
+
     } finally {
         dispatch(formActionTypes.finishedRequest());
     }
@@ -40,9 +36,11 @@ export const removeFormByKey = (keyForm) => (dispatch, getState) => {
     dispatch(formActionTypes.removeForm(keyForm));
 };
 export const formSubmit = (
-    formModel = new FormModel(),
+    formModel,
     agentCreate = async (obj = {}, config = {}) => { },
-    agentUpdate = async (obj = {}, config = {}) => { }
+    agentUpdate = async (obj = {}, config = {}) => { },
+    redirectPath = "/",
+    restForm = () => { }
 ) => async (dispatch, getState) => {
 
     dispatch(formActionTypes.startRequest());
@@ -55,7 +53,6 @@ export const formSubmit = (
             await agentCreate(model);
 
 
-
         if (!resposne)
             throw resposne;
 
@@ -63,12 +60,23 @@ export const formSubmit = (
         if (formModel.id)
             swalAlert.info(`ویرایش  ${formModel.dispalyName}  با موفقیت انجام شد`);
         //swip alert for create form 
-        else
+        else {
             swalAlert.success(`${formModel.dispalyName} با موفقیت ثبت شد`);
+            console.log("RESETFORM");
+            restForm();
+        }
 
     } catch (error) {
-        swalAlert.warning("ذخیره انجام نشد دوباره تلاش کنید");
-        dispatch(formActionTypes.setErrors(error));
+        if (error && error.status === 404) {
+            if (error && error.response && error.response.data) {
+                const detale = error.response.data.detale;
+                swalAlert.warning(detale);
+            }
+            history.push(redirectPath);
+        } else {
+            swalAlert.warning("ذخیره انجام نشد دوباره تلاش کنید");
+            dispatch(formActionTypes.setErrors(error));
+        }
     } finally {
         dispatch(formActionTypes.finishedRequest());
     }
@@ -77,18 +85,33 @@ export const formSubmit = (
 export const formDelete = (
     formModel = new FormModel(),
     agentDelete = async (obj = {}, config = {}) => { },
+    redirectPath = "/",
 ) => async (dispatch, getState) => {
-    dispatch(formActionTypes.startRequest());
-    try {
-        const resposne = await agentDelete(formModel.id);
-        if (!resposne)
-            throw resposne;
 
+    const formId = formModel.id;
+
+    console.log({ formId });
+
+    if (!formId)
+        swalAlert.warning("ای دی نامعتر میباشد");
+
+    dispatch(formActionTypes.startDeleteRequest());
+    try {
+        await agentDelete(formId);
         swalAlert.success(`${formModel.dispalyName} با موفقیت حذف شد`);
+        history.push(redirectPath);
+
     } catch (error) {
-        swalAlert.warning("خطا هنگام اجرای عملیات");
-        dispatch(formActionTypes.setErrors(error));
+        if (error && error.response && error.response.data) {
+            const detale = error.response.data.detale;
+            swalAlert.warning(detale);
+        } else
+            swalAlert.warning("خطا هنگام اجرای عملیات");
+
+        if (error && error.status === 404)
+            history.push(redirectPath);
+
     } finally {
-        dispatch(formActionTypes.finishedRequest());
+        dispatch(formActionTypes.finishedDeleteRequest());
     }
 };

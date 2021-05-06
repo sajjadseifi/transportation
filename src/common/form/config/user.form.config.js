@@ -7,7 +7,7 @@ const validate = combineValidators({
 
 export default {
     formTitle: "افزودن کاربر جدید",
-    formUpdateTitle:"ویرایش کاربر",
+    formUpdateTitle: "ویرایش کاربر",
     formKey: "user",
     validate: validate,
     formOptions: userFormOption,
@@ -15,5 +15,6 @@ export default {
     createAgent: userApi.create,
     updateAgent: userApi.update,
     deleteAgent: userApi.delete,
-    addFormPath: "/admin/user/form"
+    addFormPath: "/admin/users/form",
+    redirectPath: "/admin/users/list"
 };

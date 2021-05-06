@@ -5,12 +5,12 @@ export const errorRequest = (type, error) => {
 
     console.log({error});
 
-    if (error && error.response && error.response.data.message)
-        payload = error.response.data.message;
+    if (error && error.response && error.response.data)
+        payload = error.response.data;
     else if (error &&  error.message)
         payload = error.message;
     else
         payload = error;
 
-    return { type, payload }
+    return { type, payload };
 }

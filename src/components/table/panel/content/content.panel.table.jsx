@@ -16,10 +16,9 @@ const ContentPanelTable = ({ managment, loading, columns = [], data = [] }) => {
   return (
     <section>
       <DataMapperTable {...{ managment, data, columns }}>
-        {({ columns, data }) => (
+        {({ columns, data,index }) => (
           <div className="full-table">
-            {console.log({columns, data})}
-            <ListTable {...{ columns, data }} />
+            <ListTable key={index} {...{ columns, data }} />
           </div>
         )}
       </DataMapperTable>

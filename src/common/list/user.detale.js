@@ -19,7 +19,7 @@ export default {
             authorize: {
                 role: roleType.TRANSPORT_ADMIN
             },
-            path: "/admin/users/form/",
+            path: "/admin/users/form",
         },
         {
             name: "delete",

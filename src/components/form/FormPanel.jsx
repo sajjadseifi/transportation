@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams, withRouter, Link, useHistory } from "react-router-dom";
 import { combineValidators } from "revalidate";
 import { FormPersonal, FormPanelTop } from ".";
-import * as formActions from "../../@redux/actions/form.actions";
 import { useState } from "react";
 import ButtonForm from "../UI/button/button.form";
 import swal from "sweetalert";
@@ -14,6 +13,9 @@ import { Icon } from "rsuite";
 import { FlexBox } from "../box";
 import { roleType } from "../../constants";
 import { Security } from "../../core/security";
+import { FormModel } from "../../models";
+import * as formActions from "../../@redux/actions/form.actions";
+import * as formActionTypes from "../../@redux/@types/form.action.types";
 
 //default validate
 const validateDemo = combineValidators({});
@@ -21,7 +23,7 @@ const validateDemo = combineValidators({});
 const FormPanel = ({
   singleName = "",
   formTitle = "",
-  formUpdateTitle="",
+  formUpdateTitle = "",
   formKey = "",
   agentForm = async (id) => {},
   createAgent = async (temp) => {},
@@ -30,17 +32,13 @@ const FormPanel = ({
   validate = validateDemo,
   buildFormModel = (formId, values) => {},
   buildInitialModel = (values) => {},
+  getDisplayNameFromForm = (form) => {},
   formOptions = [],
   column = false,
   addFormPath = "/",
+  redirectPath = "/",
 }) => {
-  const { loading: fromLoading, deleteLoading: dl, forms } = useSelector(
-    (state) => state.form
-  );
-
-  const history = useHistory();
-  const [loading, setLoading] = useState(false);
-  const [deleteLoading, setDeleteLoading] = useState(false);
+  const { loading, deleteLoading, forms } = useSelector((state) => state.form);
   const [initialValues, setInitialValues] = useState({});
   const { id: formId } = useParams();
   const dispatch = useDispatch();
@@ -51,7 +49,9 @@ const FormPanel = ({
     if (isUpdate) {
       console.log("UPDATE");
       //fetch data to show list....
-      dispatch(formActions.getFormById(formId, agentForm, formKey));
+      dispatch(
+        formActions.getFormById(formId, agentForm, formKey, redirectPath)
+      );
     } else {
       //remove exist value
       const formObject = buildInitialModel() || {};
@@ -66,31 +66,40 @@ const FormPanel = ({
   useEffect(() => {
     if (!isUpdate || !forms || !forms[formKey]) return;
 
-    setInitialValues(forms[formKey]);
+    const formBody = buildInitialModel(forms[formKey]) || forms[formKey];
+    setInitialValues(formBody);
 
     return () => setInitialValues({});
   }, [forms]);
-
-  const onSubmit = (values) => {
-    setLoading(true);
-
-    setTimeout(() => {
-      setLoading(false);
-      const formModel = buildFormModel(formId, values);
-
-      dispatch(formActions.formSubmit(formModel, createAgent, updateAgent));
-    }, 2000);
+  const restFormHandler = () => {
+    console.log("restFormHandler");
+    setInitialValues({});
   };
-  const deleteHandler = () => {
-    setDeleteLoading(true);
-    setTimeout(() => setDeleteLoading(false), 3000);
-    return;
-    if (!formId) return;
+  const onSubmit = (values) => {
+    const formModel = buildFormModel(formId, values);
+    dispatch(
+      formActions.formSubmit(
+        formModel,
+        createAgent,
+        updateAgent,
+        redirectPath,
+        restFormHandler
+      )
+    );
+  };
 
-    swal(confirmRemoveSwal).then((value) => {
+  const deleteHandler = () => {
+    const dname = getDisplayNameFromForm(forms[formKey]);
+
+    const formModel = new FormModel(formId, dname);
+
+    swal(confirmRemoveSwal(dname)).then((value) => {
       if (value == "remove")
-        dispatch(formActions.formDelete(formId, deleteAgent, ""));
+        dispatch(formActions.formDelete(formModel, deleteAgent, redirectPath));
     });
+  };
+  const removeFormState = () => {
+    dispatch(formActionTypes.removeForm(formKey));
   };
 
   return (
@@ -101,7 +110,7 @@ const FormPanel = ({
           loading: loading || deleteLoading,
           isUpdate,
           deleting: deleteLoading,
-          formUpdateTitle
+          formUpdateTitle,
         }}
       />
 
@@ -113,7 +122,11 @@ const FormPanel = ({
           afterFields={({ disabled }) => (
             <div className="py-5  d-flex align-items-center  justify-content-between">
               {isUpdate && (
-                <Link className="px-4" to={addFormPath}>
+                <Link
+                  className="px-4"
+                  onClick={removeFormState}
+                  to={addFormPath}
+                >
                   <FlexBox alignCenter justCenter>
                     <Icon icon="arrow-left" />
                     <h4 className="px-2">{`افزودن ${singleName}`}</h4>
@@ -121,7 +134,7 @@ const FormPanel = ({
                 </Link>
               )}
               <div>
-                <Security  role={roleType.SUPPER_ADMIN}>
+                <Security role={roleType.SUPPER_ADMIN}>
                   {isUpdate && (
                     <ButtonForm
                       onClick={deleteHandler}
@@ -136,7 +149,7 @@ const FormPanel = ({
                 <ButtonForm
                   IsButton
                   type={isUpdate ? "info" : "success"}
-                  loading={loading}
+                  loading={forms[formKey] && loading}
                   disabled={disabled || deleteLoading}
                 >
                   {isUpdate ? "ویرایش" : "ثبت"}

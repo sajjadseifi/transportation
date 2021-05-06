@@ -20,6 +20,10 @@ export default [
         displayName: "پشتیبان",
     },
     {
+        id: "is_staff",
+        displayName: "ابرکاربر",
+    },
+    {
         id: "date_joined",
         displayName: "تاریخ ملحق شدن",
     }

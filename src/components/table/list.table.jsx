@@ -62,18 +62,14 @@ const ListTable = ({
   let ckeys = {};
   const TableHeade = columns.map(({ displayName, id }, index) => {
     ckeys[id] = displayName;
-    return (
-      <th key={id + index} key={id}>
-        {displayName}
-      </th>
-    );
+    return <th key={id + index}>{displayName}</th>;
   });
   const TableBody = data.map((d, index) => (
     <tr key={index} onClick={() => onClickRow(d)}>
       {Object.keys(d).map((ck, infex) => (
         <>
           {ckeys[ck] && (
-            <td key={infex} data-th={ckeys[ck]}>
+            <td key={infex + ck} data-th={ckeys[ck]}>
               {d[ck]}
             </td>
           )}

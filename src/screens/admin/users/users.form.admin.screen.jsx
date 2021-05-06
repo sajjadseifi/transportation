@@ -6,12 +6,23 @@ import { UserModel } from "../../../models";
 
 const UsersFormAdminScreen = () => {
   const buildInitialModel = (formValue = {}) => {
-    const {} = formValue;
-    return formValue;
+    const v = formValue;
+    const user = new UserModel(
+      v.first_name || "",
+      v.last_name || "",
+      v.username || "",
+      v.email || "",
+      v.password || "",
+      v.is_active || false,
+      v.is_superuser || false,
+      v.is_staff || false
+    );
+
+    return user.Model;
   };
 
   const buildFormModel = (formId, values) => {
-    const temp = new UserModel(
+    const user = new UserModel(
       values.first_name,
       values.last_name,
       values.username,
@@ -19,21 +30,21 @@ const UsersFormAdminScreen = () => {
       values.password,
       values.is_active,
       values.is_superuser,
-      values.is_staff,
-      values.date_joined
+      values.is_staff
     );
 
-    temp.setFormModel(formId, values.username);
+    user.setFormModel(formId, values.username);
+    return user;
   };
-
-  return (
-    <>
-      <FormPanel
-        {...{ buildFormModel, buildInitialModel }}
-        {...userFormConfig}
-      />
-    </>
-  );
+  const getDisplayNameFromForm = (form) => form.username;
+  
+  const props = {
+    buildFormModel,
+    buildInitialModel,
+    getDisplayNameFromForm,
+    ...userFormConfig,
+  };
+  return <FormPanel {...props} />;
 };
 
 export default UsersFormAdminScreen;

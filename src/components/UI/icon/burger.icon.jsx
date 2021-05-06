@@ -23,7 +23,7 @@ const BurgerIcon = ({ clicked = (opened) => {} }) => {
   }, [toogle]);
 
   return (
-    <label className="burger-icon" htmlForNavItemSidebar="check">
+    <label className="burger-icon" htmlFor="check">
       <input onChange={clickedHandler} type="checkbox" id="check" />
       <span></span>
       <span></span>

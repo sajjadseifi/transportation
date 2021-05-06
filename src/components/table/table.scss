@@ -39,7 +39,7 @@ $breakpoint-alpha: 700px; // adjust to your needs
         }
 
         &:before {
-            content: attr(data-th)": "; // who knew you could do this? The internet, that's who.
+            content: attr(data-th)""; // who knew you could do this? The internet, that's who.
             font-weight: bold;
 
             // optional stuff to make it look nicer
@@ -155,10 +155,17 @@ $bg-table-color-1:#555;
 }
 
 @media screen and (max-width: $breakpoint-alpha) {
-    .rwd-table tbody tr td {
-        text-align: right;
-        &::before{
-            width:160px;
+    .rwd-table tbody tr {
+        & {
+            border-bottom: 1px solid #ddd;
+        }
+
+        td {
+            text-align: right;
+            padding:2px 0 ;
+            &::before {
+                width: 160px;
+            }
         }
     }
 }

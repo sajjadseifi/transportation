@@ -10,30 +10,34 @@ const DateForm = ({
   isAPM,
   ...props
 }) => {
-  let jformat = inputJalaaliFormat;
-  if (isDate) jformat += "YYYY/MM/DD";
-  if (isTime) jformat += jformat ? "" : " " + "hh:mm:ss";
-  if (isAPM) jformat += jformat ? "" : " " + "a";
-
+  const inputRef = useRef();
   const [state, setState] = useState();
   const ref = useRef();
-  const inputRef = useRef();
+
   useEffect(() => {
     if (!ref || !ref.current) return;
 
     ref.current.input.placeholder = placeholder;
   }, [ref]);
-  const onDateChange = (value) => setState(value);
+  console.log(state);
 
   useEffect(() => {
     if (!state) return;
-    
-    inputRef.current.value=momentJalaali(state._d).format(jformat);
-  
+    inputRef.current.value = momentJalaali(state._d).format(jformat);
   }, [state]);
+
+  const onDateChange = (value) => setState(value);
+
+  let jformat = inputJalaaliFormat;
+  if (!jformat) {
+    if (isDate) jformat += "YYYY/MM/DD";
+    if (isTime) jformat += jformat ? "" : " " + "hh:mm:ss";
+    if (isAPM) jformat += jformat ? "" : " " + "a";
+  }
+  console.log({props});
   return (
     <InputForm {...props}>
-      <input className="d-none"  ref={inputRef} {...props.input} />
+      <input className="d-none" ref={inputRef} {...props.input} />
       <div className="form-control form-panel-input">
         <DatePicker
           ref={ref}

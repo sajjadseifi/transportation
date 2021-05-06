@@ -45,18 +45,17 @@ const NavItemSidebar = ({
       className={items.length == 0 ? "none-sub-item" : ""}
       {...{ title, eventKey }}
     >
-      {items.map(({ component, route,title, authorize }, subIndex) => {
+      {items.map(({ component, route, title, authorize }, subIndex) => {
         const eventKey = index + "-" + subIndex;
         const active = false;
         const Component = component;
         const subRoute = route;
+
+        const goTo = () => history.push({ pathname: subRoute });
+
         return (
-          <Security {...authorize}>
-            <Component
-              onClick={() => history.push({ pathname: subRoute })}
-              key={eventKey}
-              {...{ active, eventKey }}
-            >
+          <Security key={eventKey} {...authorize}>
+            <Component onClick={goTo} {...{ active, eventKey }}>
               {title}
             </Component>
           </Security>

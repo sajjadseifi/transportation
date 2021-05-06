@@ -14,33 +14,14 @@ export default [
         },
         {
             name: "last_name",
-            title: "قیمت",
+            title: "نام خانوادگی",
             width: "100%",
             type: "text",
-            isNumber: true,
             placeholder: "نام خانوادگی کاربر را وارد نمایید",
             component: InputPanelForm
         },
     ],
-    [
-        {
-            name: "password",
-            title: "'گذرواژه'",
-            width: "100%",
-            type: "text",
-            placeholder: "گذرواژه را وارد مایید",
-            component: InputPanelForm
-        },
-        {
-            name: "correct-password",
-            title: "قیمت",
-            width: "100%",
-            type: "text",
-            isNumber: true,
-            placeholder: "تکرار گذرواژه را وارد نمایید",
-            component: InputPanelForm
-        },
-    ],
+
     [{
         name: "username",
         title: "نام کاربری",
@@ -56,19 +37,37 @@ export default [
         placeholder: "ایمیل را وارد نمایید",
         component: InputPanelForm
     }
-    ],
-    [
+    ], [
         {
-            name: "date_joined",
-            title: "تاریخ ثبت نام",
+            name: "password",
+            title: "گذرواژه",
             width: "100%",
-            type: "text",
-            disabled: true,
-            component: DateForm,
-
+            type: "password",
+            placeholder: "گذرواژه را وارد مایید",
+            component: InputPanelForm
         },
-
+        {
+            name: "correct-password",
+            title: "تکرار گذرواژه",
+            width: "100%",
+            type: "password",
+            isNumber: true,
+            placeholder: "تکرار گذرواژه را وارد نمایید",
+            component: InputPanelForm
+        },
     ],
+    // [
+    //     {
+    //         name: "date_joined",
+    //         title: "تاریخ ثبت نام",
+    //         width: "100%",
+    //         type: "text",
+    //         disabled: true,
+    //         component: DateForm,
+
+    //     },
+
+    // ],
     [
         {
             full: true,
