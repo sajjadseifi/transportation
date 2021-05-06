@@ -1,6 +1,6 @@
 //default
 import React from "react";
-import { userFormConfig } from "../../../common/form/config";
+import { userInfoFormConfig } from "../../../common/form/config";
 import { FormPanel } from "../../../components/form";
 import { UserModel } from "../../../models";
 
@@ -25,15 +25,12 @@ const UserInfoFormAdminScreen = () => {
 
     temp.setFormModel(formId, values.username);
   };
-
-  return (
-    <>
-      <FormPanel
-        {...{ buildFormModel, buildInitialModel }}
-        {...userFormConfig}
-      />
-    </>
-  );
+  const props = {
+    buildFormModel,
+    buildInitialModel,
+    ...userInfoFormConfig,
+  };
+  return <FormPanel {...props} />;
 };
 
 export default UserInfoFormAdminScreen;

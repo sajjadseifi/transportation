@@ -5,10 +5,10 @@ import { UserModel } from "./user.model";
 export class UserInfoModel extends FormModel {
     userId = "";
     carId = "";
-    user = new UserModel();//userModel,
+    user//list,
     role;//number 0 1 2 ..
-    car = new CarModel();
-    sex;//number 0 1
+    car;//list
+    sex;//number 0 1 2
     phone_number;//string
     national_code;//string
     degree;//number
