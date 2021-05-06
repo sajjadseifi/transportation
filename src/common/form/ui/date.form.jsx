@@ -1,7 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
-import momentJalaali from "moment-jalaali";
+import moment from "moment-jalaali";
 import DatePicker from "react-datepicker2";
 import { InputForm } from ".";
+const persanDate = require("persian-date");
 const DateForm = ({
   placeholder,
   inputJalaaliFormat = "",
@@ -14,33 +15,45 @@ const DateForm = ({
   const [state, setState] = useState();
   const ref = useRef();
 
+  let jformat = inputJalaaliFormat;
+  if (!jformat) {
+    if (isDate) jformat += "jYYYY/jM/jD";
+    if (isTime) jformat += jformat ? "" : " " + "hh:mm:ss";
+    if (isAPM) jformat += jformat ? "" : " " + "a";
+  }
+  if (!state && props.input.value) {
+    const d = new Date(props.input.value).toISOString();
+    const jDate = moment(d, "YYYY-MM-DDTHH:mm:ssZ");
+    setState(jDate);
+  } else if (state && !props.input.value) {
+    setState();
+  }
+
   useEffect(() => {
     if (!ref || !ref.current) return;
-
     ref.current.input.placeholder = placeholder;
   }, [ref]);
-  console.log(state);
 
   useEffect(() => {
     if (!state) return;
-    inputRef.current.value = momentJalaali(state._d).format(jformat);
+    props.input.onChange({ target: { value: state._d } });
+    // inputRef.current.value = state._d;
   }, [state]);
 
   const onDateChange = (value) => setState(value);
 
-  let jformat = inputJalaaliFormat;
-  if (!jformat) {
-    if (isDate) jformat += "YYYY/MM/DD";
-    if (isTime) jformat += jformat ? "" : " " + "hh:mm:ss";
-    if (isAPM) jformat += jformat ? "" : " " + "a";
-  }
-  console.log({props});
   return (
     <InputForm {...props}>
-      <input className="d-none" ref={inputRef} {...props.input} />
+      <input
+        className="d-none"
+        onChange={({ target: {} }) => {}}
+        ref={inputRef}
+        {...props.input}
+      />
       <div className="form-control form-panel-input">
         <DatePicker
           ref={ref}
+          timePicker={isTime}
           persianDigits={true}
           className="w-100"
           isGregorian={false}

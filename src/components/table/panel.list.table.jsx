@@ -5,11 +5,13 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
-import { listActions } from "../../@redux/actions";
+import { formActions, listActions } from "../../@redux/actions";
 import { updateObject, updateRouteState } from "../../core/utils/utils";
 import { HeaderPanelTable } from "./panel/header";
 import FooterTablePanel from "./panel/footer/footer.panel.table";
 import { ContentPanelTable } from "./panel/content";
+import { formActionTypes } from "../../@redux/@types";
+import { FormModel } from "../../models";
 
 const options = {
   keyList: "panelList",
@@ -20,10 +22,12 @@ const options = {
   initialData: [],
   selections: {},
   managment: [],
+  managmenHandler: (name, row) => {},
 };
 const PanelListTable = ({
   keyList,
   title,
+  displayProperty = "",
   columns,
   builtOwnData = () => {
     return null;
@@ -32,6 +36,7 @@ const PanelListTable = ({
   initialData,
   selections,
   managment = [],
+  managmenHandler = (name, rowId) => {},
 } = options) => {
   const location = useLocation();
   const dispatch = useDispatch();
@@ -50,10 +55,10 @@ const PanelListTable = ({
 
   useEffect(() => {
     if (loading || !list || !list.page || !list.maxPages) return;
+    let l = list.data;
+    if (builtOwnData) l = builtOwnData(lists[keyList]);
 
-    if (builtOwnData) list.data = builtOwnData(lists[keyList]);
-
-    setData(list.data);
+    setData(l);
     return () => setData([]);
   }, [lists, keyList]);
 
@@ -80,10 +85,37 @@ const PanelListTable = ({
     dispatch(listActions.loadList(getOptinos));
   }, [dispatch, location]);
 
+  const managmentController = ({ name, rowId, agent = () => {} }) => {
+    const data = lists[keyList].data;
+    console.log({ rowId });
+    console.log({ data });
+    const rindex = [...data].findIndex(
+      (t) => console.log(t.id) || t.id == rowId
+    );
+    if (rindex == -1) return;
+
+    let dname = data[rindex][displayProperty];
+    console.log({ name,dname });
+    
+    if (name == "delete") {
+      const formModel = new FormModel(rowId, dname);
+      dispatch(
+        formActions.deleteFormQuestion(dname, formModel, agent, null, keyList)
+      );
+    }
+  };
   return (
     <div className="px-5 py-5  text-muted-light">
       <HeaderPanelTable {...{ upateActionForm, selections, title }} />
-      <ContentPanelTable {...{ loading, data, columns, managment }} />
+      <ContentPanelTable
+        {...{
+          managmenHandler: managmentController,
+          loading,
+          data,
+          columns,
+          managment,
+        }}
+      />
       <FooterTablePanel
         requestHandler={requestHandler}
         upateActionForm={upateActionForm}

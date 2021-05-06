@@ -12,6 +12,8 @@ export const LIST_SET_ERRORS = "LIST_SET_ERRORS";
 export const LIST_CLEAR_ERRORS = "LIST_CLEAR_ERRORS";
 export const LIST_INITIAL_STATE = "LIST_INITIAL_STATE";
 
+export const LIST_DELETE_ITEM_BYID = "LIST_DELETE_ITEM_BYID";
+
 export const startRequest = (keyList) => reducerAction(LIST_START_REQUEST, { keyList });
 export const finishedRequest = (keyList) => reducerAction(LIST_FINISHED_REQUEST, { keyList });
 
@@ -19,7 +21,7 @@ export const loadListSuccess = ({ keyList, list, counts, pageNumber, pageSize
 }) => reducerAction(LIST_SUCCES_REQUEST, { keyList, list, counts, pageNumber, pageSize });
 export const removeListWithKey = (keyList) => reducerAction(LIST_REMOVE_WITH_KEY, { keyList });
 export const loadListFaild = (error) => errorRequest(LIST_FAILD_REQUEST, error);
-
+export const deleteItemById = (keyList, itemId) => reducerAction(LIST_DELETE_ITEM_BYID, { keyList, itemId });
 
 export default {
     //action
@@ -31,10 +33,12 @@ export default {
     LIST_CLEAR_ERRORS,
     LIST_INITIAL_STATE,
     LIST_REMOVE_WITH_KEY,
+    LIST_DELETE_ITEM_BYID,
     //action-handler
     startRequest,
     finishedRequest,
     loadListSuccess,
     loadListFaild,
-    removeListWithKey
+    removeListWithKey,
+    deleteItemById
 };

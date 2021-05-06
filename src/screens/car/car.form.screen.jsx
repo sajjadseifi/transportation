@@ -5,32 +5,26 @@ import { FormPanel } from "../../components/form";
 import { CarModel } from "../../models";
 
 const UsersFormAdminScreen = () => {
-  const buildInitialModel = (formValue = {}) => {
-    const {} = formValue;
-    return formValue;
+  const buildInitialModel = (formValues = {}) => {
+    const car = CarModel.GenerateWithFormValues(formValues);
+    return car.Model;
   };
 
   const buildFormModel = (formId, values) => {
-    const temp = new CarModel(
-      values.name,
-      values.brand,
-      values.number_of_wheels,
-      values.tonnage,
-      values.tanker,
-      values.refrigerator,
-      values.transit,
-      values.created_at,
-      values.updated_at
-    );
-    temp.setFormModel(formId, values.name);
+    const car = CarModel.GenerateWithFormValues(values);
+    car.setFormModel(formId, car.name);
+    return car;
   };
+
+  const getDisplayNameFromForm = (form) => form.name;
 
   const props = {
     buildFormModel,
     buildInitialModel,
+    getDisplayNameFromForm,
     ...carFormConfig,
   };
-  
+
   return <FormPanel {...props} />;
 };
 

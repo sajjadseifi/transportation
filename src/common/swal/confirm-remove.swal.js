@@ -1,5 +1,5 @@
 export default (displayName = "") => ({
-    title: `ایا از پاک کردن ${displayName} مطمئن هستید`,
+    title: `ایا از پاک کردن ( ${displayName} ) مطمئن هستید`,
     text: "درصورت پاک گشتن ، داده قابل بازیابی نخواهد بود!",
     icon: "warning",
     buttons: {

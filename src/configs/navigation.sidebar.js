@@ -182,7 +182,38 @@ export default {
                     // Icon: <Icon icon="paragraph" />
                 }
             ]
-        }
-
+        },
+        {
+            component: Dropdown,
+            Icon: <Icon icon="percent" />,
+            title: "تخفیف",
+            route: "/admin/discount",
+            items: [
+                {
+                    component: Dropdown.Item,
+                    title: "تمام تخفیف ها",
+                    route: "/admin/discount/list",
+                    // Icon: <Icon icon="plus" />
+                },
+                {
+                    component: Dropdown.Item,
+                    title: "افزودن تخفیف",
+                    route: "/admin/discount/form",
+                    authorize: {
+                        role: roleType.TRANSPORT_ADMIN,
+                    },
+                    // Icon: <Icon icon="paragraph" />
+                },
+                {
+                    component: Dropdown.Item,
+                    title: "ویرایش تخفیف",
+                    route: "/admin/discount/form/10",
+                    authorize: {
+                        role: roleType.SUPPER_ADMIN,
+                    },
+                    // Icon: <Icon icon="plus" />
+                }
+            ]
+        },
     ]
 }

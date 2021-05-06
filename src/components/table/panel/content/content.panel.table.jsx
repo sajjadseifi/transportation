@@ -5,7 +5,13 @@ import { HealthyLoading } from "../../../loading";
 import ListTable from "../../list.table";
 import DataMapperTable from "./data.mapper.table";
 
-const ContentPanelTable = ({ managment, loading, columns = [], data = [] }) => {
+const ContentPanelTable = ({
+  managment,
+  managmenHandler = () => {},
+  loading,
+  columns = [],
+  data = [],
+}) => {
   if (loading)
     return (
       <FlexBox className="py-5 my-5" alignCenter justCenter>
@@ -15,8 +21,8 @@ const ContentPanelTable = ({ managment, loading, columns = [], data = [] }) => {
 
   return (
     <section>
-      <DataMapperTable {...{ managment, data, columns }}>
-        {({ columns, data,index }) => (
+      <DataMapperTable {...{ managmenHandler, managment, data, columns }}>
+        {({ columns, data, index }) => (
           <div className="full-table">
             <ListTable key={index} {...{ columns, data }} />
           </div>

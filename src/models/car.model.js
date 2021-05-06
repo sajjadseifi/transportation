@@ -37,4 +37,18 @@ export class CarModel extends FormModel {
             transit
         };
     }
+    static GenerateWithFormValues(formValues = {}) {
+        const v = formValues;
+        return new CarModel(
+            v.name || "",
+            v.brand || "",
+            v.number_of_wheels || "",
+            v.tonnage || "",
+            v.tanker || false,
+            v.refrigerator || false,
+            v.transit || false,
+            v.created_at || "",
+            v.updated_at || ""
+        );
+    }
 }

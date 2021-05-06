@@ -21,8 +21,10 @@ import * as formActionTypes from "../../@redux/@types/form.action.types";
 const validateDemo = combineValidators({});
 
 const FormPanel = ({
+  label,
   singleName = "",
   formTitle = "",
+  displayProperty = "",
   formUpdateTitle = "",
   formKey = "",
   agentForm = async (id) => {},
@@ -50,7 +52,7 @@ const FormPanel = ({
       console.log("UPDATE");
       //fetch data to show list....
       dispatch(
-        formActions.getFormById(formId, agentForm, formKey, redirectPath)
+        formActions.getFormById(formId, agentForm, formKey, redirectPath, label)
       );
     } else {
       //remove exist value
@@ -89,14 +91,18 @@ const FormPanel = ({
   };
 
   const deleteHandler = () => {
-    const dname = getDisplayNameFromForm(forms[formKey]);
+    const dname =
+      getDisplayNameFromForm(forms[formKey]) || forms[formKey][displayProperty];
 
     const formModel = new FormModel(formId, dname);
-
-    swal(confirmRemoveSwal(dname)).then((value) => {
-      if (value == "remove")
-        dispatch(formActions.formDelete(formModel, deleteAgent, redirectPath));
-    });
+    dispatch(
+      formActions.deleteFormQuestion(
+        dname,
+        formModel,
+        deleteAgent,
+        redirectPath
+      )
+    );
   };
   const removeFormState = () => {
     dispatch(formActionTypes.removeForm(formKey));

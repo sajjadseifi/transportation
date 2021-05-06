@@ -5,7 +5,7 @@ export class TicketModel extends FormModel {
     title;
     description;// "desc test",
     response;// "response of expert test",
-    customer= new UserInfoModel(); //"http://127.0.0.1:8000/userinfo/8/",
+    customer = new UserInfoModel(); //"http://127.0.0.1:8000/userinfo/8/",
     updated_at;//date
     created_at;//date
     expert = null; //
@@ -37,5 +37,18 @@ export class TicketModel extends FormModel {
             description, response,
             title, customer, expert
         };
+    }
+    static GenerateWithFormValues(formValues = {}) {
+        const v = formValues;
+
+        return new TicketModel(
+            v.title || "",
+            v.description || "",
+            v.response || null,
+            v.customer || "",
+            v.expert || null,
+            v.created_at || "",
+            v.updated_at || ""
+        );
     }
 }

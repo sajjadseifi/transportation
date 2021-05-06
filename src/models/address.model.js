@@ -2,20 +2,21 @@ import FormModel from "./form.model";
 import { UserModel } from "./user.model";
 
 export class SavedAddressModel extends FormModel {
-    name;//name
-    address;//address
-    created_at;//date stirng
-    updated_at;//date stirng
-    user_Id = null;
-    user = new UserModel();//user,
-    constructor(name, address, user_Id, user, created_at, updated_at) {
+    url;//url stirng
+    id;//number
+    user;//date stirng
+    name;//name stirng
+    address;//address stirng
+
+    constructor(url, id, user, name, address) {
         super();
+        this.url = url;
+        this.id = id;
+        this.user = user;
+        //user = {id,username}
         this.name = name;
         this.address = address;
-        this.user_Id = user_Id;
-        this.user = user;
-        this.updated_at = updated_at;
-        this.created_at = created_at;
+
     }
     get FormData() {
         return {};
@@ -25,5 +26,15 @@ export class SavedAddressModel extends FormModel {
         return {
             name, address, user
         };
+    }
+    static GenerateWithFormValues(formValues = {}) {
+        const v = formValues;
+        return new SavedAddressModel(
+            v.url || "",
+            v.id || "",
+            v.user || null,
+            v.name || "",
+            v.address || ""
+        );
     }
 }

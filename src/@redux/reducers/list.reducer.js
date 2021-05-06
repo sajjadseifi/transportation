@@ -65,6 +65,21 @@ const finishedRequestList = (state, action) => {
     return updateObject(state, { lists: updatedLists });
 
 };
+
+const deleteItemListById = (state, action) => {
+    // keyList,itemId
+    const { keyList, itemId } = action.payload;
+    console.log({keyList, itemId});
+
+    let updatedList = state.lists[keyList];
+    let updatedData = [...updatedList.data].filter(d => d.id !== itemId);
+
+    updatedList = updateObject(updatedList, { data: updatedData });
+
+    const updatedLists = updateObject(state.lists, { [keyList]: updatedList });
+
+    return updateObject(state, { lists: updatedLists });
+};
 export const listReducer = (state = initialState, action) => {
 
     switch (action.type) {
@@ -83,6 +98,8 @@ export const listReducer = (state = initialState, action) => {
             return successListRequest(state, action);
         case listActionTypes.LIST_REMOVE_WITH_KEY:
             return removeListWithKey(state, action);
+        case listActionTypes.LIST_DELETE_ITEM_BYID:
+            return deleteItemListById(state, action);
     }
     return state;
 };

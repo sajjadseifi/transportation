@@ -14,7 +14,7 @@ export const UsersListAdminScreen = () => {
   const builtOwnData = ({ data = [], errors, maxPages, page, loading }) => {
     const table = data.map((dt) => {
       return {
-        rowId: dt._id,
+        rowId: dt.id,
         name: dt.name,
         brand: dt.brand,
         number_of_wheels: dt.number_of_wheels,
@@ -26,12 +26,16 @@ export const UsersListAdminScreen = () => {
         // updated_at: momentJalali(new Date(dt.updated_at)).format("YYYY/MM/DD"),
       };
     });
-
+    
     return table;
   };
-
+  const managmenHandler = (name, row) => {
+    if ((name = "delete")) {
+    }
+  };
   const props = {
     builtOwnData,
+    managmenHandler,
     ...carDetale,
   };
 

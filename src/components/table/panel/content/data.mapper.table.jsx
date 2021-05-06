@@ -6,6 +6,7 @@ export default function DataMapperTable({
   managment = [],
   columns = [],
   data = [],
+  managmenHandler,
   children: Componet,
 }) {
   let cols = [...columns];
@@ -14,11 +15,17 @@ export default function DataMapperTable({
     cols.push(managmentCol);
 
     rows = rows.map((rd) => {
-      const rowId = rd.rowId || 10;
+      const rowId = rd.rowId;
       const managmentsCmp = managment.map((props, index) => (
-        <ManagementTable key={index} rowId={rowId} {...props} />
+        <ManagementTable
+          key={index}
+          rowId={rowId}
+          data={rd}
+          onSubmit={managmenHandler}
+          {...props}
+        />
       ));
-      
+
       return {
         ...rd,
         managment: <div className="managment-talbe-box">{managmentsCmp}</div>,

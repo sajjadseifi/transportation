@@ -7,6 +7,7 @@ const validate = combineValidators({
 });
 
 export default {
+    label: "ماشین",
     formTitle: "افزودن ماشین جدید",
     formUpdateTitle: "ویرایش ماشین",
     formKey: "user",
@@ -16,5 +17,6 @@ export default {
     createAgent: carApi.create,
     updateAgent: carApi.update,
     deleteAgent: carApi.delete,
-    addFormPath: "/admin/car/form"
+    addFormPath: "/admin/car/form",
+    redirectPath: "/admin/car/list"
 };

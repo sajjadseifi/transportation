@@ -51,23 +51,10 @@ export default [
             title: "تکرار گذرواژه",
             width: "100%",
             type: "password",
-            isNumber: true,
             placeholder: "تکرار گذرواژه را وارد نمایید",
             component: InputPanelForm
         },
     ],
-    // [
-    //     {
-    //         name: "date_joined",
-    //         title: "تاریخ ثبت نام",
-    //         width: "100%",
-    //         type: "text",
-    //         disabled: true,
-    //         component: DateForm,
-
-    //     },
-
-    // ],
     [
         {
             full: true,

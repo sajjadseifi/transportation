@@ -6,6 +6,7 @@ export default {
     title: "کاربران",
     keyList: "discounts",
     columns: userColumn,
+    displayProperty: "username",
     getAgent: userApi.list,
 
     selections: {
@@ -28,6 +29,7 @@ export default {
             authorize: {
                 role: roleType.SUPPER_ADMIN,
             },
+            agent: userApi.delete
         },
     ]
 }

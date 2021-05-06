@@ -10,8 +10,12 @@ export default class FormModel {
         // this(id, dispalyName);
         // or 
         this.id = id;
-        this.dispalyName = dispalyName;
+        this.dispalyName = `( ${dispalyName} )`;
     }
     get FormData() { return null }
     get Model() { return null }
+    static GenerateWithFormValues(formValues) {
+        const v = formValues;
+        return FormModel(v.id, v.dispalyName);
+    }
 }

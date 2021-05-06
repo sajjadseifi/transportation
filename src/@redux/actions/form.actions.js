@@ -1,9 +1,11 @@
 import { FormModel } from "../../models";
-import { formActionTypes } from "../@types";
+import { formActionTypes, listActionTypes } from "../@types";
 import { swalAlert } from "../../components/alert";
 import { history } from "../..";
+import { confirmRemoveSwal } from "../../common/swal";
+import swal from "sweetalert";
 
-export const getFormById = (id, agentForm, keyForm, redirectPath = "/") => async (dispatch) => {
+export const getFormById = (id, agentForm, keyForm, redirectPath = "/", label = "") => async (dispatch) => {
     dispatch(formActionTypes.startRequest());
 
     try {
@@ -20,7 +22,7 @@ export const getFormById = (id, agentForm, keyForm, redirectPath = "/") => async
         dispatch(formActionTypes.setForm(keyForm, response));
     } catch (error) {
         if (error && error.response && error.response.data)
-            swalAlert.warning(error.response.data.detail);
+            swalAlert.warning(label + " " + error.response.data.detail);
         else
             swalAlert.warningToLoadData().then((ok) => ok && dispatch(getFormById(id, agentForm, keyForm)));
 
@@ -81,11 +83,18 @@ export const formSubmit = (
         dispatch(formActionTypes.finishedRequest());
     }
 };
+export const deleteFormQuestion = (dname, formModel, deleteAgent, redirectPath, keyList = null) => async (dispatch, getState) => {
+    swal(confirmRemoveSwal(dname)).then((value) => {
+        if (value == "remove")
+            dispatch(formDelete(formModel, deleteAgent, redirectPath, keyList));
+    });
+};
 
 export const formDelete = (
     formModel = new FormModel(),
     agentDelete = async (obj = {}, config = {}) => { },
     redirectPath = "/",
+    keyList = null,
 ) => async (dispatch, getState) => {
 
     const formId = formModel.id;
@@ -99,8 +108,12 @@ export const formDelete = (
     try {
         await agentDelete(formId);
         swalAlert.success(`${formModel.dispalyName} با موفقیت حذف شد`);
-        history.push(redirectPath);
-
+        if (!keyList)
+            history.push(redirectPath);
+        else{
+            console.log({ keyList });
+            dispatch(listActionTypes.deleteItemById(keyList, formId));
+        }
     } catch (error) {
         if (error && error.response && error.response.data) {
             const detale = error.response.data.detale;
@@ -108,7 +121,7 @@ export const formDelete = (
         } else
             swalAlert.warning("خطا هنگام اجرای عملیات");
 
-        if (error && error.status === 404)
+        if (!keyList && error && error.status === 404)
             history.push(redirectPath);
 
     } finally {

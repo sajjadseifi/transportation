@@ -5,6 +5,7 @@
 @import "./components/loading/spinner.scss";
 @import "./components/UI/ui.scss";
 @import "./layout/layout.scss";
+
 // reset
 html {
     box-sizing: border-box;
@@ -19,18 +20,53 @@ html {
 
 body,
 ul,
-li {margin: 0;padding: 0;}
-li {list-style: none;}
-a { text-decoration: none;}
-.cursor-pointer {cursor: pointer;}
-.text-muted-light {color: #b5b8bb !important}
-body {background-color: #1D1F20;}
+li {
+    margin: 0;
+    padding: 0;
+}
 
-.them1 {&.body {background-color: #1D1F20;}}
-.overflow{
-    &-y{
-        &-auto{
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.text-muted-light {
+    color: #b5b8bb !important
+}
+
+body {
+    background-color: #1D1F20;
+}
+
+.them1 {
+    &.body {
+        background-color: #1D1F20;
+    }
+}
+
+.overflow {
+    &-y {
+        &-auto {
             overflow-y: auto;
+        }
+    }
+}
+
+html body {
+    .swal-title {
+        font-size: 20px;
+        color: rgb(109, 109, 109);
+
+        .swal-sub-title {
+            color: rgb(0, 0, 0);
+            font-size: 23px;
         }
     }
 }

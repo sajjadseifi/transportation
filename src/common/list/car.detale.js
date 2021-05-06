@@ -7,7 +7,7 @@ export default {
     keyList: "cars",
     columns: carColumn,
     getAgent: carApi.list,
-    // initialData: data,
+    displayProperty:"name",
     selections: {
         size: [5, 10, 15, 20]
     },
@@ -28,6 +28,7 @@ export default {
             authorize: {
                 role: roleType.SUPPER_ADMIN,
             },
+            agent:carApi.delete
         },
     ]
 }

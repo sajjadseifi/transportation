@@ -6,6 +6,7 @@ export default {
     title: "تخفیف ها",
     keyList: "discounts",
     columns: discountColumn,
+    displayProperty: "code",
     getAgent: discountApi.list,
     selections: {
         size: [5, 10, 15, 20]
@@ -18,7 +19,7 @@ export default {
             authorize: {
                 role: roleType.TRANSPORT_ADMIN
             },
-            path:"/admin/discount/form/"
+            path:"/admin/discount/form"
         },
         {
             name: "delete",
@@ -27,6 +28,7 @@ export default {
             authorize: {
                 role: roleType.SUPPER_ADMIN,
             },
+            agent:discountApi.delete
         },
     ]
 }

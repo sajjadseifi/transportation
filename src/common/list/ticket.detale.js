@@ -7,6 +7,7 @@ export default {
     keyList: "discounts",
     columns: ticketColumn,
     getAgent: ticketApi.list,
+    displayProperty: "title",
     selections: {
         size: [5, 10, 15, 20]
     },
@@ -18,7 +19,7 @@ export default {
             authorize: {
                 role: roleType.TRANSPORT_ADMIN
             },
-            path:"/admin/ticket/form"
+            path: "/admin/ticket/form"
         },
         {
             name: "delete",
@@ -27,6 +28,7 @@ export default {
             authorize: {
                 role: roleType.SUPPER_ADMIN,
             },
+            agent: ticketApi.delete
         },
     ]
 }

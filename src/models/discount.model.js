@@ -31,13 +31,27 @@ export class DisCountModel extends FormModel {
 
     get Model() {
         const {
-            count, price, percent, expire_date,
-            description, uid, code, id
+            count, price, percent, uid,
+            expire_date, description, code
         } = this;
 
         return {
-            count, price, percent, expire_date,
-            description, uid, code, id
+            count, price, percent, uid,
+            expire_date, description, code
         };
     };
+    static GenerateWithFormValues(formValues = {}) {
+        const v = formValues;
+        // console.log({ v });
+        return new DisCountModel(
+            v.id || null,
+            v.count || "",
+            v.price || "",
+            v.percent || "",
+            v.expire_date || "",
+            v.description || "",
+            v.uid || null,
+            v.code || null,
+        );
+    }
 }

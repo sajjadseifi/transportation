@@ -22,7 +22,15 @@ export const UsersListAdminScreen = () => {
     return table;
   };
 
-  return <PanelListTable {...userDetale} builtOwnData={builtOwnData} />;
+  const getDisplayNameFromRow = (row) => row.username;
+
+  const props = {
+    getDisplayNameFromRow,
+    builtOwnData,
+    ...userDetale,
+  };
+
+  return <PanelListTable {...props} />;
 };
 
 export default UsersListAdminScreen;

@@ -13,9 +13,12 @@ const ManagementTable = ({
   component,
   render,
   path,
+  data,
+  agent = () => {},
+  onSubmit: onSubmited,
 }) => {
   const onSubmit = () => {
-    console.log({ rowId, name });
+    onSubmited({ name, rowId, agent });
   };
 
   const CMP = path ? Link : Fragment;

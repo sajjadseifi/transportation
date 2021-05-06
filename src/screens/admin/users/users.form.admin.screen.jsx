@@ -6,38 +6,18 @@ import { UserModel } from "../../../models";
 
 const UsersFormAdminScreen = () => {
   const buildInitialModel = (formValue = {}) => {
-    const v = formValue;
-    const user = new UserModel(
-      v.first_name || "",
-      v.last_name || "",
-      v.username || "",
-      v.email || "",
-      v.password || "",
-      v.is_active || false,
-      v.is_superuser || false,
-      v.is_staff || false
-    );
-
+    const user = UserModel.GenerateWithFormValues(formValue);
     return user.Model;
   };
-
+  
   const buildFormModel = (formId, values) => {
-    const user = new UserModel(
-      values.first_name,
-      values.last_name,
-      values.username,
-      values.email,
-      values.password,
-      values.is_active,
-      values.is_superuser,
-      values.is_staff
-    );
-
-    user.setFormModel(formId, values.username);
+    const user = UserModel.GenerateWithFormValues(values);
+    user.setFormModel(formId, user.username);
     return user;
   };
+
   const getDisplayNameFromForm = (form) => form.username;
-  
+
   const props = {
     buildFormModel,
     buildInitialModel,

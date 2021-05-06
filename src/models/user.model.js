@@ -40,14 +40,27 @@ export class UserModel extends FormModel {
             is_staff,
         } = this;
         return {
-            "first_name": first_name,
-            "last_name": last_name,
-            "username": username,
-            "email": email,
-            "password": password,
-            "is_active": is_active,
-            "is_superuser": is_superuser,
-            "is_staff": is_staff,
+            first_name,
+            last_name,
+            username,
+            email,
+            password,
+            is_active,
+            is_superuser,
+            is_staff,
         };
+    }
+    static GenerateWithFormValues(formValues) {
+        const v = formValues;
+        return new UserModel(
+            v.first_name || "",
+            v.last_name || "",
+            v.username || "",
+            v.email || "",
+            v.password || "",
+            v.is_active || false,
+            v.is_superuser || false,
+            v.is_staff || false
+        );
     }
 }

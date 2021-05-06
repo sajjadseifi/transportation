@@ -17,7 +17,6 @@ export default [
             title: "برند ماشین",
             width: "100%",
             type: "text",
-            isNumber: true,
             placeholder: " برند ماشین را وارد نمایید",
             component: InputPanelForm
         },
