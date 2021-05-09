@@ -1,3 +1,6 @@
+import React from "react";
+import { Alert, Uploader, Loader, Icon } from "rsuite";
+
 function previewFile(file, callback) {
   const reader = new FileReader();
   reader.onloadend = () => {
@@ -11,7 +14,7 @@ const styles = {
   height: 150,
 };
 
-const ImageUploader = () => {
+const ImageUploader = ({ action }) => {
   const [uploading, setUploading] = React.useState(false);
   const [fileInfo, setFileInfo] = React.useState(null);
 
@@ -19,7 +22,11 @@ const ImageUploader = () => {
     <Uploader
       fileListVisible={false}
       listType="picture"
-      action="//jsonplaceholder.typicode.com/posts/"
+      headers={{
+        method: "PUT",
+        Authorization: "Basic YWRtaW46YWRtaW4=",
+      }}
+      action={action}
       onUpload={(file) => {
         setUploading(true);
         previewFile(file.blobFile, (value) => {

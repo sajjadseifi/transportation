@@ -4,3 +4,4 @@ export { default as InputAuthForm } from "./input.auth.form";
 export { default as ButtonAuthForm } from "./button.auth.form";
 export { default as InputPanelForm } from "./input.panel.form";
 export { default as SelectFormPanel } from "./select.panel.form";
+export { default as ImageFileForm } from "./image.file.form";

@@ -13,11 +13,8 @@ const successListRequest = (state, action) => {
     const { keyList, list: data, counts, pageNumber, pageSize } = action.payload;
 
     const page = +pageNumber;
-
     const maxPages = Math.ceil(+counts / +pageSize);
-    console.log({ maxPages, page });
     const updatedSubList = updateObject(state.lists[keyList], { data, page, maxPages });
-
     const updatedList = updateObject(state.lists, { [keyList]: updatedSubList });
 
     return updateObject(state, { lists: updatedList });

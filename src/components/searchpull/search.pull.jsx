@@ -15,7 +15,6 @@ const SearchPull = ({
   title,
   placeholder,
   disabled,
-  
   SingleComponet = SearchItme,
   SearchInput = SearchPullInput,
   ...inputProps
@@ -24,7 +23,7 @@ const SearchPull = ({
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(20);
   const { lists } = useSelector((state) => state.list);
-  const [display, setDisPlay] = useState(searchLabel || inputProps.input.value || "");
+  const [display, setDisPlay] = useState(inputProps.input.value ||searchLabel || "");
   const list = lists[keyList];
   const loading = list ? list.loading : false;
   const initLaoding = !lists[keyList];
@@ -60,7 +59,7 @@ const SearchPull = ({
   //send rqeuest with multy options
   const onPullRequest = useCallback(
     (search) => {
-      if (!agentList) return;
+      // if (!agentList) return;
       const getOptinos = {
         keyList,
         agentGet: agentList,

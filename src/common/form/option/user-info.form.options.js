@@ -2,7 +2,7 @@ import { CarSearchItme, SearchPull, UsersSearchItme } from "../../../components/
 import { DEGREE, PER_DEGREE, PER_ROLETYPE, PER_SEXTYPE, ROLETYPE, SEXTYPE } from "../../../constants";
 import { carApi, userApi } from "../../../core/api";
 import { selectOptsGenerator } from "../../../core/utils/utils";
-import { DateForm, InputPanelForm, SelectFormPanel } from "../ui";
+import { DateForm, InputPanelForm, SelectFormPanel, ImageFileForm } from "../ui";
 // selectOptsGenerator
 export default [
     [
@@ -12,7 +12,7 @@ export default [
             width: "100%",
             type: "text",
             placeholder: "کاربر را انتخاب نمایید",
-            keyList:"users-options",
+            keyList: "users-options",
             SingleComponet: UsersSearchItme,
             agentList: userApi.list,
             component: SearchPull
@@ -23,7 +23,7 @@ export default [
             title: "ماشین",
             width: "100%",
             type: "text",
-            keyList:"cars-options",
+            keyList: "cars-options",
             placeholder: "ماشین را انتخاب نمایید",
             SingleComponet: CarSearchItme,
             agentList: carApi.list,
@@ -56,66 +56,6 @@ export default [
             component: SelectFormPanel
         }
     ],
-
-    [
-        {
-            name: "pic",
-            title: "تصویر شخص",
-            width: "100%",
-            type: "file",
-            placeholder: "عکس شخصی کاربر",
-            component: InputPanelForm
-        },
-
-        {
-            name: "car_license",
-            title: "تصویر گواهینامه",
-            width: "100%",
-            type: "file",
-            placeholder: " را وارد کنید تصویر گواهینامه",
-            component: InputPanelForm
-        },
-        {
-            name: "car_card",
-            title: "تصویر کارت وسیله نقلیه",
-            width: "100%",
-            type: "file",
-            placeholder: "تصویر کارت وسیله نقلیه را وارد کنید",
-            component: InputPanelForm
-
-        }
-    ],
-
-    [
-        {
-            name: "car_insurance",
-            title: "تصویر بیمه وسیله نقلیه",
-            width: "100%",
-            type: "file",
-            placeholder: "تصویر بیمه وسیله نقلیه را وارد نمایید",
-            component: InputPanelForm
-        },
-        {
-
-
-            name: "car_technical_diagnosis",
-            title: "تصویر معاینه فنی وسیله نقلیه",
-            width: "100%",
-            type: "file",
-            placeholder: "تصویر معاینه فنی وسیله نقلیه را وارد نمایید",
-            component: InputPanelForm
-        },
-        {
-            name: "guarantee",
-            title: "تصویر ضمانت نامه",
-            width: "100%",
-            type: "file",
-            placeholder: "تصویر ضمانت نامه را وارد نمایید",
-            component: InputPanelForm
-
-        }
-    ],
-
     [
         {
             name: "phone_number",
@@ -143,5 +83,52 @@ export default [
             component: DateForm
 
         }
-    ]
+    ],
+    [
+        {
+            noField: true,
+            name: "pic",
+            icon: "avatar",
+            title: "تصویر شخص",
+            component: ImageFileForm
+        },
+        {
+            noField: true,
+            icon: "upload2",
+            name: "car_license",
+            title: "تصویر گواهینامه",
+            component: ImageFileForm
+        },
+        {
+            noField: true,
+            name: "car_card",
+            icon: "car",
+            title: "تصویر کارت وسیله نقلیه",
+            component: ImageFileForm
+        },
+    ],
+    [
+        {
+            noField: true,
+            name: "car_insurance",
+            icon: "avatar",
+            title: "تصویر بیمه وسیله نقلیه",
+            component: ImageFileForm
+        },
+        {
+            noField: true,
+            name: "car_technical_diagnosis",
+            title: "تصویر معاینه فنی وسیله نقلیه",
+            icon: "avatar",
+            type: "file",
+            component: ImageFileForm
+        },
+        {
+            noField: true,
+            name: "guarantee",
+            title: "تصویر ضمانت نامه",
+            icon: "avatar",
+            component: ImageFileForm
+        }
+    ],
 ]

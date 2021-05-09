@@ -22,12 +22,12 @@ export class UserInfoModel extends FormModel {
         this.national_code = national_code;//string
         this.degree = degree;//number
         this.descriptions = descriptions;//string
-        // this.pic = pic || null;//تصویر کاربر
-        // this.car_license = car_license || null;//تصویر گواهینامه
-        // this.car_card = car_card || null;//تصویر کارت وسیله نقلیه
-        // this.car_insurance = car_insurance || null;//تصویر بیمه وسیله نقلیه
-        // this.car_technical_diagnosis = car_technical_diagnosis || null;//تصویر معاینه فنی وسیله نقلیه
-        // this.guarantee = guarantee || null;//تصویر ضمانت نامه
+        this.pic = pic || null;//تصویر کاربر
+        this.car_license = car_license || null;//تصویر گواهینامه
+        this.car_card = car_card || null;//تصویر کارت وسیله نقلیه
+        this.car_insurance = car_insurance || null;//تصویر بیمه وسیله نقلیه
+        this.car_technical_diagnosis = car_technical_diagnosis || null;//تصویر معاینه فنی وسیله نقلیه
+        this.guarantee = guarantee || null;//تصویر ضمانت نامه
         this.birth_date = birth_date || null;//date
     }
     get FormObject() {

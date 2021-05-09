@@ -27,6 +27,7 @@ const FormPanel = ({
   displayProperty = "",
   formUpdateTitle = "",
   formKey = "",
+  beformFileds = () => <></>,
   agentForm = async (id) => {},
   createAgent = async (temp) => {},
   updateAgent = async (id, temp) => {},
@@ -40,7 +41,7 @@ const FormPanel = ({
   addFormPath = "/",
   redirectPath = "/",
   onChangeForm = (values) => {},
-  formAction=(isUpdate)=>{},
+  formAction = (isUpdate) => {},
 }) => {
   const { loading, deleteLoading, forms } = useSelector((state) => state.form);
   const [initialValues, setInitialValues] = useState({});
@@ -129,6 +130,7 @@ const FormPanel = ({
           // validate={validate}
           initialValues={initialValues}
           formClass="w-100"
+          beformFileds={beformFileds}
           {...{ column, formOptions, validate, onSubmit }}
           afterFields={({ disabled }) => (
             <div className="py-5  d-flex align-items-center  justify-content-between">

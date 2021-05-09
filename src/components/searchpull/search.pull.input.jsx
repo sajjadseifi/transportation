@@ -22,7 +22,8 @@ const SearchInput = ({
       steStart(false);
       return;
     }
-    if (search == value) return;
+
+    if (!search && search == value) return;
     clearTimeout(timeoutReq);
     let TR = setTimeout(requestHandler, 500);
     setTimeoutReq(TR);
@@ -33,7 +34,7 @@ const SearchInput = ({
   const onChangedInput = ({ target }) => {
     setSearch(target.value);
   };
-  
+
   return (
     <div className="search-input-container">
       <div className={`form-group form-panel-group `}>
@@ -50,7 +51,6 @@ const SearchInput = ({
         onChange={onChangedInput}
         value={search}
         {...props}
-
       />
     </div>
   );

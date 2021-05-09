@@ -30,7 +30,6 @@ export const loadList = ({
             search
         };
         const data = await agentGet(paramsReq, config);
-        console.log({ paramsReq, data });
         await new Promise((res, rej) => {
             setTimeout(() => res(), 300)
         })
