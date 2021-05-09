@@ -25,8 +25,6 @@ const DateForm = ({
     const d = new Date(props.input.value).toISOString();
     const jDate = moment(d, "YYYY-MM-DDTHH:mm:ssZ");
     setState(jDate);
-  } else if (state && !props.input.value) {
-    setState();
   }
 
   useEffect(() => {
@@ -42,11 +40,11 @@ const DateForm = ({
 
   const onDateChange = (value) => setState(value);
 
+  
   return (
     <InputForm {...props}>
       <input
         className="d-none"
-        onChange={({ target: {} }) => {}}
         ref={inputRef}
         {...props.input}
       />

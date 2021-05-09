@@ -23,27 +23,31 @@ const FormPersonal = ({
   onSubmit = async (values) => {
     console.log(values);
   },
+  onChange = (values) => {},
 }) => {
   const AfterFields = afterFields;
   const BeformFileds = beformFileds;
   return (
     <FinalForm
-      initialValues={{ ...initialValues, solam: "Chtori" }}
+      initialValues={initialValues}
       onSubmit={onSubmit}
       validate={validate}
-      render={({ handleSubmit, invalid, pristine, values, error, errors }) => (
-        <Form className={formClass} onSubmit={handleSubmit}>
-          {console.log({ values })}
-          <BeformFileds
-            {...{ disabled: invalid || loading, pristine, loading }}
-          />
-          <FormFieldList {...{ formOptions, column }} />
-          <AfterFields
-            {...{ disabled: invalid || loading, pristine, loading }}
-          />
-          <div>{/* serverErrors */}</div>
-        </Form>
-      )}
+      render={({ handleSubmit, invalid, pristine, values, error, errors }) => {
+        onChange(values);
+        console.log({values})
+        return (
+          <Form className={formClass} onSubmit={handleSubmit}>
+            <BeformFileds
+              {...{ disabled: invalid || loading, pristine, loading }}
+            />
+            <FormFieldList {...{ formOptions, column }} />
+            <AfterFields
+              {...{ disabled: invalid || loading, pristine, loading }}
+            />
+            <div>{/* serverErrors */}</div>
+          </Form>
+        );
+      }}
     />
   );
 };

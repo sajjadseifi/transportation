@@ -11,13 +11,18 @@ const FormFieldList = ({ column, formOptions = [], serverErrors = {} }) => {
       {formOptions.map((optList = [], index) => (
         <div key={index} className={rowClasses}>
           {optList.map((opt, index) => {
+            const Component = opt.component;
             return (
               <div
                 style={{ full: opt.full ? "flex-1" : "" }}
                 key={index}
                 className={colClasses}
               >
-                <Field {...opt} serverError={serverErrors[opt.name] || ""} />
+                {opt.noField ? (
+                  <Component {...opt} />
+                ) : (
+                  <Field {...opt} serverError={serverErrors[opt.name] || ""} />
+                )}
               </div>
             );
           })}

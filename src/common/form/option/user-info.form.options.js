@@ -1,5 +1,9 @@
-import { DateForm, InputPanelForm } from "../ui";
-
+import { CarSearchItme, SearchPull, UsersSearchItme } from "../../../components/searchpull";
+import { DEGREE, PER_DEGREE, PER_ROLETYPE, PER_SEXTYPE, ROLETYPE, SEXTYPE } from "../../../constants";
+import { carApi, userApi } from "../../../core/api";
+import { selectOptsGenerator } from "../../../core/utils/utils";
+import { DateForm, InputPanelForm, SelectFormPanel } from "../ui";
+// selectOptsGenerator
 export default [
     [
         {
@@ -8,7 +12,10 @@ export default [
             width: "100%",
             type: "text",
             placeholder: "کاربر را انتخاب نمایید",
-            component: InputPanelForm
+            keyList:"users-options",
+            SingleComponet: UsersSearchItme,
+            agentList: userApi.list,
+            component: SearchPull
         }
         ,
         {
@@ -16,8 +23,11 @@ export default [
             title: "ماشین",
             width: "100%",
             type: "text",
+            keyList:"cars-options",
             placeholder: "ماشین را انتخاب نمایید",
-            component: InputPanelForm
+            SingleComponet: CarSearchItme,
+            agentList: carApi.list,
+            component: SearchPull,
         }
     ],
 
@@ -26,26 +36,27 @@ export default [
             name: "role",
             title: "نقش کاربری",
             width: "100%",
-            type: "text",
-            placeholder: "نقش را تعیین نمایید",
-            component: InputPanelForm
+            val: 1,
+            options: selectOptsGenerator(ROLETYPE, PER_ROLETYPE),
+            component: SelectFormPanel
         }, {
             name: "sex",
             title: "جنسیت",
             width: "100%",
-            type: "text",
-            placeholder: "جنسیت کاربر را انتخاب کنید",
-            component: InputPanelForm
+            val: 3,
+            options: selectOptsGenerator(SEXTYPE, PER_SEXTYPE),
+            component: SelectFormPanel
         },
         {
             name: "degree",
             title: "سطح سواد تحصیلی",
             width: "100%",
-            type: "text",
-            placeholder: "مدرک تحصیلی کاربر",
-            component: InputPanelForm
+            val: 0,
+            options: selectOptsGenerator(DEGREE, PER_DEGREE),
+            component: SelectFormPanel
         }
     ],
+
     [
         {
             name: "pic",
@@ -55,6 +66,7 @@ export default [
             placeholder: "عکس شخصی کاربر",
             component: InputPanelForm
         },
+
         {
             name: "car_license",
             title: "تصویر گواهینامه",
@@ -73,7 +85,7 @@ export default [
 
         }
     ],
-    
+
     [
         {
             name: "car_insurance",
@@ -84,7 +96,7 @@ export default [
             component: InputPanelForm
         },
         {
-            
+
 
             name: "car_technical_diagnosis",
             title: "تصویر معاینه فنی وسیله نقلیه",
@@ -103,6 +115,7 @@ export default [
 
         }
     ],
+
     [
         {
             name: "phone_number",

@@ -34,8 +34,8 @@ export const loadList = ({
         await new Promise((res, rej) => {
             setTimeout(() => res(), 300)
         })
-
-        if (data.success == false) {
+        
+        if (!data || data.success == false) {
             alert("داده ای یافت نشد");
             throw data.message;
         }

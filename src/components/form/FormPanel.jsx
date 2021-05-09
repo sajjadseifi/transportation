@@ -39,6 +39,8 @@ const FormPanel = ({
   column = false,
   addFormPath = "/",
   redirectPath = "/",
+  onChangeForm = (values) => {},
+  formAction=(isUpdate)=>{},
 }) => {
   const { loading, deleteLoading, forms } = useSelector((state) => state.form);
   const [initialValues, setInitialValues] = useState({});
@@ -59,6 +61,7 @@ const FormPanel = ({
       const formObject = buildInitialModel() || {};
       setInitialValues(formObject);
     }
+    formAction(isUpdate);
     return () => {
       dispatch(formActions.removeFormByKey(formId));
       setInitialValues({});
@@ -122,6 +125,8 @@ const FormPanel = ({
 
       <div className="form-panel-body">
         <FormPersonal
+          onChange={onChangeForm}
+          // validate={validate}
           initialValues={initialValues}
           formClass="w-100"
           {...{ column, formOptions, validate, onSubmit }}

@@ -63,11 +63,15 @@ axios.interceptors.response.use(undefined, (error) => {
 });
 
 const responseBody = (response) => (response ? response.data : response);
-
+export const generateParam = (key, val) => {
+    if (!val)
+        return "";
+    return key + "=" + val + "&";
+}
 export const request = {
     get: (url, config = {}) => axios.get(url, config).then(responseBody),
-    list: (url, { pageNumber, pageSize }, config = {}) =>
-        axios.get(`${url}/?limit=${pageSize}&offset=${(pageNumber - 1) * pageSize}`, config)
+    list: (url, { pageNumber, pageSize, str }, config = {}) =>
+        axios.get(`${url}/?${generateParam("limit", pageSize)}${generateParam("offset", (pageNumber - 1) * pageSize)}${str}`, config)
             .then(responseBody),
     post: (url, body = {}, config = {}) => axios.post(url, body, config).then(responseBody),
     put: (url, body = {}, config = {}) => axios.put(url, body, config).then(responseBody),

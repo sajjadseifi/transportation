@@ -6,8 +6,12 @@ export const UserInfoListAdminScreen = () => {
   const builtOwnData = ({ data = [], errors, maxPages, page, loading }) => {
     const table = data.map((dt) => {
       return {
-        rowId: dt._id,
-        pic: <span>{dt.pic}</span>,
+        rowId: dt.id,
+        pic: (
+          <div>
+            <img src={dt.pic} height={50} width={50} />
+          </div>
+        ),
         role: dt.role,
         user: dt.user,
         sex: dt.sex,
