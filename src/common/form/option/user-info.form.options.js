@@ -111,7 +111,7 @@ export default [
         {
             noField: true,
             name: "car_insurance",
-            icon: "avatar",
+            icon: "upload2",
             title: "تصویر بیمه وسیله نقلیه",
             component: ImageFileForm
         },
@@ -119,7 +119,7 @@ export default [
             noField: true,
             name: "car_technical_diagnosis",
             title: "تصویر معاینه فنی وسیله نقلیه",
-            icon: "avatar",
+            icon: "upload2",
             type: "file",
             component: ImageFileForm
         },
@@ -127,7 +127,7 @@ export default [
             noField: true,
             name: "guarantee",
             title: "تصویر ضمانت نامه",
-            icon: "avatar",
+            icon: "upload2",
             component: ImageFileForm
         }
     ],

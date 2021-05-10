@@ -176,11 +176,38 @@ $font-form-input-panel:16px;
 
 .dropzone-box-base {
     .label-form-title {
-        font-size:18px;
-        margin:15px 0;
+        font-size: 18px;
+        margin: 15px 0;
         text-align: center;
         width: 100%;
-    }   
+    }
+
+    .box-all {
+        position: relative;
+
+        .close-box {
+            height: 30px;
+
+            .icon-close {
+                transition: 0.2s;
+                cursor: pointer;
+                opacity: 0.8;
+                transform: scale(0.7);
+
+                &:hover {
+                    opacity: 1;
+                    transform: scale(0.8);
+                }
+
+            }
+
+            // position:absolute;
+            // top: 50%;
+            // left: 50%;
+            // transform: translate(-50%,-50%);
+        }
+    }
+
     .dropzone-box {
         transition: 0.3s;
         border: 2px solid white;
@@ -196,6 +223,39 @@ $font-form-input-panel:16px;
         &:hover {
             border-style: dashed;
             opacity: 1;
+        }
+
+        &.is-active-drag {
+            border-style: dashed;
+            opacity: 1;
+        }
+    }
+}
+
+
+.select-box-ctn {
+    position: relative;
+
+    .select-arrow {
+        position: absolute;
+        left: 5px;
+        top: 50%;
+        transform: translateY(-50%);
+
+        .arrow-icon {
+            transition: 0.2s;
+            color: black;
+            opacity: 0.7;
+            display: block;
+            cursor: pointer;
+            transform: scale(0.9);
+            &:hover {
+                transform: scale(1);
+                opacity: 1;
+            }
+            &:active {
+                transform: scale(0.6);
+            }
         }
     }
 }

@@ -25,14 +25,14 @@ export const PER_ROLETYPE = {
 };
 // ----------------------------
 export const DEGREE = {
-    illiterate: 0,//بی سواد
-    highSchool: 1,//زیر دیپلم
-    Diploma: 2,//دیپلم
-    associateDegree: 3,//فوق دیپلم
-    bachelor: 4,//لیسانس
-    MA: 5,//دیپلم
-    PHD: 6,//دیپلم
-    professionalDoctor: 7,//دیپلم
+    illiterate: 1,//بی سواد
+    highSchool: 2,//زیر دیپلم
+    Diploma: 3,//دیپلم
+    associateDegree: 4,//فوق دیپلم
+    bachelor: 5,//لیسانس
+    MA: 6,//دیپلم
+    PHD: 7,//دیپلم
+    professionalDoctor: 8,//دیپلم
 };
 export const PER_DEGREE = {
     illiterate: "بی سواد",
@@ -40,8 +40,8 @@ export const PER_DEGREE = {
     Diploma: "دیپلم",
     associateDegree: "فوق دیپلم",
     bachelor: "لیسانس",
-    MA: "دیپلم",
-    PHD: "دیپلم",
-    professionalDoctor: "دیپلم",
+    MA: "فوق لیسانس",
+    PHD: "دکتری",
+    professionalDoctor: "فوق دکتری",
 };
 // ----------------------------------

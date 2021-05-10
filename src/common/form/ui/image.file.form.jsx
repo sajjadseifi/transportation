@@ -25,23 +25,50 @@ export default function ImageFileForm({
     setImageUri(uri);
     onChangeFile({ file, acceptedFiles, name, uri });
   }, []);
-
+  const deleteImageHandler = () => {
+    URL.revokeObjectURL(imageUri);
+    setImageUri();
+    onChangeFile({
+      file: null,
+      acceptedFiles: [],
+      name,
+      uri: imageUri,
+    });
+  };
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
   //car avatar upload2 setting
   return (
-    <div className="dropzone-box-base">
+    <div className="py-4 d-flex justify-content-center dropzone-box-base">
       <input {...getInputProps()} />
-      <label className="label-form-title text-muted-light" htmlFor={name}>
-        {title}
-      </label>
-      <div {...getRootProps()} className="d-flex justify-content-center">
-        <div className="dropzone-box">
+
+      <div className="box-all">
+        <div className="close-box">
+          {imageUri && (
+            <Icon
+              onClick={deleteImageHandler}
+              className="icon-close"
+              icon="close"
+              size="2x"
+            />
+          )}
+        </div>
+        <div
+          {...getRootProps()}
+          className={`dropzone-box ${isDragActive ? "is-active-drag" : ""}`}
+        >
           {imageUri ? (
             <img width="100%" height="100%" src={imageUri} />
           ) : (
             <Icon icon={icon} size="5x" />
           )}
         </div>
+        <label
+          {...getRootProps()}
+          className="label-form-title text-muted-light"
+          htmlFor={name}
+        >
+          {title}
+        </label>
       </div>
     </div>
   );
