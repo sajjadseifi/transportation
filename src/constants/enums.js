@@ -11,13 +11,13 @@ export const PER_SEXTYPE = {
 };
 // ----------------------------
 export const ROLETYPE = {
-    unknown: 0,
+    // unknown: 0,
     customer: 1,
     driver: 2,
     supporter: 3,
 };
 export const PER_ROLETYPE = {
-    unknown: "",
+    // unknown: "",
     customer: "مشتری",
     driver: "راننده",
     supporter: "پشتیبان",

@@ -18,6 +18,8 @@ html {
     box-sizing: inherit;
 }
 
+
+
 body,
 ul,
 li {
@@ -42,12 +44,12 @@ a {
 }
 
 body {
-    background-color: #1D1F20;
+    background-color: #1d2630;
 }
 
 .them1 {
     &.body {
-        background-color: #1D1F20;
+        background-color: #1d2630;
     }
 }
 

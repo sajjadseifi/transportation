@@ -7,6 +7,7 @@ const InputForm = ({
   width,
   type,
   placeholder,
+  className,
   meta: { touched, error },
   render = ({}) => <></>,
   children = <></>,
@@ -17,7 +18,7 @@ const InputForm = ({
   return (
     <div
       style={{ width }}
-      className={`form-group form-panel-group  has-${stateClasses}`}
+      className={`form-group form-panel-group  has-${stateClasses} ${className}`}
     >
       <label
         className="form-control-label form-panel-label my-3"

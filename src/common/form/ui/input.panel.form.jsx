@@ -40,7 +40,7 @@ const InputPanelForm = (props) => {
   return (
     <InputForm {...props}>
       <div className="form-group">
-        <div className="input-group mb-3">
+        <div className="input-group">
           <input
             {...inpProps}
             className={`form-control form-panel-input is-${stateClasses} `}

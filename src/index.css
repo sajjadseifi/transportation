@@ -8,7 +8,12 @@ body {
   direction: rtl;
   font-family: IRANSansDN, IRANYekanLight, IRANSans, YekanBakh_Light;
 }
-
+html body .ltr{
+  direction: ltr;
+}
+html body .rtl{
+  direction: rtl;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

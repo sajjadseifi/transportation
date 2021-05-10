@@ -2,7 +2,7 @@ import { CarSearchItme, SearchPull, UsersSearchItme } from "../../../components/
 import { DEGREE, PER_DEGREE, PER_ROLETYPE, PER_SEXTYPE, ROLETYPE, SEXTYPE } from "../../../constants";
 import { carApi, userApi } from "../../../core/api";
 import { selectOptsGenerator } from "../../../core/utils/utils";
-import { DateForm, InputPanelForm, SelectFormPanel, ImageFileForm } from "../ui";
+import { DateForm, InputPanelForm, SelectFormPanel, ImageFileForm, PhoneInputForm } from "../ui";
 // selectOptsGenerator
 export default [
     [
@@ -63,7 +63,7 @@ export default [
             width: "100%",
             type: "text",
             placeholder: "شماره تلفن را وارد نمایید",
-            component: InputPanelForm
+            component: PhoneInputForm
         },
         {
             name: "national_code",

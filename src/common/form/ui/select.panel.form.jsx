@@ -3,14 +3,15 @@ import React from "react";
 import { ListMapper } from "../../../components/mapper";
 import InputForm from "./input.form";
 import { Icon } from "rsuite";
+import { useEffect } from "react";
 
 const SelectFormPanel = (props) => {
   const { options, placeholder, input, val } = props;
 
-  if (!input.value && val) {
+  useEffect(() => {
+    if (input.value || !val) return;
     input.onChange({ target: { value: val } });
-  }
-
+  }, [input.value]);
   const onCahgneIndex = (dir) => {
     let findIndex = [...options].findIndex((x) => x.value == input.value);
 
@@ -18,7 +19,7 @@ const SelectFormPanel = (props) => {
 
     if (findIndex < 0) findIndex = options.length - 1;
 
-    console.log({index:findIndex});
+    console.log({ index: findIndex });
     const val = options[findIndex].value;
 
     input.onChange({ target: { value: val } });

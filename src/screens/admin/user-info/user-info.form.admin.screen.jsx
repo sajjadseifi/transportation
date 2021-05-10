@@ -85,6 +85,11 @@ const UserInfoFormAdminScreen = () => {
       }
       updateFormOpt[3] = [pic];
       updateFormOpt[4] = [];
+    } else {
+      if (isUpdate) {
+        const catsOpts = userInfoFormOption[0][1];
+        updateFormOpt[0] = [catsOpts];
+      }
     }
 
     setRole(+formRole);

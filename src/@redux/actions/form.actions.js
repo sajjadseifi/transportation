@@ -42,7 +42,8 @@ export const formSubmit = (
     agentCreate = async (obj = {}, config = {}) => { },
     agentUpdate = async (obj = {}, config = {}) => { },
     redirectPath = "/",
-    restForm = () => { }
+    restForm = () => { },
+    keyForm = null
 ) => async (dispatch, getState) => {
 
     dispatch(formActionTypes.startRequest());
@@ -73,6 +74,7 @@ export const formSubmit = (
             if (error && error.response && error.response.data) {
                 const detale = error.response.data.detale;
                 swalAlert.warning(detale);
+                dispatch(removeFormByKey(keyForm));
             }
             history.push(redirectPath);
         } else {
@@ -95,6 +97,7 @@ export const formDelete = (
     agentDelete = async (obj = {}, config = {}) => { },
     redirectPath = "/",
     keyList = null,
+    keyForm = null,
 ) => async (dispatch, getState) => {
 
     const formId = formModel.id;
@@ -108,21 +111,28 @@ export const formDelete = (
     try {
         await agentDelete(formId);
         swalAlert.success(`${formModel.dispalyName} با موفقیت حذف شد`);
-        if (!keyList)
+        if (!keyList || keyForm)
             history.push(redirectPath);
-        else{
+        else {
             console.log({ keyList });
             dispatch(listActionTypes.deleteItemById(keyList, formId));
         }
     } catch (error) {
+        console.log({ error });
+        if (error && error.status === 204) {
+            console.log({ "error.status": error.status });
+        }
         if (error && error.response && error.response.data) {
             const detale = error.response.data.detale;
             swalAlert.warning(detale);
         } else
             swalAlert.warning("خطا هنگام اجرای عملیات");
 
-        if (!keyList && error && error.status === 404)
+        if (!keyList && error && error.status === 404) {
+            dispatch(listActionTypes.deleteItemById(keyList, formId));
+            dispatch(removeFormByKey(keyForm));
             history.push(redirectPath);
+        }
 
     } finally {
         dispatch(formActionTypes.finishedDeleteRequest());

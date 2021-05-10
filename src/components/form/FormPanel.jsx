@@ -1,21 +1,20 @@
 //default
-import React from "react";
-import { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, withRouter, Link, useHistory } from "react-router-dom";
+import { useParams, withRouter, Link } from "react-router-dom";
 import { combineValidators } from "revalidate";
 import { FormPersonal, FormPanelTop } from ".";
-import { useState } from "react";
 import ButtonForm from "../UI/button/button.form";
-import swal from "sweetalert";
-import { confirmRemoveSwal } from "../../common/swal";
-import { Icon } from "rsuite";
+import { Icon, Loader } from "rsuite";
 import { FlexBox } from "../box";
 import { roleType } from "../../constants";
 import { Security } from "../../core/security";
 import { FormModel } from "../../models";
 import * as formActions from "../../@redux/actions/form.actions";
 import * as formActionTypes from "../../@redux/@types/form.action.types";
+import ActionsFormPanel from "./form-panel/actions.form.panel";
+import SquareSpinnerCodepen from "../codepen/square.spinner.codepen";
+import { NinjaConditionWrappr, ShowingWrapper } from "../wrapper";
 
 //default validate
 const validateDemo = combineValidators({});
@@ -64,7 +63,8 @@ const FormPanel = ({
     }
     formAction(isUpdate);
     return () => {
-      dispatch(formActions.removeFormByKey(formId));
+      console.log("CLEARED");
+      dispatch(formActions.removeFormByKey(formKey));
       setInitialValues({});
     };
   }, [dispatch, formId]);
@@ -89,7 +89,8 @@ const FormPanel = ({
         createAgent,
         updateAgent,
         redirectPath,
-        restFormHandler
+        restFormHandler,
+        formKey
       )
     );
   };
@@ -104,7 +105,8 @@ const FormPanel = ({
         dname,
         formModel,
         deleteAgent,
-        redirectPath
+        redirectPath,
+        formKey
       )
     );
   };
@@ -123,55 +125,38 @@ const FormPanel = ({
           formUpdateTitle,
         }}
       />
-
-      <div className="form-panel-body">
-        <FormPersonal
-          onChange={onChangeForm}
-          // validate={validate}
-          initialValues={initialValues}
-          formClass="w-100"
-          beformFileds={beformFileds}
-          {...{ column, formOptions, validate, onSubmit }}
-          afterFields={({ disabled }) => (
-            <div className="py-5  d-flex align-items-center  justify-content-between">
-              {isUpdate && (
-                <Link
-                  className="px-4"
-                  onClick={removeFormState}
-                  to={addFormPath}
-                >
-                  <FlexBox alignCenter justCenter>
-                    <Icon icon="arrow-left" />
-                    <h4 className="px-2">{`افزودن ${singleName}`}</h4>
-                  </FlexBox>
-                </Link>
-              )}
-              <div>
-                <Security role={roleType.SUPPER_ADMIN}>
-                  {isUpdate && (
-                    <ButtonForm
-                      onClick={deleteHandler}
-                      disabled={deleteLoading || loading}
-                      loading={deleteLoading}
-                      type="danger"
-                    >
-                      حذف
-                    </ButtonForm>
-                  )}
-                </Security>
-                <ButtonForm
-                  IsButton
-                  type={isUpdate ? "info" : "success"}
-                  loading={forms[formKey] && loading}
-                  disabled={disabled || deleteLoading}
-                >
-                  {isUpdate ? "ویرایش" : "ثبت"}
-                </ButtonForm>
+      <NinjaConditionWrappr condition={!forms[formKey] && loading}>
+        <FlexBox justCenter>
+          <SquareSpinnerCodepen lable="درحال بارگذاری..." />
+        </FlexBox>
+        <div className="form-panel-body">
+          <FormPersonal
+            onChange={onChangeForm}
+            // validate={validate}
+            initialValues={initialValues}
+            formClass="w-100"
+            beformFileds={beformFileds}
+            {...{ column, formOptions, validate, onSubmit }}
+            afterFields={({ disabled }) => (
+              <div className="py-5  d-flex align-items-center  justify-content-between">
+                <ActionsFormPanel
+                  {...{
+                    loading,
+                    removeFormState,
+                    addFormPath,
+                    singleName,
+                    deleteHandler,
+                    isUpdate,
+                    disabled,
+                    deleteLoading,
+                    isFormExist: !!forms[formKey],
+                  }}
+                />
               </div>
-            </div>
-          )}
-        />
-      </div>
+            )}
+          />
+        </div>
+      </NinjaConditionWrappr>
     </div>
   );
 };

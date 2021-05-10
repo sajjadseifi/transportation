@@ -66,9 +66,12 @@ const finishedRequestList = (state, action) => {
 const deleteItemListById = (state, action) => {
     // keyList,itemId
     const { keyList, itemId } = action.payload;
-    console.log({keyList, itemId});
 
     let updatedList = state.lists[keyList];
+    
+    if (!updatedList)
+        return state;
+
     let updatedData = [...updatedList.data].filter(d => d.id !== itemId);
 
     updatedList = updateObject(updatedList, { data: updatedData });
