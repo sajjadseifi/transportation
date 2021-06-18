@@ -93,7 +93,7 @@ function SecurityProvider({ user, levelRole = 0, userRole = null, options = {}, 
         </SecurityStateContext.Provider>
     );
 }
-function useSecurity(origin, user) {
+function useSecurity() {
     const context = React.useContext(SecurityStateContext)
     if (context === undefined) {
         throw new Error('useSecurity must be used within a SecurityProvider');

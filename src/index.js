@@ -33,7 +33,7 @@ const IndexApp = () => {
             <Store>
                 <SecurityProvider
                     user={{
-                        role: roleType.USER_ADMIN,
+                        role: roleType.CUSTOMER,
                         levelInRole: 0
                     }}
                     options={securitySimpleOption}>

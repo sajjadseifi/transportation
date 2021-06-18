@@ -11,7 +11,9 @@ const Routes = (props) => {
             <Route path="/404" component={NotFoundPage} />
             <Route path="/auth" component={AuthRoutes} />
             <Route path="/admin" component={AdminRoutes} />
+            <Redirect to="/admin/temp/list" />
             <Redirect to="/404" />
+
         </Switch>
     )
 };

@@ -39,7 +39,7 @@ const AdminRoutes = ({ }) => {
 
                 <Route exact path="/admin/dashboard" component={DashboardScreen} />
                 <Route exact path="/admin/temp" component={DashboardScreen} />
-                <Redirect to="/404" />
+                <Redirect to="/admin/temp/list" />
             </Switch>
         </FullLayout>
     )

@@ -2,7 +2,7 @@ import { authActionTypes } from "../@types";
 
 const initialState = {
     loading: false,
-    userInfo: null,
+    userInfo: null,//{token:"",username:"",firstname:"",lastname:"",role:""}
     error: [],
 };
 
