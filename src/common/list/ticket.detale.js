@@ -2,6 +2,7 @@ import { roleType } from "../../constants";
 import { ticketApi } from "../../core/api";
 import { ticketColumn } from ".";
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default {
     title: "تیکت ها",
     keyList: "discounts",

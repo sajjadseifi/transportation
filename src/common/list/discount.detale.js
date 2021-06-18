@@ -2,6 +2,7 @@ import { roleType } from "../../constants";
 import { discountApi } from "../../core/api";
 import { discountColumn } from ".";
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default {
     title: "تخفیف ها",
     keyList: "discounts",
@@ -19,7 +20,7 @@ export default {
             authorize: {
                 role: roleType.TRANSPORT_ADMIN
             },
-            path:"/admin/discount/form"
+            path: "/admin/discount/form"
         },
         {
             name: "delete",
@@ -28,7 +29,7 @@ export default {
             authorize: {
                 role: roleType.SUPPER_ADMIN,
             },
-            agent:discountApi.delete
+            agent: discountApi.delete
         },
     ]
 }
