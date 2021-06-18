@@ -8,4 +8,5 @@ export { UserInfoModel } from "./user-info.model";
 export { SavedAddressModel } from "./address.model";
 export { DisCountModel } from "./discount.model";
 export { TicketModel } from "./ticket.model";
+export { RegionpriceModel } from "./regionprice.model";
 
