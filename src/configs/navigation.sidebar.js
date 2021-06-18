@@ -220,6 +220,11 @@ export default {
                 },
                 {
                     component: Dropdown.Item,
+                    title: "سفر های راننده",
+                    route: "/app/order/list?driver=true&username=",
+                },
+                {
+                    component: Dropdown.Item,
                     title: "سفر جدید",
                     route: "/app/order/create?username=",
                 },
@@ -272,7 +277,7 @@ export default {
                 {
                     component: Dropdown.Item,
                     title: "مدیریت تیکت ها",
-                    route: "/app/ticket/list",
+                    route: "/admin/ticket/list",
                     authorize: {
                         role: roleType.TRANSPORT_ADMIN,
                     },
