@@ -1,9 +1,11 @@
 //default
 import React from 'react'
 import { BaseCard } from '../card'
-const ContentTabCard = ({ activedKey = '', tabslist = [] }) => {
-  const comp = tabslist.find((tb) => tb.key === activedKey)
-  return <BaseCard>{comp ? comp.content : null}</BaseCard>
-}
+export const ContentTabCard = ({ activedKey = '', tabslist = [] }) => {
+  let CMP = null
+  const comp = tabslist.find((tb) => `${tb.key}` === `${activedKey}`)
 
-export default ContentTabCard
+  if (comp) CMP = comp.component
+
+  return <BaseCard>{CMP ? <CMP /> : CMP}</BaseCard>
+}

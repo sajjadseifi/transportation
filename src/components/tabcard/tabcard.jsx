@@ -3,10 +3,16 @@ import React, { useEffect, useState } from 'react'
 import { FlexBox } from '../box'
 import { Card } from '../card'
 import { TabComponent } from '../tab/tab.component'
-import ContentTabCard from './content.tabcard'
+import { ContentTabCard } from '.'
 const styles = {
   marginBottom: 50,
 }
+// const tabCard = {
+//   key: '',
+//   icon: '',
+//   tabChildren: null,
+//   component: () => <></>,
+// }
 export const TabCard = ({
   activeKey,
   reversed = false,
@@ -18,9 +24,9 @@ export const TabCard = ({
   const [active, setActive] = useState(activeKey)
 
   useEffect(() => {
-    if (activeKey !== active) setActive(activeKey)
-    return setActive(null)
-  }, [activeKey])
+    console.log({ activeKey })
+    setActive(activeKey)
+  }, [])
 
   const handleSelect = (newKey) => {
     setActive(newKey)
@@ -29,18 +35,18 @@ export const TabCard = ({
 
   return (
     <Card>
+      <TabComponent
+        {...{
+          activeKey: active,
+          reversed,
+          appearance,
+          styles,
+          tabs: tabcards,
+          handleSelect,
+        }}
+      />
       <FlexBox culumn={!vertical}>
-        <TabComponent
-          {...{
-            activeKey,
-            reversed,
-            appearance,
-            styles,
-            tabs: tabcards,
-            handleSelect,
-          }}
-        />
-        <ContentTabCard tabslist={tabcards} activedKey={activeKey} />
+        <ContentTabCard tabslist={tabcards} activedKey={active} />
       </FlexBox>
     </Card>
   )
