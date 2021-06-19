@@ -1,6 +1,6 @@
 //default
-import React, { useEffect, useState } from 'react'
-import { Icon, Nav } from 'rsuite'
+import React from 'react'
+import { Nav } from 'rsuite'
 const styles = {
   marginBottom: 50,
 }
@@ -10,32 +10,13 @@ export const TabComponent = ({
   appearance = 'subtle',
   vertical = false,
   tabs = [],
+  handleSelect = () => {},
   ...props
 }) => {
-  const [active, setActive] = useState(activeKey)
-
-  useEffect(() => {
-    setActive(activeKey)
-    return null
-  }, [activeKey])
-
-  const handleSelect = () => {}
-
   return (
     <Nav
-      {...props}
-      vertical={vertical}
-      activeKey={active}
+      {...{ activeKey, vertical, styles, ...props }}
       onSelect={handleSelect}
-      style={styles}
-    >
-      <Nav.Item eventKey="home" icon={<Icon icon="home" />}>
-        Home
-      </Nav.Item>
-      <Nav.Item eventKey="news">News</Nav.Item>
-      <Nav.Item eventKey="solutions">Solutions</Nav.Item>
-      <Nav.Item eventKey="products">Products</Nav.Item>
-      <Nav.Item eventKey="about">About</Nav.Item>
-    </Nav>
+    ></Nav>
   )
 }
