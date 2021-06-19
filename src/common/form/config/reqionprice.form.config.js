@@ -1,18 +1,19 @@
 import { combineValidators } from "revalidate";
-import { carFormOption } from "../option";
+import { regionpriceFormOption } from "../option";
 import { regionpriceApi as api } from "../../../core/api";
 
 const validate = combineValidators({
 
 });
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default {
    label: "هزینه مکانی",
    formTitle: "افزودن هزینه برای یک مسیر",
    formUpdateTitle: "ویرایش هزینه مکانی برای یک مسیر",
    formKey: "regionprice",
    validate: validate,
-   formOptions: carFormOption,
+   formOptions: regionpriceFormOption,
    agentForm: api.get,
    createAgent: api.create,
    updateAgent: api.update,

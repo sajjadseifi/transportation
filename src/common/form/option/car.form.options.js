@@ -2,6 +2,7 @@ import { InputPanelForm } from "../ui";
 import CheckBoxFormPanel from "../ui/checkbox.form";
 
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default [
     [
         {

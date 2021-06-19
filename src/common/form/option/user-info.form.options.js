@@ -4,6 +4,7 @@ import { carApi, userApi } from "../../../core/api";
 import { selectOptsGenerator } from "../../../core/utils/utils";
 import { DateForm, InputPanelForm, SelectFormPanel, ImageFileForm, PhoneInputForm } from "../ui";
 // selectOptsGenerator
+// eslint-disable-next-line import/no-anonymous-default-export
 export default [
     [
         {
