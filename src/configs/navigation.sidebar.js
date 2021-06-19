@@ -39,25 +39,25 @@ export default {
                     component: Dropdown.Item,
                     title: "مشخصات فردی",
                     Icon: <Icon icon="plus" />,
-                    route: "/account/:username/profile",
+                    route: "/app/account/profile",
                 },
                 {
                     component: Dropdown.Item,
                     title: "مسیر های من",
                     Icon: <Icon icon="plus" />,
-                    route: "/account/:username/profile",
+                    route: "/app/account/saved-address",
                 },
                 {
                     component: Dropdown.Item,
                     title: "کیف پول",
                     Icon: <Icon icon="plus" />,
-                    route: "/account/:username/wallet",
+                    route: "/app/account/wallet",
                 },
                 {
                     component: Dropdown.Item,
                     title: "تغییر گذرواژه",
                     Icon: <Icon icon="plus" />,
-                    route: "/account/:username/change-pass",
+                    route: "/app/account/change-pass",
                 }
             ]
         },
@@ -215,18 +215,45 @@ export default {
             items: [
                 {
                     component: Dropdown.Item,
-                    title: "سفر های من",
-                    route: "/app/order/list?username=",
+                    title: "همه سفر ها",
+                    route: "/app/order/list?monitor=true&byRole=cuple",
+                    authorize: {
+                        role: roleType.TRANSPORT_ADMIN,
+                    },
                 },
                 {
                     component: Dropdown.Item,
-                    title: "سفر های راننده",
-                    route: "/app/order/list?driver=true&username=",
+                    title: "سفرهای کاربران",
+                    route: "/app/order/list?monitor=true&byRole=user",
+                    authorize: {
+                        role: roleType.TRANSPORT_ADMIN,
+                    },
+                },
+                {
+                    component: Dropdown.Item,
+                    title: "سفرهای رانندگان",
+                    route: "/app/order/list?monitor=true&byRole=userdriver&username=uname",
+                    authorize: {
+                        role: roleType.TRANSPORT_ADMIN,
+                    },
+                },
+                {
+                    component: Dropdown.Item,
+                    title: "سفر های من",
+                    route: "/app/order/list?monitor=false",
+                },
+                {
+                    component: Dropdown.Item,
+                    title: "سفر های رانندگان",
+                    route: "/app/order/list?monitor=true&byRole=driver&username=uname",
+                    authorize: {
+                        role: roleType.TRANSPORT_ADMIN,
+                    },
                 },
                 {
                     component: Dropdown.Item,
                     title: "سفر جدید",
-                    route: "/app/order/create?username=",
+                    route: "/app/order/create",
                 },
                 {
                     component: Dropdown.Item,
@@ -251,17 +278,17 @@ export default {
             component: Dropdown,
             Icon: <Icon icon="ticket" />,
             title: "مالی",
-            route: "/admin/ticket",
+            route: "/admin/moli",
             items: [
                 {
                     component: Dropdown.Item,
                     title: "شارژ کیف پول",
-                    route: "/admin/ticket/list",
+                    route: "/admin/moli/list",
                 },
                 {
                     component: Dropdown.Item,
                     title: "رسید ها",
-                    route: "/admin/ticket/form/1",
+                    route: "/admin/moli/form/1",
                     authorize: {
                         role: roleType.TRANSPORT_ADMIN,
                     },
@@ -277,21 +304,21 @@ export default {
                 {
                     component: Dropdown.Item,
                     title: "مدیریت تیکت ها",
-                    route: "/admin/ticket/list",
+                    route: "/app/ticket/list?monitor=true&all=true",
                     authorize: {
                         role: roleType.TRANSPORT_ADMIN,
                     },
                 },
                 {
                     component: Dropdown.Item,
-                    title: "ثبت تیکت",
-                    route: "/app/ticket/create",
+                    title: "تیکت های من",
+                    route: "/app/ticket/list?",
                 },
                 {
                     component: Dropdown.Item,
-                    title: "ثبت های من",
-                    route: "/app/ticket/:username",
-                },
+                    title: "ثبت تیکت",
+                    route: "/app/ticket/create",
+                }
             ]
         },
         {
@@ -318,6 +345,35 @@ export default {
                     component: Dropdown.Item,
                     title: "ویرایش تخفیف",
                     route: "/admin/discount/form/10",
+                }
+            ]
+        },
+        ,
+        {
+            component: Dropdown,
+            Icon: <Icon icon="car" />,
+            title: "هزینه مکانی",
+            route: "/admin/regionprice",
+            authorize: {
+                role: roleType.TRANSPORT_ADMIN,
+            },
+            items: [
+                {
+                    component: Dropdown.Item,
+                    title: "لیست هزینه های مکانی",
+                    route: "/admin/regionprice/list",
+                },
+                {
+                    component: Dropdown.Item,
+                    title: "افزودن هزینه برای مکان",
+                    route: "/admin/regionprice/form",
+
+                    // Icon: <Icon icon="paragraph" />
+                },
+                {
+                    component: Dropdown.Item,
+                    title: "ویرایش هزینه برای مکان",
+                    route: "/admin/regionprice/form/10",
                 }
             ]
         },
