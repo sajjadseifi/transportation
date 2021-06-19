@@ -1,7 +1,7 @@
 import { menuActionTypes } from "../@types";
 import { updateObject } from "../../core/utils";
 const initialState = {
-    activeSidebar: false,
+    activeSidebar: true,
 };
 
 export const defaultReducer = (state = initialState, action) => {
