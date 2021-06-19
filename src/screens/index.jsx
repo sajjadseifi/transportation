@@ -9,3 +9,4 @@ export { UsersFormAdminScreen, UsersListAdminScreen } from "./admin/users";
 export { CarFormScreen, CarListScreen } from "./car";
 export { DiscountFormScreen, DiscountListScreen } from "./discount";
 export { TicketFormScreen, TicketListScreen } from "./ticket";
+export { RegionpriceFormScreen, RegionpriceListScreen } from "./regionprice";

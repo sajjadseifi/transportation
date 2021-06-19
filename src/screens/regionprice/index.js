@@ -1,2 +1,2 @@
-export { default as RegionpriceListScreen } from "./regionprice.list.screen";
-export { default as RegionpriceFormScreen } from "./regionprice.form.screen";
+export { RegionpriceListScreen } from "./regionprice.list.screen";
+export { RegionpriceFormScreen } from "./regionprice.form.screen";
