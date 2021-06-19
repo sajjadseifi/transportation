@@ -4,16 +4,16 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import { NotFoundPage } from "../screens";
 import AdminRoutes from "./admin.routes";
 import AuthRoutes from "./auth.routes";
-const Routes = (props) => {
-
+import AppRoutes from "./app.routes";
+const Routes = () => {
     return (
         <Switch>
             <Route path="/404" component={NotFoundPage} />
             <Route path="/auth" component={AuthRoutes} />
             <Route path="/admin" component={AdminRoutes} />
+            <Route path="/app" component={AppRoutes} />
             <Redirect to="/admin/temp/list" />
             <Redirect to="/404" />
-
         </Switch>
     )
 };

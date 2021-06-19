@@ -5,17 +5,16 @@ import { ListRoute, FormRoute } from "../components/router";
 import { FullLayout } from "../layout";
 import {
     DashboardScreen,
-    TempListAdminScreen,
-    TempFormAdminScreen,
-    UsersFormAdminScreen,
-    UsersListAdminScreen,
+    TempListAdminScreen, TempFormAdminScreen,
+    UsersFormAdminScreen, UsersListAdminScreen,
     CarFormScreen, CarListScreen,
     DiscountListScreen, DiscountFormScreen,
-    TicketFormScreen, TicketListScreen
+    TicketFormScreen, TicketListScreen,
+    RegionpriceListScreen, RegionpriceFormScreen
 } from "../screens";
 import { UserInfoFormAdminScreen, UserInfoListAdminScreen } from "../screens/admin/user-info";
 
-const AdminRoutes = ({ }) => {
+const AdminRoutes = () => {
     return (
         <FullLayout>
             <Switch>
@@ -37,6 +36,9 @@ const AdminRoutes = ({ }) => {
                 <ListRoute path="/admin/user-info/list" component={UserInfoListAdminScreen} />
                 <FormRoute path="/admin/user-info/form/:id?" component={UserInfoFormAdminScreen} />
 
+                <ListRoute path="/admin/regionprice/list" component={RegionpriceListScreen} />
+                <FormRoute path="/admin/regionprice/form/:id?" component={RegionpriceFormScreen} />
+
                 <Route exact path="/admin/dashboard" component={DashboardScreen} />
                 <Route exact path="/admin/temp" component={DashboardScreen} />
                 <Redirect to="/admin/temp/list" />
@@ -44,5 +46,6 @@ const AdminRoutes = ({ }) => {
         </FullLayout>
     )
 };
+
 
 export default AdminRoutes;
