@@ -1,8 +1,10 @@
 //default
 import React from 'react'
 import { Nav } from 'rsuite'
+import { TabListComponent } from './tab.list.component'
+import './tab.css'
 const styles = {
-  marginBottom: 50,
+  //   height: 40,
 }
 export const TabComponent = ({
   activeKey,
@@ -13,10 +15,19 @@ export const TabComponent = ({
   handleSelect = () => {},
   ...props
 }) => {
+  console.log({ activeKey })
   return (
     <Nav
-      {...{ activeKey, vertical, styles, ...props }}
-      onSelect={handleSelect}
-    ></Nav>
+      className="tab-rs-nav"
+      {...{ activeKey, vertical, appearance, ...props }}
+      style={styles}
+    >
+      <TabListComponent
+        reversed
+        activeKey={activeKey}
+        onSelect={handleSelect}
+        tabs={tabs}
+      />
+    </Nav>
   )
 }
