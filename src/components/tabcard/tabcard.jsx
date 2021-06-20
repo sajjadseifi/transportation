@@ -25,8 +25,8 @@ export const TabCard = ({
   const [active, setActive] = useState(activeKey)
 
   useEffect(() => {
-    setActive(activeKey)
-  }, [])
+    if (active !== activeKey) setActive(activeKey)
+  }, [active, activeKey])
 
   const handleSelect = (newKey) => {
     if (handeled) setActive(newKey)

@@ -1,28 +1,18 @@
 //default
-import React, { Fragment, useState } from 'react'
-import Mapir from 'mapir-react-component'
+import React, { Fragment } from 'react'
+import { Mapir } from '.'
+import { useMap } from '../../context'
 
-export const MapMarking = ({
-  mareers = {},
-  key,
-  multy = true,
-  onClick,
-  markerClicked,
-}) => {
-  const [markes, setMars] = useState([{ lat: 50, lng: 40 }])
-  const mapMarkHandler = (data) => {
-    console.log({ data })
-    const { lng, lat } = data.transform._center
-    setMars((prev) => [...prev, { lat, lng }])
-  }
-  console.log(markes)
+export const MapMarking = ({ marks = [], removeHandler }) => {
+  const { state } = useMap()
+  console.log({ state })
   return (
     <Fragment>
-      {markes.map((mrk, index) => (
+      {marks.map(({ lat, lng }, index) => (
         <Mapir.Marker
           key={index}
-          coordinates={[mrk.lng, mrk.lat]}
-          onClick={mapMarkHandler}
+          coordinates={[lng, lat]}
+          onClick={() => removeHandler(index)}
           anchor="bottom"
         ></Mapir.Marker>
       ))}

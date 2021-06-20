@@ -12,7 +12,6 @@ export const TabCardWithRoute = ({
   const { state } = useLocation()
   const tab = state.tab ? state.tab : defaultActived
   const history = useHistory()
-  console.log(history.location)
   const changeToRouteWithTab = (tabKey) => {
     let qs = queryString.parse(history.location.search)
     qs = killAllQueryString ? { tab: tabKey } : { ...qs, tab: tabKey }

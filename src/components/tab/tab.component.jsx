@@ -15,7 +15,6 @@ export const TabComponent = ({
   handleSelect = () => {},
   ...props
 }) => {
-  console.log({ activeKey })
   return (
     <Nav
       className="tab-rs-nav"
