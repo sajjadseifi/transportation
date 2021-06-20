@@ -1,22 +1,20 @@
 //default
 import React from 'react'
 import { MapOverview, MapMarking } from '.'
-import { MapProvider, useMap } from '../../context'
-import * as actionTypes from '../../context/actions/type.action'
-export const MapDevelopment = () => {
+import { addMark } from '../../context/actions/map.action'
+import { useMap } from '../../context'
+export const MapDevelopment = ({
+  selectedkey = 'map_key',
+  changed = () => {},
+}) => {
   const { state, dispatch } = useMap()
-  // console.log(state)
-
-  const mapMarkHandler = (map, e) => {
-    console.log({ e })
-    const { lng, lat } = e.lngLat
-    dispatch({ type: actionTypes.MAP_MARK_ADD, lng, lat })
+  const mapMarkHandler = (_map, e) => {
+    dispatch(addMark(selectedkey, e.lngLat))
+    changed(selectedkey, e.lngLat)
   }
   return (
-    <MapProvider>
-      <MapOverview lnglat={state.lnglat} onClick={mapMarkHandler}>
-        <MapMarking marks={state.marks} />
-      </MapOverview>
-    </MapProvider>
+    <MapOverview onClick={mapMarkHandler}>
+      <MapMarking marks={state.marks} />
+    </MapOverview>
   )
 }

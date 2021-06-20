@@ -1,7 +1,5 @@
 import { mapActionTypes } from "../@types";
 import { updateObject } from "../../core/utils";
-import pic from "object.pick";
-
 export const initialState = {
    marks: {},
    center: null,

@@ -1,6 +1,5 @@
 //default
 import React from 'react'
-import { useSelector } from 'react-redux'
 import { Mapir } from '.'
 import { useMap } from '../../context'
 const apiKey =
@@ -18,10 +17,10 @@ const Map = Mapir.setToken({
 })
 
 export const MapOverview = ({ onClick, children }) => {
-  const { lnglat } = useSelector((state) => state.map)
-  console.log({ lnglat })
+  const { state } = useMap()
+  console.log({ center: state.center })
   return (
-    <Mapir onClick={onClick} center={lnglat} Map={Map} apiKey={apiKey}>
+    <Mapir onClick={onClick} center={state.center} Map={Map} apiKey={apiKey}>
       {children}
     </Mapir>
   )

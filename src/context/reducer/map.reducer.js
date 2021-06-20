@@ -1,31 +1,33 @@
 import { updateObject } from "../../core/utils/utils"
 import * as actionsType from "../actions/type.action"
-import pic from "object.pick"
 
 export const initialState = {
-   marks: [],
-   lnglat: null
+   marks: {},
+   center: null,
 }
+const setMark = (state, action) => {
+   const key = action.key
+   const lnglat = action.lnglat
+   const updatedMark = {
+      ...state.marks,
+      [key]: lnglat
+   }
+   return updateObject(state, { center: lnglat, marks: updatedMark })
+}
+const deleteMarkByKey = (state, action) => {
+   const updatedMark = {}
+   for (let key in state.marks)
+      if (key !== action.key)
+         updatedMark[key] = state.marks[key]
 
-export const SecurityReducer = (state = initialState, action) => {
-   console.log("SecurityReducer", { action })
+   return updateObject(state, { marks: updatedMark })
+}
+export const MapReducer = (state = initialState, action) => {
    switch (action.type) {
-      case actionsType.MAP_INITIAL:
-         return updateObject(initialState, action.payload)
-      case actionsType.MAP_MARK_ADD:
-         const lnglat = pic(action, ["lat", "lng"])
-         return { ...state, lnglat, marks: [...state.marks, lnglat] }
-      case actionsType.MAP_MARK_DELETE:
-         console.log("SecurityReducer", "DELETE")
-         let filteredMarks = state.marks.filter((_, index) => {
-            console.log(index, "===", action.index, index === action.index)
-            return index === action.index
-         })
-         console.log("ss", filteredMarks)
-         let center = filteredMarks.length === 0 ? null : state.lnglat
-         return updateObject(state, { lnglat: center, marks: filteredMarks })
+      case actionsType.MAP_INITIAL: return updateObject(state, action)
+      case actionsType.MAP_MARK_ADD: return setMark(state, action)
+      case actionsType.MAP_MARK_DELETE: return deleteMarkByKey(state, action)
       case actionsType.MAP_CLEAR: return initialState
-      default:
-         return state;
+      default: return state;
    }
 }
