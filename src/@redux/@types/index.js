@@ -1,4 +1,6 @@
+import * as mapActionTypes from "./map.action.types"
 export { errorRequest, reducerAction } from "./all.action.types";
+export { mapActionTypes }
 export {
     AUTH_FINISHED_REQUEST,
     AUTH_LOGIN_FAIL,
@@ -39,3 +41,6 @@ export {
     DEACTIVE_SIDEBAR
 } from "./menu.action.types";
 export { default as menuActionTypes } from "./menu.action.types";
+
+
+

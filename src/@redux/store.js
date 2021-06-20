@@ -2,17 +2,20 @@ import React from "react";
 import ReduxThunk from "redux-thunk";
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import { Provider } from "react-redux";
-import { authReducer, formReducer, listReducer, menuReducer } from "./reducers";
+import { authReducer, formReducer, listReducer, menuReducer, mapReducer } from "./reducers";
 
 export const rootReducer = combineReducers({
     auth: authReducer,
     form: formReducer,
     list: listReducer,
-    menu: menuReducer
+    menu: menuReducer,
+    map: mapReducer,
 });
 
+const userInfoFromStorage = localStorage.getItem("userInfo")
+
 const initialState = {
-    // userLogin: { userInfo: userInfoFromStorage },
+    auth: { userInfo: userInfoFromStorage, error: [], loading: false },
 };
 
 const middleware = [ReduxThunk];
