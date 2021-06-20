@@ -5,6 +5,7 @@ import { TabCard } from '.'
 import queryString from 'query-string'
 export const TabCardWithRoute = ({
   baseRoute = null,
+  killAllQueryString = false,
   defaultActived = '',
   ...props
 }) => {
@@ -13,19 +14,15 @@ export const TabCardWithRoute = ({
   const history = useHistory()
   console.log(history.location)
   const changeToRouteWithTab = (tabKey) => {
-    if (baseRoute) return gotoTab(baseRoute, tabKey)
-
-    const qs = queryString.parse(history.location.search)
-    qs.tab = tabKey
+    let qs = queryString.parse(history.location.search)
+    qs = killAllQueryString ? { tab: tabKey } : { ...qs, tab: tabKey }
     const search = queryString.stringify(qs, {})
-    history.push(`${history.location.pathname}?${search}`)
+    const pathName = baseRoute ? baseRoute : history.location.pathname
+    history.push(`${pathName}?${search}`)
   }
-  const gotoTab = (baseRoute, tabKey) =>
-    history.push(`${baseRoute}?tab=${tabKey}`)
   return (
     <TabCard
       handeled
-      appearance="subtle"
       onChangeTab={changeToRouteWithTab}
       activeKey={tab}
       {...props}
