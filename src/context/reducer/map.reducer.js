@@ -1,16 +1,24 @@
 import { updateObject } from "../../core/utils/utils"
-import * as mapTypes from "../actionstype/map.types"
-export const initialState = {}
+import * as actionsType from "../actions/type.action"
+import pic from "object.pick"
+
+export const initialState = {
+   marks: [],
+}
 
 export const SecurityReducer = (state = initialState, action) => {
+   console.log({ action })
    switch (action.type) {
-      case mapTypes.INITIAL_STATE:
-         return state
-      case mapTypes.UPDATE_STATE:
-         return updateObject(state, state)
-      case mapTypes.CLEAR_STATE:
-         return initialState
+      case actionsType.MAP_INITIAL:
+         return updateObject(initialState, action.payload)
+      case actionsType.MAP_MARK_ADD:
+         const mark = pic(action, ["lat", "lng"])
+         return { ...state, lat: mark.lat, lng: mark.lng, marks: [...state.marks, mark] }
+      case actionsType.MAP_MARK_DELETE:
+         let filteredMarks = state.marks.filter((_, index) => index === action.index)
+         return updateObject(state, { marks: filteredMarks })
+      case actionsType.MAP_CLEAR: return initialState
       default:
-         throw new Error(`Unhandled action type: ${action.type}`)
+         return state;
    }
 }
