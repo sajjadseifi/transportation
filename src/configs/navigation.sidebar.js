@@ -45,7 +45,7 @@ export default {
                     component: Dropdown.Item,
                     title: "مسیر های من",
                     Icon: <Icon icon="plus" />,
-                    route: "/app/account/saved-address",
+                    route: "/app/account/address",
                 },
                 {
                     component: Dropdown.Item,
