@@ -1,6 +1,8 @@
 //default
 import React from 'react'
 import { Icon, Nav } from 'rsuite'
+import { FlexBox } from '../box'
+import { NinjaConditionWrappr as NinWrap } from '../wrapper'
 export const TabItemComponent = ({
   onSelect,
   eventKey,
@@ -14,13 +16,18 @@ export const TabItemComponent = ({
     <Nav.Item
       className={`${activedCls} ltr`}
       onSelect={() => onSelect(eventKey)}
-      {...{
-        icon: icon ? <Icon icon={icon} /> : null,
-      }}
       eventKey={eventKey}
       {...props}
     >
-      {tabChildren}
+      <FlexBox justCenter alignCenter>
+        {tabChildren}
+        <NinWrap condition={icon}>
+          <div>
+            <span className="p-1"></span>
+            <Icon icon={icon} />
+          </div>
+        </NinWrap>
+      </FlexBox>
     </Nav.Item>
   )
 }
