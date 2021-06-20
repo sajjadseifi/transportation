@@ -1,11 +1,17 @@
 //default
 import React from 'react'
 import { BaseCard } from '../card'
-export const ContentTabCard = ({ activedKey = '', tabslist = [] }) => {
+export const ContentTabCard = ({
+  activedKey = '',
+  backTablist = [],
+  tabslist = [],
+}) => {
   let CMP = null
-  const comp = tabslist.find((tb) => `${tb.key}` === `${activedKey}`)
+  const isActivedTab = (tablist) =>
+    tablist.find((tb) => `${tb.key}` === `${activedKey}`)
 
-  if (comp) CMP = comp.component
+  let activedTab = isActivedTab(tabslist) || isActivedTab(backTablist)
+  if (activedTab) CMP = activedTab.component
 
   return <BaseCard>{CMP ? <CMP /> : CMP}</BaseCard>
 }

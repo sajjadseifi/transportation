@@ -15,21 +15,21 @@ const styles = {
 // }
 export const TabCard = ({
   activeKey,
-  reversed = false,
   vertical = false,
-  appearance = 'subtle',
   onChangeTab = () => {},
-  tabcards = [],
+  tabCards = [],
+  backTabCards = [],
+  handeled,
+  ...props
 }) => {
   const [active, setActive] = useState(activeKey)
 
   useEffect(() => {
-    console.log({ activeKey })
     setActive(activeKey)
   }, [])
 
   const handleSelect = (newKey) => {
-    setActive(newKey)
+    if (handeled) setActive(newKey)
     if (newKey !== active) onChangeTab(newKey)
   }
 
@@ -38,15 +38,18 @@ export const TabCard = ({
       <TabComponent
         {...{
           activeKey: active,
-          reversed,
-          appearance,
           styles,
-          tabs: tabcards,
+          tabs: tabCards,
           handleSelect,
+          ...props,
         }}
       />
       <FlexBox culumn={!vertical}>
-        <ContentTabCard tabslist={tabcards} activedKey={active} />
+        <ContentTabCard
+          backTablist={backTabCards}
+          tabslist={tabCards}
+          activedKey={active}
+        />
       </FlexBox>
     </Card>
   )
