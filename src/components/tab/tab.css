@@ -1,3 +1,4 @@
-.tab-rs-nav>ul>li>.rs-nav-item>.rs-nav-item-content {
-   padding: 20px 12px;
+.tab-rs-nav .rs-nav-item>.rs-nav-item-content {
+   padding: 16px;
+
 }
