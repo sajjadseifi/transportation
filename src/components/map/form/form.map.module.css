@@ -1,0 +1,58 @@
+/* MarkItem */
+.MarkItem {
+   margin: 5px 0;
+   cursor: pointer;
+}
+
+.MarkItem .Title {}
+
+.MarkItem .Active {
+   transition: 0.5s;
+   opacity: 1;
+}
+
+.MarkItem .DeActive {
+   transition: 0.5s;
+   opacity: 0.5;
+}
+
+.MarkItem .MarkItemDisplayName {}
+
+.MarkItem .DetinationText {}
+
+.MarkItem .CotnentMarkItem {
+   padding: 3px 10px;
+   display: flex;
+   justify-content: space-between;
+}
+
+.MarkItem .ClearButton {
+   transition: 0.3s;
+   transform: scale(1);
+   animation: ClearButtonStart 2;
+}
+
+.MarkItem .ClearButton:hover {
+   transform: scale(1.1);
+}
+
+.MarkItem .ClearButton:active {
+   transform: scale(0.9);
+}
+
+@keyframes ClearButtonStart {
+   0% {
+      opacity: 0;
+      transform: scale(0);
+   }
+
+   80% {
+      transform: scale(1.2);
+
+   }
+
+   100% {
+      opacity: 1;
+      transform: scale(1);
+   }
+}
