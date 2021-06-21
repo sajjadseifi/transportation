@@ -1,0 +1,19 @@
+.LinearCream {
+   position: relative;
+   height: 100%;
+   width: 100%;
+}
+
+.Cream {
+   position: absolute;
+   transition: 0.2s;
+   top: 0;
+   left: 0;
+   height: 100%;
+   width: 100%;
+
+}
+
+.Body {
+   height: 100%;
+}
