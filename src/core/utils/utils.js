@@ -32,7 +32,7 @@ export const classNames = (...className) => className.join(' ')
 export const exeption = (obj) => {
     return (type) => {
         for (let key in obj)
-            if (obj[key] && !(obj[key] instanceof type))
+            if (obj[key] && typeof obj[key] !== type)
                 throw new Error(`${key} Must be String`)
     }
 }
