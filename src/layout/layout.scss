@@ -1,4 +1,8 @@
 $move-transition:0.4s;
+$responsive-mobile:700px;
+$bottom-upper-card:134px;
+$card-map-with:500px;
+
 .panel-side-bar {
     transition: $move-transition;
     direction: ltr;
@@ -10,12 +14,42 @@ $move-transition:0.4s;
     &.close-side-bar {
         width: 0;
     }
-    &.active-side-bar {}
+
+}
+
+.content-layout {
+    transition: 0.8s;
 }
 
 @media screen and (max-width:900px) {
-    .panel-side-bar{
+    .panel-side-bar {
         position: absolute;
         z-index: 20000000;
+    }
+}
+
+
+
+/* map-layout */
+.map-layout {
+    position: relative;
+
+    &-overlab {
+        position: absolute;
+        width: $card-map-with;
+        // height: 400px;
+        // background-color: red;
+        left: 20px;
+        bottom: $bottom-upper-card + 20px;
+    }
+}
+
+@media screen and (max-width:$responsive-mobile) {
+    .map-layout {
+        &-overlab {
+            width: 100%;
+            left: 0;
+            bottom: $bottom-upper-card;
+        }
     }
 }
