@@ -21,25 +21,30 @@ import Store from "./@redux/store";
 import { createBrowserHistory } from "history";
 import { SecurityProvider } from "./core/security";
 import { roleType, securitySimpleOption } from "./constants";
+import { QueryClient, QueryClientProvider } from "react-query";
 export const history = createBrowserHistory();
 //persian date
 export const persianDate = require("persian-date");
 
+// Create a client
+const queryClient = new QueryClient()
 
 
 const IndexApp = () => {
     return (
         <Router history={history}>
-            <Store>
-                <SecurityProvider
-                    user={{
-                        role: roleType.CUSTOMER,
-                        levelInRole: 0
-                    }}
-                    options={securitySimpleOption}>
-                    <App />
-                </SecurityProvider>
-            </Store>
+            <QueryClientProvider client={queryClient}>
+                <Store>
+                    <SecurityProvider
+                        user={{
+                            role: roleType.CUSTOMER,
+                            levelInRole: 0
+                        }}
+                        options={securitySimpleOption}>
+                        <App />
+                    </SecurityProvider>
+                </Store>
+            </QueryClientProvider>
         </Router>
     );
 };
