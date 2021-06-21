@@ -1,4 +1,11 @@
-/* MarkItem */
+/* * FormMap * */
+.SideCream {
+   width: 6px;
+   padding: 0 2px;
+   height: auto;
+}
+
+/* * MarkItem * */
 .MarkItem {
    margin: 5px 0;
    cursor: pointer;
