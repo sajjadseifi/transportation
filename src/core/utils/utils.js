@@ -36,3 +36,5 @@ export const exeption = (obj) => {
                 throw new Error(`${key} Must be String`)
     }
 }
+
+export const persent = (num = 0) => `${num}%`
