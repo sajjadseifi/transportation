@@ -81,8 +81,25 @@
 		],
 		"description": "index action type"
 	  },
-	  "default functional commponent": {
+	  "functional commponent": {
 		"prefix": "fcra",
+		"body": [
+		  "//default",
+		  "import React from \"react\";",
+		  "export const ${FunctionalConponent} = (props) => {",
+		  "",
+		  "    reutnr(",
+		  "        <div>",
+		  "",
+		  "        </div>",
+		  "    )",
+		  "};",
+		  ""
+		],
+		"description": "default functional commponent"
+	  },
+	  "default functional commponent": {
+		"prefix": "fcrad",
 		"body": [
 		  "//default",
 		  "import React from \"react\";",

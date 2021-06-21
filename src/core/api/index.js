@@ -1,4 +1,5 @@
 export { default, request as agentAxios } from "./api";
+export { endPoint } from "./endpoint"
 export { default as authApi } from "./auth.api";
 export { default as tempApi } from "./temp.api";
 export { default as userApi } from "./user.api";
