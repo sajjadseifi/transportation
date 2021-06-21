@@ -3,4 +3,5 @@ export { MapOverview } from "./map.overview"
 export { MapMarking } from "./map.marking"
 export { MapDevelopment } from "./map.development"
 export { MapIr } from "./mapir"
+export { SeachInputMapIr } from "./search.mapir"
 export { Mapir }

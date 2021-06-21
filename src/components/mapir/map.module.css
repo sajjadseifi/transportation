@@ -1,0 +1,54 @@
+.MapOverview {
+   width: 100%;
+   overflow: scroll;
+   width: 100%;
+   height: auto;
+   position: relative;
+}
+
+.MapOverview .SeachBox {
+   position: absolute;
+   transition: 0.5s;
+   width: 40%;
+   height: 20px;
+   top: 10px;
+}
+
+.SeachBox.Center {
+   left: 50%;
+   transform: translateX(-50%);
+}
+
+.SeachBox.Left {
+   left: 0;
+}
+
+.SeachBox.Right {
+   right: 0;
+}
+
+@media screen and (max-width: 980px) {
+   .MapOverview .SeachBox {
+      width: 60%;
+   }
+}
+
+@media screen and (max-width: 680px) {
+   .MapOverview .SeachBox {
+      width: 80%;
+   }
+}
+
+/* Inputs */
+
+.SeachInputMapIr {
+   border-radius: 5px;
+   box-shadow: 0 3px 7px 1px #00a3c031;
+}
+
+.Loading_SeachInputMapIr {
+   padding: 5px;
+   display: flex;
+   align-items: center;
+
+}
