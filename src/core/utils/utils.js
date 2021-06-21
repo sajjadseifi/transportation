@@ -22,3 +22,7 @@ export const selectOptsGenerator = (valueObj, labelObj) => {
         label: labelObj[dk]
     }));
 };
+
+
+export const sleep = (second = 0) =>
+    new Promise((resolve, _) => setTimeout(() => resolve(), second * 1000))
