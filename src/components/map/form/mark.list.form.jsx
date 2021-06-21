@@ -5,8 +5,9 @@ export const MarkListForm = ({ marks = [], active, onSelect }) => (
   <ul className={classes.MarkListForm}>
     {marks.map((mk, index) => (
       <li className={classes.MarkListItemForm}>
+        {console.log({ active, key: mk.key }, `${active}` === `${mk.key}`)}
         <MarkItemForm
-          actived={active === mk.key}
+          actived={`${active}` === `${mk.key}`}
           onSelect={onSelect}
           {...mk}
           key={index}
