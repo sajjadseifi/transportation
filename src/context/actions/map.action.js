@@ -7,3 +7,7 @@ export const addMark = (key, lnglat) => ({ type: actionsType.MAP_MARK_ADD, key, 
 export const removeMark = (key) => ({ type: actionsType.MAP_MARK_ADD, key })
 
 export const clearMap = () => ({ type: actionsType.MAP_CLEAR })
+
+export const setSeach = () => ({ type: actionsType.MAP_SEARCH_TEXT })
+
+export const clearSeach = () => ({ type: actionsType.MAP_SEARCH_CELAR })
