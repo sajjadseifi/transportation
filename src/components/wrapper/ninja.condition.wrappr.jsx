@@ -1,14 +1,13 @@
 //default
 const NinjaConditionWrappr = ({ condition = true, children }) => {
-  const isNinja = !!(children instanceof Array);
-  if (!isNinja) return children;
+  const isNinja = !!(children instanceof Array)
+  const first = isNinja ? children[0] : children
 
-  const first = children[0];
-  const second = children[1];
+  const second = isNinja ? children[1] : null
 
-  const Cmp = !!condition ? first : second;
+  const Cmp = !!condition ? first : second
 
-  return Cmp;
-};
+  return Cmp
+}
 
-export default NinjaConditionWrappr;
+export default NinjaConditionWrappr
