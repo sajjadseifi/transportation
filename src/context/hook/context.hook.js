@@ -10,5 +10,5 @@ export const useHook = (Context, hookName, providerName) => {
 export const useDispatch = (Context, hookName, providerName) =>
   useHook(Context, hookName, providerName)((context) => context.dispatch)
 
-export const useSelector = (Context, cb = (state) => state, hookName, providerName) =>
-  useHook(Context, hookName, providerName)((context) => cb(context))
+export const useSelector = (Context, hookName, providerName, cb = (state) => state) =>
+  useHook(Context, hookName, providerName)((context) => cb(context.state))
