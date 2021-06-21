@@ -44,13 +44,11 @@ export const TabCard = ({
           ...props,
         }}
       />
-      <FlexBox culumn={!vertical}>
-        <ContentTabCard
-          backTablist={backTabCards}
-          tabslist={tabCards}
-          activedKey={active}
-        />
-      </FlexBox>
+      <ContentTabCard
+        backTablist={backTabCards}
+        tabslist={tabCards}
+        activedKey={active}
+      />
     </Card>
   )
 }

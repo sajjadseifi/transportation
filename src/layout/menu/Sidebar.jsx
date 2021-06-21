@@ -20,10 +20,11 @@ const sidebarStyle = {
   width: 340,
 }
 
-const Sidebar = ({ ...props }) => {
+const Sidebar = ({ ref, ...props }) => {
   const { activeSidebar } = useSelector((state) => state.menu)
   return (
     <div
+      ref={ref}
       className={`panel-side-bar rsuite h-100 ${
         !activeSidebar ? 'close-side-bar' : 'active-side-bar'
       }`}
