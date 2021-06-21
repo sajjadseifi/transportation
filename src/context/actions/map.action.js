@@ -8,6 +8,10 @@ export const removeMark = (key) => ({ type: actionsType.MAP_MARK_ADD, key })
 
 export const clearMap = () => ({ type: actionsType.MAP_CLEAR })
 
-export const setSeach = () => ({ type: actionsType.MAP_SEARCH_TEXT })
+export const setSeach = (searh) => ({ type: actionsType.MAP_SEARCH_TEXT, searh })
+
+export const setCenter = (langlat) => ({ type: actionsType.MAP_CENTER, langlat })
+export const clearCenter = () => ({ type: actionsType.MAP_CENTER_CLEAR })
+
 
 export const clearSeach = () => ({ type: actionsType.MAP_SEARCH_CELAR })
