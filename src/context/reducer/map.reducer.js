@@ -24,6 +24,13 @@ const deleteMarkByKey = (state, action) => {
    return updateObject(state, { marks: updatedMark })
 }
 
+const changeCenterMapByKey = (state, action) => {
+   const mkey = Object.keys(state.marks).find(mk => `${mk}` === `${action.key}`)
+
+   if (!mkey) return state
+
+   return updateObject(state, { center: state.marks[mkey] })
+}
 export const MapReducer = (state = initialState, action) => {
    switch (action.type) {
       case actionsType.MAP_INITIAL: return updateObject(state, action)
@@ -31,7 +38,9 @@ export const MapReducer = (state = initialState, action) => {
       case actionsType.MAP_MARK_DELETE: return deleteMarkByKey(state, action)
       case actionsType.MAP_SEARCH_TEXT: return updateObject(state, { search: action.search })
       case actionsType.MAP_SEARCH_CELAR: return updateObject(state, { search: "" })
-      case actionsType.MAP_CENTER: return updateObject(state, { center: action.lnglat })
+      case actionsType.MAP_CENTER:
+         return updateObject(state, { center: action.lnglat })
+      case actionsType.MAP_CENTER_BYKEY: return changeCenterMapByKey(state, action)
       case actionsType.MAP_CENTER_CLEAR: return updateObject(state, { center: null })
       case actionsType.MAP_CLEAR: return initialState
       default: return state;
