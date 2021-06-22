@@ -1,6 +1,5 @@
 .MapCard {
    position: relative;
-   width: 100%;
    background: white;
    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.459);
    padding: 10px 15px;
@@ -11,6 +10,7 @@
 @media screen and (min-width: 700px) {
    .MapCard {
       border-radius: 12px;
+      animation: x 1s;
    }
 }
 
@@ -21,7 +21,10 @@
 @media screen and (max-width: 700px) {
    .MapCard {
       margin: 0 5px;
+      padding: 20px;
+      box-sizing: border-box;
       border-radius: 20px 20px 0 0;
+      animation: MobileUpperStart 1s;
    }
 
    .MapCard::before {
@@ -34,5 +37,26 @@
       transform: translateX(-50%);
       background-color: rgb(255, 255, 255);
       border-radius: 10px 10px 0 0;
+   }
+}
+
+
+@keyframes MobileUpperStart {
+   0% {
+      opacity: 0;
+      transform: translateY(100%) scaleY(1);
+   }
+
+   30% {
+      opacity: 1;
+   }
+
+   50% {
+
+      transform: translateY(0) scaleY(1.1);
+   }
+
+   80% {
+      transform: translateY(0) scaleY(1);
    }
 }

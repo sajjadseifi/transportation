@@ -35,10 +35,9 @@ $card-map-with:500px;
     position: relative;
 
     &-overlab {
+        // z-index: 999999999999999999;
         position: absolute;
         width: $card-map-with;
-        // height: 400px;
-        // background-color: red;
         left: 20px;
         bottom: $bottom-upper-card + 20px;
     }

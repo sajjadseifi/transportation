@@ -9,6 +9,7 @@
 .MarkItem {
    margin: 5px 0;
    cursor: pointer;
+   flex: 1;
 }
 
 .MarkItem .Title {}
@@ -29,21 +30,21 @@
 
 .MarkItem .CotnentMarkItem {
    padding: 3px 10px;
-   display: flex;
-   justify-content: space-between;
 }
 
-.MarkItem .ClearButton {
+.ClearButton {
    transition: 0.3s;
    transform: scale(1);
    animation: ClearButtonStart 2;
+   cursor: pointer;
+   font-weight: bold;
 }
 
-.MarkItem .ClearButton:hover {
+.ClearButton:hover {
    transform: scale(1.1);
 }
 
-.MarkItem .ClearButton:active {
+.ClearButton:active {
    transform: scale(0.9);
 }
 
