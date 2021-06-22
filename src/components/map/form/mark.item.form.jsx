@@ -23,25 +23,30 @@ export const MarkItemForm = ({
   const activedClasses = actived ? classes.Active : classes.DeActive
   const titleClass = classNames(classes.Title, activedClasses)
   return (
-    <div onClick={onSelect} className={classNames(classes.MarkItem)}>
-      <h6 style={{ color }} className={titleClass}>
-        <FlexBox alignItems="end">
-          <Icon size="2x" icon="map-marker" />
-          <span className="mx-1"></span>
-          <span className={classes.MarkItemDisplayName}>{displayName}</span>
-        </FlexBox>
-      </h6>
-      <div className={classes.CotnentMarkItem}>
-        <span className={actived ? classes.Active : classes.DeActive}>
+    <FlexBox alignCenter>
+      <div onClick={onSelect} className={classNames(classes.MarkItem)}>
+        <h6 style={{ color }} className={titleClass}>
+          <FlexBox alignItems="end">
+            <Icon size="2x" icon="map-marker" />
+            <span className="mx-1"></span>
+            <span className={classes.MarkItemDisplayName}>{displayName}</span>
+          </FlexBox>
+        </h6>
+        <div
+          className={classNames(
+            classes.CotnentMarkItem,
+            actived ? classes.Active : classes.DeActive,
+          )}
+        >
           <Icon className="mx-2" icon="map-pin" />
           <TextNull className={classes.DetinationText} emptyTitle={emptyTitle}>
             {destination}
           </TextNull>
-        </span>
-        <NinWrap condition={destination}>
-          <span className={classes.ClearButton}>{removeTtile}</span>
-        </NinWrap>
+        </div>
       </div>
-    </div>
+      <NinWrap condition={destination}>
+        <span className={classes.ClearButton}>{removeTtile}</span>
+      </NinWrap>
+    </FlexBox>
   )
 }
