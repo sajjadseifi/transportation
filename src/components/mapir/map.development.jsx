@@ -5,7 +5,7 @@ import { addMark, setSeach } from '../../context/actions/map.action'
 import { useMap } from '../../context'
 import { sleep } from '../../core/utils/utils'
 export const MapDevelopment = ({
-  selectedkey = 'map_key',
+  selectedkey = null,
   changed = () => {},
   searchInput, //= ({ onCahnge, onSubmit, value }) => {},
   inputProps,
@@ -15,8 +15,10 @@ export const MapDevelopment = ({
   const [loading, setLoading] = useState()
 
   const mapMarkHandler = (_map, e) => {
-    dispatch(addMark(selectedkey, e.lngLat))
-    changed(selectedkey, e.lngLat)
+    if (selectedkey) {
+      dispatch(addMark(selectedkey, e.lngLat))
+      changed(selectedkey, e.lngLat)
+    }
   }
   const onCahngeSearch = (value) => dispatch(setSeach(value))
   const onSearch = async (search) => {
@@ -37,7 +39,6 @@ export const MapDevelopment = ({
       />
     )
   }
-  console.log({ SearchInputCmp })
   return (
     <MapOverview seachCompoent={SearchInputCmp} onClick={mapMarkHandler}>
       <MapMarking marks={state.marks} />

@@ -17,7 +17,6 @@ export const LinearCream = ({
   let creamSize = 0
   let posPlace = 0
 
-  console.log({})
   if (currentStep >= 0 && currentStep < sizeStep) {
     creamSize = persent(100 / sizeStep)
     posPlace = persent(((currentStep % sizeStep) * 100) / sizeStep)
