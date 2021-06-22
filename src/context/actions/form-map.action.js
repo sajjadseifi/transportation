@@ -8,6 +8,7 @@ import { reducerAction } from "./type.action";
 
 export const activeMark = (mark, activeIndex = -1) => reducerAction(actionsType.FORMMAP_ACTIVE_SET, { mark, activeIndex })
 export const activeByKey = (key) => reducerAction(actionsType.FORMMAP_ACTIVE_WITH_KEY, { key })
+export const deleteMarker = (key) => reducerAction(actionsType.FORMMAP_DELETE_MARKER, { key })
 export const deActive = () => reducerAction(actionsType.FORMMAP_ACTIVE_DEL)
 export const loadMarkList = (markerList) => reducerAction(actionsType.FORMMAP_MARKLIST_SET, { markerList })
 export const clearMarkList = () => reducerAction(actionsType.FORMMAP_MARKLIST_DEL)

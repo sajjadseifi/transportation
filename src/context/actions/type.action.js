@@ -16,6 +16,6 @@ export const FORMMAP_ACTIVE_WITH_KEY = "FORMMAP_ACTIVE_WITH_KEY"
 export const FORMMAP_ACTIVE_DEL = "FORMMAP_ACTIVE_DEL"
 export const FORMMAP_MARKLIST_SET = "FORMMAP_MARK_LIST"
 export const FORMMAP_MARKLIST_DEL = "FORMMAP_MARKLIST_DEL"
-
+export const FORMMAP_DELETE_MARKER = "FORMMAP_DELETE_MARKER"
 
 export const reducerAction = (type, payload) => ({ type, ...payload })

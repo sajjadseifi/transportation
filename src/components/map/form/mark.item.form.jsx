@@ -12,16 +12,15 @@ export const MarkItemForm = ({
   emptyTitle = 'مکانی انتخاب نشد',
   removeTtile = 'پاک کردن',
   displayName = '',
-  destination = null,
+  desination = null,
   actived = false,
   color = '',
-  onSelect = (_key) => {},
-  onClear = (_key) => {
-    /*if key undefind all remove*/
-  },
+  onSelect = () => {},
+  onDelete = () => {},
 }) => {
   const activedClasses = actived ? classes.Active : classes.DeActive
   const titleClass = classNames(classes.Title, activedClasses)
+
   return (
     <FlexBox alignCenter>
       <div onClick={onSelect} className={classNames(classes.MarkItem)}>
@@ -40,12 +39,14 @@ export const MarkItemForm = ({
         >
           <Icon className="mx-2" icon="map-pin" />
           <TextNull className={classes.DetinationText} emptyTitle={emptyTitle}>
-            {destination}
+            {desination}
           </TextNull>
         </div>
       </div>
-      <NinWrap condition={destination}>
-        <span className={classes.ClearButton}>{removeTtile}</span>
+      <NinWrap condition={!!desination}>
+        <span onClick={onDelete} className={classes.ClearButton}>
+          {removeTtile}
+        </span>
       </NinWrap>
     </FlexBox>
   )

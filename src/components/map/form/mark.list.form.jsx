@@ -12,25 +12,28 @@ import { useMapDispatch, useMapSelector } from '../../../context/hook/map.hook'
 export const MarkListForm = ({ useMap }) => {
   const dispatch = useFormMapDispatch()
   const dispatchMap = useMapDispatch()
-  const { markerList, onSelect, activeMark } = useFormMapSeletor()
+  const { markerList, onDelete, onSelect, activeMark } = useFormMapSeletor()
   const marks = useMapSelector((state) => state.marks)
-  const onSelectMark = (mark, index) => {
-    dispatch(formMapActions.activeMark(mark, index))
-    onSelect(mark, index)
-    console.log(`${useMap} && ${marks[mark.key]}`, useMap && marks[mark.key])
-    if (useMap && marks[mark.key]) dispatchMap(setCenter(marks[mark.key]))
+  const onSelectMark = (marker, index) => {
+    dispatch(formMapActions.activeMark(marker, index))
+    if (onSelect) onSelect(marker, index)
+    if (useMap && marks[marker.key]) dispatchMap(setCenter(marks[marker.key]))
   }
-
+  const onDeleteMark = (marker, index) => {
+    dispatch(formMapActions.deleteMarker(marker.key))
+    if (onDelete) onDelete(marker, index)
+  }
   return (
     <ul className={classes.MarkListForm}>
       {markerList.map((mk, index) => (
         <li className={classes.MarkListItemForm}>
           <MarkItemForm
-            actived={activeMark && `${activeMark.key}` === `${mk.key}`}
-            onSelect={() => onSelectMark(mk, index)}
+            key={index}
             {...mk}
             mkey={mk.key}
-            key={index}
+            actived={activeMark && `${activeMark.key}` === `${mk.key}`}
+            onSelect={() => onSelectMark(mk, index)}
+            onDelete={() => onDeleteMark(mk, index)}
           />
         </li>
       ))}

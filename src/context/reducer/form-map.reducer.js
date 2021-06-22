@@ -27,6 +27,17 @@ const activingMark = (state, actions) => {
    const changes = { activeMark: actions.mark, activeIndex }
    return updateObject(state, changes)
 }
+
+const deleteDestinationMarkder = (state, actions) => {
+   const updatedMarkerList = state.markerList.map(m => {
+      if (`${m.key}` !== `${actions.key}`)
+         return m;
+
+      return updateObject(m, { desination: null })
+   })
+
+   return updateObject(state, { markerList: updatedMarkerList })
+}
 export const formMapRecuer = (state = formMapInitialState, actions) => {
    switch (actions.type) {
       case actionsType.FORMMAP_ACTIVE_SET:
@@ -39,6 +50,7 @@ export const formMapRecuer = (state = formMapInitialState, actions) => {
          return updateObject(state, { markerList: actions.markerList })
       case actionsType.FORMMAP_MARKLIST_DEL:
          return updateObject(state, { markerList: [] })
+      case actionsType.FORMMAP_DELETE_MARKER: return deleteDestinationMarkder(state, actions)
       default: return state
    }
 }
