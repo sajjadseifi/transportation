@@ -5,9 +5,10 @@ import classes from './form.map.module.css'
 import { FlexBox } from '../../box'
 import { TextNull } from '../../UI/text'
 import { NinjaConditionWrappr as NinWrap } from '../../wrapper'
+import { useFormMapDispatch } from '../../../context/hook/form-map.hook'
 
 export const MarkItemForm = ({
-  key = null,
+  mkey = null,
   emptyTitle = 'مکانی انتخاب نشد',
   removeTtile = 'پاک کردن',
   displayName = '',
@@ -21,9 +22,8 @@ export const MarkItemForm = ({
 }) => {
   const activedClasses = actived ? classes.Active : classes.DeActive
   const titleClass = classNames(classes.Title, activedClasses)
-
   return (
-    <div onClick={() => onSelect(key)} className={classNames(classes.MarkItem)}>
+    <div onClick={onSelect} className={classNames(classes.MarkItem)}>
       <h6 style={{ color }} className={titleClass}>
         <FlexBox alignItems="end">
           <Icon size="2x" icon="map-marker" />

@@ -2,15 +2,15 @@
 import React, { Fragment } from 'react'
 import { Mapir } from '.'
 import { removeMark } from '../../context/actions/map.action'
-import { useMap } from '../../context'
+import { useMapDispatch, useMapSelector } from '../../context/hook/map.hook'
 
 export const MapMarking = () => {
-  const { state, dispatch } = useMap()
-  console.log('state.marks : ', state.marks)
+  const dispatch = useMapDispatch()
+  const { marks } = useMapSelector()
   return (
     <Fragment>
-      {Object.keys(state.marks).map((key, index) => {
-        const mark = state.marks[key]
+      {Object.keys(marks).map((key, index) => {
+        const mark = marks[key]
         const coordinates = [mark.lng, mark.lat]
         return (
           <Mapir.Marker
