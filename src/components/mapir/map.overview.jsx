@@ -1,45 +1,30 @@
 //default
 import React from 'react'
 import { Mapir } from '.'
-import { useMapDispatch, useMapSelector } from '../../context/hook/map.hook'
+import { useMapSelector } from '../../context/hook/map.hook'
+import { classNames } from '../../core/utils/utils'
+import { NinjaConditionWrappr as NinWrap } from '../wrapper'
+import { apiKey, Map } from './map'
 import classes from './map.module.css'
-const apiKey =
-  'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImFiODVhZWRhOTJkMmVhMjgyOGI3YTI4OTdmOTJhYzk1NTA0OTU0Y2Y0MGU0M2FlYWM4NmMwZWVhMDdhZTU0YjYzOWE5NDhjNDE2YzdkODk4In0.eyJhdWQiOiIxNDUyMyIsImp0aSI6ImFiODVhZWRhOTJkMmVhMjgyOGI3YTI4OTdmOTJhYzk1NTA0OTU0Y2Y0MGU0M2FlYWM4NmMwZWVhMDdhZTU0YjYzOWE5NDhjNDE2YzdkODk4IiwiaWF0IjoxNjI0MTQ5NTU5LCJuYmYiOjE2MjQxNDk1NTksImV4cCI6MTYyNjc0MTU1OSwic3ViIjoiIiwic2NvcGVzIjpbImJhc2ljIl19.mDWVwBdVld4WjQ4dL7lT8euNnWChofR8It2zVD63qTJ4T_n7Jo2U2TXCpIWy1UaBOxWmpVJjVqy81ikYb5al1azm4rajxF3-SmBXsjMQmMq29n-uBR6oaToBgAyUEUtX_of2CKyMXtzFj4PmBFpbizXi92p2FY6VzRIj_OoqHyW-ETbvJX_jGwELSn2cnXMoyvgBeVJqpavXSGIk22kGDpoth-qmm9y9_qBEtojXWsJOMJ-VqM46YYCJFk8C7uVggi2U0rDKPqap8XqktCyDL_CTrtJzsxG9-H_NzGUPLN6RuWEkXCcxO8Z1i3LYwNttF1Sdzb3IXy4vnFiM2F186w'
-const Map = Mapir.setToken({
-  transformRequest: (url) => {
-    return {
-      url: url,
-      headers: {
-        'x-api-key': apiKey, //Mapir api key
-        'Mapir-SDK': 'reactjs',
-      },
-    }
-  },
-})
 
 export const MapOverview = ({ seachCompoent, onClick, children }) => {
-  const diaptch = useMapDispatch()
-  const state = useMapSelector((state) => state)
-  const onMouseUp = (_, e) => {
-    // diaptch(setCenter(e.lngLat))
-  }
+  const center = useMapSelector((state) => state.center)
 
   let mapProps = {
     Map: Map,
     apiKey: apiKey,
     onClick: onClick,
-    center: state.center,
+    center: center,
   }
+
   return (
     <div className={classes.MapOverview}>
-      <Mapir onMouseUp={onMouseUp} {...mapProps}>
-        {children}
-      </Mapir>
-      {seachCompoent && (
-        <div className={`${classes.SeachBox} ${classes.Center}`}>
+      <Mapir {...mapProps}>{children}</Mapir>
+      <NinWrap condition={!!seachCompoent}>
+        <div className={classNames(classes.SeachBox, classes.Center)}>
           {seachCompoent}
         </div>
-      )}
+      </NinWrap>
     </div>
   )
 }
